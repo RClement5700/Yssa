@@ -3,4 +3,7 @@
     <string name="username">Username:</string>
     <string name="password">Password:</string>
     <string name="login">login</string>
+    <string name="forklift">Forklift</string>
+    <string name="electricpalletjack">Electric Pallet Jack</string>
+    <string name="choosedepartment">Choose Your Department</string>
 </resources>
