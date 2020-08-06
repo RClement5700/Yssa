@@ -36,7 +36,7 @@
             android:id="@+id/tv_choose_equipment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/chooseequipment"
+            android:text="@string/choosedepartment"
             android:textSize="24sp"
             android:textColor="#FFFFFF"
             android:fontFamily="@font/anton"

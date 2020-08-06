@@ -9,6 +9,8 @@ import android.view.View;
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.ActivityEquipmentBinding;
 
+
+//TODO: This class should be a fragment
 public class EquipmentActivity extends AppCompatActivity {
 
     @Override

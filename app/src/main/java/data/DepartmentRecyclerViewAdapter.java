@@ -10,22 +10,20 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import crysalis.example.yssa.R;
 
 public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<DepartmentRecyclerViewAdapter.DepartmentViewHolder> {
 
-    static final String[] departmentsTitle = {"GROCERY", "PRODUCE", "DAIRY", "MEAT"};
-    static final HashMap<String, Integer> departments = new HashMap<>();
+    static final String[] departmentsTitles = {"GROCERY", "PRODUCE", "DAIRY", "MEAT"};
+    static final int[] departments = {R.drawable.grocery, R.drawable.produce,
+            R.drawable.dairy, R.drawable.meat};
     Context context;
 
     public DepartmentRecyclerViewAdapter(Context context) {
         this.context = context;
-        departments.put("GROCERY", R.drawable.grocery);
-        departments.put("PRODUCE", R.drawable.produce);
-        departments.put("DAIRY", R.drawable.dairy);
-        departments.put("MEAT", R.drawable.meat);
     }
 
     @NonNull
@@ -37,14 +35,11 @@ public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<Departme
 
     @Override
     public void onBindViewHolder(@NonNull DepartmentViewHolder holder, int position) {
-        for (int i = 0; i < getItemCount(); i++) {
-        }
-
     }
 
     @Override
     public int getItemCount() {
-        return departments.size();
+        return departments.length;
     }
 
     class DepartmentViewHolder extends RecyclerView.ViewHolder {
