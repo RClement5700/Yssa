@@ -1,17 +1,14 @@
 package data;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 import crysalis.example.yssa.R;
 
@@ -35,6 +32,10 @@ public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<Departme
 
     @Override
     public void onBindViewHolder(@NonNull DepartmentViewHolder holder, int position) {
+        holder.departmentImage.setImageResource(departments[position]);
+        holder.departmentImage.setAdjustViewBounds(true);
+        holder.departmentTitle.setText(departmentsTitles[position]);
+
     }
 
     @Override
@@ -45,9 +46,11 @@ public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<Departme
     class DepartmentViewHolder extends RecyclerView.ViewHolder {
 
         ImageView departmentImage;
+        TextView departmentTitle;
         public DepartmentViewHolder(@NonNull View itemView) {
             super(itemView);
             departmentImage = itemView.findViewById(R.id.iv_department_image);
+            departmentTitle = itemView.findViewById(R.id.tv_department_title);
         }
     }
 }

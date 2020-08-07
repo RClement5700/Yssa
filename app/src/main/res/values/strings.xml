@@ -6,4 +6,6 @@
     <string name="forklift">Forklift</string>
     <string name="electricpalletjack">Electric Pallet Jack</string>
     <string name="choosedepartment">Choose Your Department</string>
+    <string name="departmentplaceholder">department....</string>
+
 </resources>
