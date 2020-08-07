@@ -11,6 +11,8 @@ import crysalis.example.yssa.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
 /* TODO:
+    openfire for userdata base
+    Room for internal storage of user credentials etc
     all tasks and services will be run in this activity
  */
     @Override

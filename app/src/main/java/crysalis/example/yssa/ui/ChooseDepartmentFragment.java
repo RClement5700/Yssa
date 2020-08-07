@@ -26,13 +26,13 @@ public class ChooseDepartmentFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        //View v = inflater.inflate(R.layout.fragment_choose_department, container, false);
         FragmentChooseDepartmentBinding binding = FragmentChooseDepartmentBinding.inflate(
                 LayoutInflater.from(getContext()));
         View view = binding.getRoot();
         RecyclerView rvChooseDepartment = view.findViewById(R.id.rv_choose_department);
         DepartmentRecyclerViewAdapter departmentRecyclerViewAdapter =
-                new DepartmentRecyclerViewAdapter(getActivity());
+                new DepartmentRecyclerViewAdapter(getActivity(),
+                        getActivity().getSupportFragmentManager());
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         rvChooseDepartment.setAdapter(departmentRecyclerViewAdapter);
         rvChooseDepartment.setLayoutManager(llm);

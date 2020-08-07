@@ -8,9 +8,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import crysalis.example.yssa.R;
+import crysalis.example.yssa.ui.ChooseEquipmentFragment;
 
 public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<DepartmentRecyclerViewAdapter.DepartmentViewHolder> {
 
@@ -18,16 +20,18 @@ public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<Departme
     static final int[] departments = {R.drawable.grocery, R.drawable.produce,
             R.drawable.dairy, R.drawable.meat};
     Context context;
+    FragmentManager fm;
 
-    public DepartmentRecyclerViewAdapter(Context context) {
+    public DepartmentRecyclerViewAdapter(Context context, FragmentManager fm) {
         this.context = context;
+        this.fm = fm;
     }
 
     @NonNull
     @Override
     public DepartmentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new DepartmentViewHolder(LayoutInflater.from(context)
-                .inflate(R.layout.department_item_view, parent, false));
+                .inflate(R.layout.department_item_view, parent, false), fm);
     }
 
     @Override
@@ -35,7 +39,6 @@ public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<Departme
         holder.departmentImage.setImageResource(departments[position]);
         holder.departmentImage.setAdjustViewBounds(true);
         holder.departmentTitle.setText(departmentsTitles[position]);
-
     }
 
     @Override
@@ -43,14 +46,23 @@ public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<Departme
         return departments.length;
     }
 
-    class DepartmentViewHolder extends RecyclerView.ViewHolder {
+    static class DepartmentViewHolder extends RecyclerView.ViewHolder {
 
         ImageView departmentImage;
         TextView departmentTitle;
-        public DepartmentViewHolder(@NonNull View itemView) {
+        FragmentManager fm;
+        public DepartmentViewHolder(@NonNull View itemView, final FragmentManager fm) {
             super(itemView);
             departmentImage = itemView.findViewById(R.id.iv_department_image);
             departmentTitle = itemView.findViewById(R.id.tv_department_title);
+            departmentImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    fm.beginTransaction()
+                            .replace(R.id.fragments_container, new ChooseEquipmentFragment())
+                            .commit();
+                }
+            });
         }
     }
 }
