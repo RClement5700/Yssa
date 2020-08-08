@@ -21,7 +21,7 @@ public class ForkliftHomescreenFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-         return inflater.inflate(R.layout.fragment_choose_department, container, false);
-         //TODO: change order of activities/fragments so equipment comes after department
+
+         return inflater.inflate(R.layout.fragment_inspection, container, false);
     }
 }

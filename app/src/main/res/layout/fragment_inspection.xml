@@ -3,32 +3,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorPrimary"
-    >
+    android:background="@color/colorPrimary">
 
     <TextView
-        android:id="@+id/tv_choose_department"
-        android:layout_width="match_parent"
+        android:id="@+id/tv_inspect_equipment"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/choosedepartment"
-        android:textSize="36sp"
-        android:fontFamily="@font/anton"
+        android:text="@string/inspectequipment"
+        android:textSize="32sp"
         android:textColor="@color/offWhite"
+        android:fontFamily="@font/anton"
         android:layout_margin="8dp"
-        android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/rv_choose_department"
         />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_choose_department"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_choose_department"
+        app:layout_constraintTop_toBottomOf="@+id/tv_inspect_equipment"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

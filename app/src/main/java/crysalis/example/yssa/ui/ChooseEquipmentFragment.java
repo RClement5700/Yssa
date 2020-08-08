@@ -13,8 +13,6 @@ import android.view.ViewGroup;
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentChooseEquipmentBinding;
 
-
-//TODO: This class should be a fragment
 public class ChooseEquipmentFragment extends Fragment {
 
     @Nullable

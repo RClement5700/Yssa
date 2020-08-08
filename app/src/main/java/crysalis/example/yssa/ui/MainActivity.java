@@ -11,9 +11,11 @@ import crysalis.example.yssa.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
 /* TODO:
-    openfire for userdata base
-    Room for internal storage of user credentials etc
-    all tasks and services will be run in this activity
+    -openfire for userdata base
+    -Room for internal storage of user credentials etc
+    -all tasks and services will be run in this activity
+    -Don't replace fragments when buttons are pushed; addToBackStack instead and update back button
+        accordingly
  */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,9 +23,6 @@ public class MainActivity extends AppCompatActivity {
         final ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragments_container, new LoginFragment())
                 .commit();
