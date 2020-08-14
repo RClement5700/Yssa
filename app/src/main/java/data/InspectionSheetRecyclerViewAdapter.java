@@ -1,0 +1,51 @@
+package data;
+
+import android.content.Context;
+import android.text.Layout;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+
+import crysalis.example.yssa.R;
+
+public class InspectionSheetRecyclerViewAdapter extends
+        RecyclerView.Adapter<InspectionSheetRecyclerViewAdapter.InspectionSheetRecyclerViewHolder> {
+
+    //list will differ between forklift and epj
+    ArrayList<String> listOfParts;
+    Context context;
+
+    public InspectionSheetRecyclerViewAdapter(ArrayList<String> listOfParts, Context context) {
+        this.listOfParts = listOfParts;
+        this.context = context;
+    }
+
+    @NonNull
+    @Override
+    public InspectionSheetRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new InspectionSheetRecyclerViewHolder(LayoutInflater.from(context)
+                .inflate(R.layout.inspection_item_view, parent, false));
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull InspectionSheetRecyclerViewHolder holder, int position) {
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return listOfParts.size();
+    }
+
+    static class InspectionSheetRecyclerViewHolder extends RecyclerView.ViewHolder {
+
+        public InspectionSheetRecyclerViewHolder(@NonNull View itemView) {
+            super(itemView);
+        }
+    }
+}

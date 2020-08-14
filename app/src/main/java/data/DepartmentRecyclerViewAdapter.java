@@ -16,7 +16,7 @@ import crysalis.example.yssa.ui.ChooseEquipmentFragment;
 
 public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<DepartmentRecyclerViewAdapter.DepartmentViewHolder> {
 
-    static final String[] departmentsTitles = {"GROCERY", "PRODUCE", "DAIRY", "MEAT"};
+    static String[] departmentsTitles;
     static final int[] departments = {R.drawable.grocery, R.drawable.produce,
             R.drawable.dairy, R.drawable.meat};
     Context context;
@@ -25,6 +25,7 @@ public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<Departme
     public DepartmentRecyclerViewAdapter(Context context, FragmentManager fm) {
         this.context = context;
         this.fm = fm;
+        departmentsTitles = context.getResources().getStringArray(R.array.department_titles);
     }
 
     @NonNull

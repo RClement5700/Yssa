@@ -13,7 +13,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/anton"
-            android:text="@string/choosedepartment"
+            android:text="@string/chooseequipment"
             android:textColor="@color/offWhite"
             android:textSize="24sp"
             app:layout_constraintTop_toTopOf="parent"

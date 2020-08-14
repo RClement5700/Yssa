@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!--   <string-array name="electric_pallet_jack_inspection_data_list">-->
+<!--        <item>Is there excessive oil or water on the forks? Are they cracked or bent or worn?</item>-->
+<!--        <item>Are there large cuts that go around the circumference of the tire?</item>-->
+<!--        <item>Are there large pieces of rubber missing or separated from the rim?</item>-->
+<!--        <item>Is there bond separation on the tires that may cause slippage?</item>-->
+<!--        <item>Are there missing lugs?</item>-->
+<!--        <item>Are the cell caps and terminal covers on the battery in place?</item>-->
+<!--        <item>Are the battery's cables missing insulation?</item>-->
+<!--        <item>Is there an adequate amount of hydraulic fluid?</item>-->
+<!--        <item>Are all of the gauges working properly working?</item>-->
+<!--        <item>Has the steering been compromised in any way?</item>-->
+<!--        <item>If power steering: Is it working?</item>-->
+<!--        <item>Does the horn work?</item>-->
+<!--        <item>Is there hesitation when hoisting or lowering the forks?</item>-->
+<!--    </string-array>-->
+
+<!--    <string-array name="forklift_inspection_data_list">-->
+<!--        <item>Overhead Guard - Are there broken welds, missing bolts, or damaged areas?</item>-->
+<!--        <item>Hydraulic Cylinders - Is there leakage or damage on the lift, tilt,-->
+<!--            and attachment functions of the cylinders?</item>-->
+<!--        <item>Mast Assembly - Are there broken welds, cracked or bent areas, and worn or missing-->
+<!--            stops?</item>-->
+<!--        <item>Is there squeaking? Is there wear or damage or kinks, signs of rust, or any sign that-->
+<!--            lubrication is required on the lift chains or rollers?</item>-->
+<!--        <item>Is there excessive oil or water on the forks? Are they cracked or bent , worn, or-->
+<!--            mismatched?</item>-->
+<!--        <item>Are there large cuts that go around the circumference of the tire?</item>-->
+<!--        <item>Are there large pieces of rubber missing or separated from the rim?</item>-->
+<!--        <item>Is there bond separation on the tires that may cause slippage?</item>-->
+<!--        <item>Are there missing lugs?</item>-->
+<!--        <item>Are the cell caps and terminal covers on the battery in place?</item>-->
+<!--        <item>Are the battery's cables missing insulation?</item>-->
+<!--        <item>Is there an adequate amount of hydraulic fluid?</item>-->
+<!--        <item>Are all of the gauges working properly working?</item>-->
+<!--        <item>Has the steering been compromised in any way?</item>-->
+<!--        <item>If power steering: Is it working?</item>-->
+<!--        <item>If pedal goes all the way to the floor when you apply the service brake, that is-->
+<!--        the first indicator that the brakes are bad. Brakes should work in reverse, also.</item>-->
+<!--        <item>Does the parking brake work? The truck should not be capable of movement when the-->
+<!--        parking brake is engaged.</item>-->
+<!--        <item>If equipped with lights, are they working properly?</item>-->
+<!--        <item>Does the horn work?</item>-->
+<!--        <item>If the truck is equipped with a safety seat is it working?</item>-->
+<!--        <item>Is there hesitation when hoisting or lowering the forks, when using the forward or-->
+<!--        backward tilt, or the lateral travel on the side shift?</item>-->
+<!--        <item>Is there excessive oil on the cylinders?</item>-->
+<!--        <item>Is the tank guard bracket properly positioned and locked down?</item>-->
+<!--        <item>Is the propane hose damaged? It should not be frayed, pinched, kinked, or bound in-->
+<!--        any way.</item>-->
+<!--        <item>Is the propane hose connector threaded on squarely and tightly?</item>-->
+<!--        <item>Propane Odor - If you detect the presence of propane gas odor, turn off the tank-->
+<!--        valve and report the problem.</item>-->
+<!--        <item>Is there an adequate amount of oil in the engine?</item>-->
+<!--        <item>Engine Coolant - Visually check the level. Note: Never remove the radiator cap to-->
+<!--        check the coolant level when the engine is running or while the engine is hot. Stand to-->
+<!--        the side and turn your face away. Always use a glove or rag to protect your hand.</item>-->
+<!--        <item>Transmission Fluid - Check levels?</item>-->
+<!--        <item>Windshield Wipers - Do they work properly?</item>-->
+<!--        <item>Seat Belts - Do they work?</item>-->
+<!--        <item>Safety Switch - (found on stand up riding tow tractors) Is it working?</item>-->
+<!--        <item>Hand guards - (found on stand up riding tow tractors, walking pallet trucks,-->
+<!--        walking transtackers) Are they in place?</item>-->
+<!--        <item>Does the tow hook engage and release smoothly?</item>-->
+<!--        <item>Does the safety on the tow hitch catch work properly?</item>-->
+<!--        <item>Control Lever - Does the lever operate properly?</item>-->
+<!--        <item>Safety Interlock - (found on order pickers) If the gate is open, does the vehicle run?</item>-->
+<!--        <item>Gripper Jaws - (found on order pickers) Do the jaws open and close quickly and smoothly?</item>-->
+<!--        <item>Work Platform - (found on order pickers) Does the platform raise and lower smoothly?</item>-->
+<!--    </string-array>-->
+
+    <string-array name="department_titles">
+
+        <item>GROCERY</item>
+        <item>PRODUCE</item>
+        <item>DAIRY</item>
+        <item>MEAT</item>
+
+    </string-array>
+
+</resources>

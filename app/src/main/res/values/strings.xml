@@ -5,8 +5,9 @@
     <string name="login">login</string>
     <string name="forklift">Forklift</string>
     <string name="electricpalletjack">Electric Pallet Jack</string>
+    <string name="chooseequipment">Choose Your Equipment</string>
     <string name="choosedepartment">Choose Your Department</string>
     <string name="inspectequipment">Inspect Your Equipment</string>
     <string name="departmentplaceholder">department....</string>
-
+    <string name="partplaceholder">part....</string>
 </resources>
