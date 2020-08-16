@@ -17,10 +17,10 @@ public class InspectionSheetRecyclerViewAdapter extends
         RecyclerView.Adapter<InspectionSheetRecyclerViewAdapter.InspectionSheetRecyclerViewHolder> {
 
     //list will differ between forklift and epj
-    ArrayList<String> listOfParts;
+    String[] listOfParts;
     Context context;
 
-    public InspectionSheetRecyclerViewAdapter(ArrayList<String> listOfParts, Context context) {
+    public InspectionSheetRecyclerViewAdapter(String[] listOfParts, Context context) {
         this.listOfParts = listOfParts;
         this.context = context;
     }
@@ -39,7 +39,7 @@ public class InspectionSheetRecyclerViewAdapter extends
 
     @Override
     public int getItemCount() {
-        return listOfParts.size();
+        return listOfParts.length;
     }
 
     static class InspectionSheetRecyclerViewHolder extends RecyclerView.ViewHolder {

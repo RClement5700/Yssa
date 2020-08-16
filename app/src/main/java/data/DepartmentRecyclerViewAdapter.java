@@ -60,7 +60,8 @@ public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<Departme
                 @Override
                 public void onClick(View view) {
                     fm.beginTransaction()
-                            .replace(R.id.fragments_container, new ChooseEquipmentFragment())
+                            .addToBackStack(null)
+                            .add(R.id.fragments_container, new ChooseEquipmentFragment())
                             .commit();
                 }
             });

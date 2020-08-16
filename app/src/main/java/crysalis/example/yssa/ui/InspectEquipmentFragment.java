@@ -15,11 +15,15 @@ public class InspectEquipmentFragment extends Fragment {
 
     /*
     TODO:
-        both homescreens will use this fragment but manipulate the recycler view to display different
+        -both homescreens will use this fragment but manipulate the recycler view to display different
             results
+        -After completing the checklist, user will be directed to either the ForkliftHomeScreenFragment
+                or the ElectricPalletJackHomeScreen
      */
-    public InspectEquipmentFragment() {
-        //empty constructor
+
+    String[] checkListData;
+    public InspectEquipmentFragment(String[] checkListData) {
+        this.checkListData = checkListData;
     }
 
     @Nullable

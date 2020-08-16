@@ -54,7 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/electricpalletjack"
-                    android:textSize="24sp"
+                    android:textSize="22sp"
                     android:textColor="@color/offWhite"
                     android:fontFamily="@font/anton"
                     android:layout_gravity="center"
@@ -84,10 +84,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/forklift"
-                    android:textSize="24sp"
+                    android:textSize="22sp"
                     android:textColor="@color/offWhite"
                     android:fontFamily="@font/anton"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    />
             </LinearLayout>
         </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

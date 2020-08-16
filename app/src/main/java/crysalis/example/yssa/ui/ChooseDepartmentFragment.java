@@ -36,6 +36,7 @@ public class ChooseDepartmentFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         rvChooseDepartment.setAdapter(departmentRecyclerViewAdapter);
         rvChooseDepartment.setLayoutManager(llm);
+        rvChooseDepartment.setHasFixedSize(true);
         return view;
     }
 }
