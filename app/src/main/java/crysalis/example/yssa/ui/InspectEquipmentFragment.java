@@ -8,8 +8,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentInspectionBinding;
+import data.InspectionSheetRecyclerViewAdapter;
 
 public class InspectEquipmentFragment extends Fragment {
 
@@ -33,7 +37,9 @@ public class InspectEquipmentFragment extends Fragment {
         FragmentInspectionBinding binding =
                 FragmentInspectionBinding.inflate(LayoutInflater.from(getContext()));
         View v = binding.getRoot();
-
+        RecyclerView rvInspectionList = binding.rvInspectionList;
+        rvInspectionList.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvInspectionList.setAdapter(new InspectionSheetRecyclerViewAdapter(checkListData, getContext()));
         return v;
     }
 }
