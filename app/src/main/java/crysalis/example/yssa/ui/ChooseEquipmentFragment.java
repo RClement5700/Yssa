@@ -16,8 +16,8 @@ import crysalis.example.yssa.databinding.FragmentChooseEquipmentBinding;
 
 public class ChooseEquipmentFragment extends Fragment {
 
-    static String[] forkliftInspectionCheckList;
-    static String[] electricPalletJackInspectionChecklist;
+    String[] forkliftInspectionCheckList;
+    String[] electricPalletJackInspectionChecklist;
 
     public ChooseEquipmentFragment() {
         //empty constructor

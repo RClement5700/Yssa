@@ -25,6 +25,9 @@ public class InspectionSheetRecyclerViewAdapter extends
     public InspectionSheetRecyclerViewAdapter(String[] listOfParts, Context context) {
         this.listOfParts = listOfParts;
         this.context = context;
+        for (int i = 0; i < listOfParts.length; i++) {
+            System.err.println("part: " + listOfParts[i]);
+        }
     }
 
     @NonNull
@@ -50,10 +53,7 @@ public class InspectionSheetRecyclerViewAdapter extends
 
         public InspectionSheetRecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
-            InspectionItemViewBinding binding
-                    = InspectionItemViewBinding.inflate(LayoutInflater.from(itemView.getContext()));
-            View v = binding.getRoot();
-            partDescription = v.findViewById(R.id.tv_part_description);
+            partDescription = itemView.findViewById(R.id.tv_part_description);
         }
     }
 }
