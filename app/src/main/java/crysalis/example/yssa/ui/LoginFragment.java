@@ -30,8 +30,7 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager()
                         .beginTransaction()
-                        .addToBackStack(null)
-                        .add(R.id.fragments_container, new ChooseDepartmentFragment())
+                        .replace(R.id.fragments_container, new ChooseDepartmentFragment())
                         .commit();
             }
         });

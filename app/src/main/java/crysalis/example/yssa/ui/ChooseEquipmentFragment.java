@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentChooseEquipmentBinding;
@@ -19,24 +20,20 @@ public class ChooseEquipmentFragment extends Fragment {
     static String[] electricPalletJackInspectionChecklist;
 
     public ChooseEquipmentFragment() {
-        forkliftInspectionCheckList
-                = getResources().getStringArray(R.array.forklift_inspection_data_list);
-        electricPalletJackInspectionChecklist
-                = getResources().getStringArray(R.array.electric_pallet_jack_inspection_data_list);
+        //empty constructor
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        FragmentChooseEquipmentBinding binding = FragmentChooseEquipmentBinding.inflate(getLayoutInflater());
+        FragmentChooseEquipmentBinding binding = FragmentChooseEquipmentBinding.inflate(inflater,
+                container, false);
         View view = binding.getRoot();
-
+        forkliftInspectionCheckList
+                = getResources().getStringArray(R.array.forklift_inspection_data_list);
+        electricPalletJackInspectionChecklist
+                = getResources().getStringArray(R.array.electric_pallet_jack_inspection_data_list);
         final FragmentManager fm = getActivity().getSupportFragmentManager();
-
-        /*
-        TODO:
-            -Both forkliftBtn and electricpalletjackBtn will take user to InspectEquipmentFragment
-         */
 
         binding.forkliftBtn.setOnClickListener(new View.OnClickListener() {
                 @Override

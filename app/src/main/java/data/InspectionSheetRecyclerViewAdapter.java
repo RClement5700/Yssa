@@ -5,6 +5,7 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import crysalis.example.yssa.R;
+import crysalis.example.yssa.databinding.InspectionItemViewBinding;
 
 public class InspectionSheetRecyclerViewAdapter extends
         RecyclerView.Adapter<InspectionSheetRecyclerViewAdapter.InspectionSheetRecyclerViewHolder> {
@@ -34,7 +36,7 @@ public class InspectionSheetRecyclerViewAdapter extends
 
     @Override
     public void onBindViewHolder(@NonNull InspectionSheetRecyclerViewHolder holder, int position) {
-
+        holder.partDescription.setText(listOfParts[position]);
     }
 
     @Override
@@ -44,8 +46,14 @@ public class InspectionSheetRecyclerViewAdapter extends
 
     static class InspectionSheetRecyclerViewHolder extends RecyclerView.ViewHolder {
 
+        TextView partDescription;
+
         public InspectionSheetRecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
+            InspectionItemViewBinding binding
+                    = InspectionItemViewBinding.inflate(LayoutInflater.from(itemView.getContext()));
+            View v = binding.getRoot();
+            partDescription = v.findViewById(R.id.tv_part_description);
         }
     }
 }

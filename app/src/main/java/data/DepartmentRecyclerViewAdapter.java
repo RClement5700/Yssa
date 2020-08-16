@@ -40,6 +40,15 @@ public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<Departme
         holder.departmentImage.setImageResource(departments[position]);
         holder.departmentImage.setAdjustViewBounds(true);
         holder.departmentTitle.setText(departmentsTitles[position]);
+
+        holder.departmentImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fm.beginTransaction()
+                        .replace(R.id.fragments_container, new ChooseEquipmentFragment())
+                        .commit();
+            }
+        });
     }
 
     @Override
@@ -51,20 +60,10 @@ public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<Departme
 
         ImageView departmentImage;
         TextView departmentTitle;
-        FragmentManager fm;
         public DepartmentViewHolder(@NonNull View itemView, final FragmentManager fm) {
             super(itemView);
             departmentImage = itemView.findViewById(R.id.iv_department_image);
             departmentTitle = itemView.findViewById(R.id.tv_department_title);
-            departmentImage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    fm.beginTransaction()
-                            .addToBackStack(null)
-                            .add(R.id.fragments_container, new ChooseEquipmentFragment())
-                            .commit();
-                }
-            });
         }
     }
 }
