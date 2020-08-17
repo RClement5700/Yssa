@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentInspectionBinding;
 import data.InspectionSheetRecyclerViewAdapter;
 
@@ -19,10 +18,9 @@ public class InspectEquipmentFragment extends Fragment {
 
     /*
     TODO:
-        -both homescreens will use this fragment but manipulate the recycler view to display different
-            results
-        -After completing the checklist, user will be directed to either the ForkliftHomeScreenFragment
-                or the ElectricPalletJackHomeScreen
+        -add "Complete" Button
+        -"Check All" checkbox should make the recyclerView scroll to the "Complete" button
+        -clicking "Complete" btn will direct the user to either the forklift or pallet jack homescreen
      */
 
     String[] checkListData;

@@ -10,4 +10,6 @@
     <string name="inspectequipment">Inspect Your Equipment</string>
     <string name="departmentplaceholder">department....</string>
     <string name="partplaceholder">part....</string>
+    <string name="check_all">Check All</string>
+
 </resources>

@@ -1,8 +1,9 @@
 package crysalis.example.yssa.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.ActivityMainBinding;

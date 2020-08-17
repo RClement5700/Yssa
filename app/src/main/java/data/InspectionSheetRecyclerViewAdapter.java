@@ -1,7 +1,6 @@
 package data;
 
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,24 +9,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-
 import crysalis.example.yssa.R;
-import crysalis.example.yssa.databinding.InspectionItemViewBinding;
 
 public class InspectionSheetRecyclerViewAdapter extends
         RecyclerView.Adapter<InspectionSheetRecyclerViewAdapter.InspectionSheetRecyclerViewHolder> {
 
-    //list will differ between forklift and epj
+    /*
+        TODO:
+            -review PopularMovies app to understand how to keep item_views.xml from jumping around
+     */
     String[] listOfParts;
     Context context;
 
     public InspectionSheetRecyclerViewAdapter(String[] listOfParts, Context context) {
         this.listOfParts = listOfParts;
         this.context = context;
-        for (int i = 0; i < listOfParts.length; i++) {
-            System.err.println("part: " + listOfParts[i]);
-        }
     }
 
     @NonNull
