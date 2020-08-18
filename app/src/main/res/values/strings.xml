@@ -11,5 +11,6 @@
     <string name="departmentplaceholder">department....</string>
     <string name="partplaceholder">part....</string>
     <string name="check_all">Check All</string>
+    <string name="complete">Complete</string>
 
 </resources>

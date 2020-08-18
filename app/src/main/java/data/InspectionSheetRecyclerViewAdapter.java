@@ -13,11 +13,6 @@ import crysalis.example.yssa.R;
 
 public class InspectionSheetRecyclerViewAdapter extends
         RecyclerView.Adapter<InspectionSheetRecyclerViewAdapter.InspectionSheetRecyclerViewHolder> {
-
-    /*
-        TODO:
-            -review PopularMovies app to understand how to keep item_views.xml from jumping around
-     */
     String[] listOfParts;
     Context context;
 
