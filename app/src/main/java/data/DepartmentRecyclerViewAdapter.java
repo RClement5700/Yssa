@@ -19,6 +19,7 @@ public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<Departme
     static String[] departmentsTitles;
     static final int[] departments = {R.drawable.grocery, R.drawable.produce,
             R.drawable.dairy, R.drawable.meat};
+    static final String TAG = "Choose Equipment Fragment";
     Context context;
     FragmentManager fm;
 
@@ -38,14 +39,15 @@ public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<Departme
     @Override
     public void onBindViewHolder(@NonNull DepartmentViewHolder holder, int position) {
         holder.departmentImage.setImageResource(departments[position]);
-        holder.departmentImage.setAdjustViewBounds(true);
         holder.departmentTitle.setText(departmentsTitles[position]);
+        holder.departmentImage.setAdjustViewBounds(true);
 
         holder.departmentImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 fm.beginTransaction()
                         .replace(R.id.fragments_container, new ChooseEquipmentFragment())
+                        .addToBackStack(TAG)
                         .commit();
             }
         });

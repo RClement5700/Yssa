@@ -13,6 +13,7 @@ import crysalis.example.yssa.R;
 
 public class InspectionSheetRecyclerViewAdapter extends
         RecyclerView.Adapter<InspectionSheetRecyclerViewAdapter.InspectionSheetRecyclerViewHolder> {
+    static final String TAG = "Homescreen Fragment";
     String[] listOfParts;
     Context context;
 

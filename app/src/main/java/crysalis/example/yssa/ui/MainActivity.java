@@ -11,7 +11,9 @@ import crysalis.example.yssa.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
-/* TODO:
+    static final String TAG = "Login Fragment";
+
+    /* TODO:
     -openfire for userdata base
     -Room for internal storage of user credentials etc
     -all tasks and services will be run in this activity
@@ -28,5 +30,19 @@ public class MainActivity extends AppCompatActivity {
                 .add(R.id.fragments_container, new LoginFragment())
                 .commit();
         binding.fragmentsContainer.bringToFront();
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+
+        if (count == 0) {
+            super.onBackPressed();
+            //additional code
+        } else {
+            getSupportFragmentManager().popBackStack();
+        }
+
     }
 }
