@@ -4,18 +4,23 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
 
 import crysalis.example.yssa.R;
 
 public class InspectionSheetRecyclerViewAdapter extends
         RecyclerView.Adapter<InspectionSheetRecyclerViewAdapter.InspectionSheetRecyclerViewHolder> {
-    static final String TAG = "Homescreen Fragment";
     String[] listOfParts;
     Context context;
+    boolean allChecked;
+    static final String TAG = "Homescreen Fragment";
+    static ArrayList<CheckBox> checkBoxes = new ArrayList<>();
+
 
     public InspectionSheetRecyclerViewAdapter(String[] listOfParts, Context context) {
         this.listOfParts = listOfParts;
@@ -31,6 +36,7 @@ public class InspectionSheetRecyclerViewAdapter extends
 
     @Override
     public void onBindViewHolder(@NonNull InspectionSheetRecyclerViewHolder holder, int position) {
+        checkBoxes.add(holder.checkBox);
         holder.partDescription.setText(listOfParts[position]);
     }
 
@@ -39,13 +45,27 @@ public class InspectionSheetRecyclerViewAdapter extends
         return listOfParts.length;
     }
 
+    public void checkAll() {
+        if (allChecked)
+            for (CheckBox checkBox: checkBoxes) {
+                checkBox.setChecked(false);
+            }
+        else {
+            for (CheckBox checkBox : checkBoxes) {
+                checkBox.setChecked(true);
+            }
+        }
+    }
+
     static class InspectionSheetRecyclerViewHolder extends RecyclerView.ViewHolder {
 
         TextView partDescription;
+        CheckBox checkBox;
 
         public InspectionSheetRecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
             partDescription = itemView.findViewById(R.id.tv_part_description);
+            checkBox = itemView.findViewById(R.id.checkbox_part);
         }
     }
 }

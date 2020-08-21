@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.ActivityMainBinding;
+import pojos.Schematic;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -45,4 +46,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+    public void generateSelectionQueue(Schematic schematic, boolean v, int currentPosition,
+                                       int n, int count, int cost, int ans) {
+
+
+    }
+
 }

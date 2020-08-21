@@ -5,6 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +29,7 @@ public class InspectEquipmentFragment extends Fragment {
      */
 
     String[] checkListData;
+    RecyclerView rvInspectionList;
     public InspectEquipmentFragment(String[] checkListData) {
         this.checkListData = checkListData;
     }
@@ -38,15 +42,26 @@ public class InspectEquipmentFragment extends Fragment {
                 FragmentInspectionBinding.inflate(LayoutInflater.from(getContext()));
         View v = binding.getRoot();
         Button completeBtn = binding.completeBtn;
+        rvInspectionList = binding.rvInspectionList;
+        final InspectionSheetRecyclerViewAdapter adapter =
+                new InspectionSheetRecyclerViewAdapter(checkListData, getContext());
+        rvInspectionList.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvInspectionList.setAdapter(adapter);
+        CheckBox checkAll = binding.checkboxCheckAll;
+        checkAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                adapter.checkAll();
+            }
+        });
         completeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //direct to designated homescreen
             }
         });
-        RecyclerView rvInspectionList = binding.rvInspectionList;
-        rvInspectionList.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvInspectionList.setAdapter(new InspectionSheetRecyclerViewAdapter(checkListData, getContext()));
+
         return v;
     }
 }
