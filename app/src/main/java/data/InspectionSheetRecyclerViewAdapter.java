@@ -36,8 +36,13 @@ public class InspectionSheetRecyclerViewAdapter extends
 
     @Override
     public void onBindViewHolder(@NonNull InspectionSheetRecyclerViewHolder holder, int position) {
-        checkBoxes.add(holder.checkBox);
         holder.partDescription.setText(listOfParts[position]);
+        if (!allChecked) {
+            holder.checkBox.setChecked(false);
+        }
+        else {
+            holder.checkBox.setChecked(true);
+        }
     }
 
     @Override
@@ -46,15 +51,7 @@ public class InspectionSheetRecyclerViewAdapter extends
     }
 
     public void checkAll() {
-        if (allChecked)
-            for (CheckBox checkBox: checkBoxes) {
-                checkBox.setChecked(false);
-            }
-        else {
-            for (CheckBox checkBox : checkBoxes) {
-                checkBox.setChecked(true);
-            }
-        }
+        allChecked = true;
     }
 
     static class InspectionSheetRecyclerViewHolder extends RecyclerView.ViewHolder {
@@ -66,6 +63,8 @@ public class InspectionSheetRecyclerViewAdapter extends
             super(itemView);
             partDescription = itemView.findViewById(R.id.tv_part_description);
             checkBox = itemView.findViewById(R.id.checkbox_part);
+            checkBoxes.add(checkBox);
+
         }
     }
 }

@@ -14,6 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.ui.ChooseEquipmentFragment;
 
+
+/*
+    TODO: why is the last image in the recyclerview being cropped?
+ */
 public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<DepartmentRecyclerViewAdapter.DepartmentViewHolder> {
 
     static String[] departmentsTitles;
