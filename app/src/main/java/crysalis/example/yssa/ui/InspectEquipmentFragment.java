@@ -52,7 +52,7 @@ public class InspectEquipmentFragment extends Fragment {
 
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                adapter.checkAll();
+                adapter.setAllCheckBoxes(b);
             }
         });
         completeBtn.setOnClickListener(new View.OnClickListener() {
