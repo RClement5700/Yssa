@@ -1,14 +1,18 @@
 package crysalis.example.yssa.ui;
 
 import android.os.Bundle;
-import android.view.View;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
+
+import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
-import crysalis.example.yssa.R;
-import crysalis.example.yssa.databinding.ActivityMainBinding;
-import pojos.Schematic;
+import android.view.View;
 
+import crysalis.example.yssa.R;
+import data.SectionsPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,17 +24,28 @@ public class MainActivity extends AppCompatActivity {
     -all tasks and services will be run in this activity
     -Don't replace fragments when buttons are pushed; addToBackStack instead and update back button
         accordingly
- */
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
-        setContentView(view);
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragments_container, new LoginFragment())
-                .commit();
-        binding.fragmentsContainer.bringToFront();
+        setContentView(R.layout.activity_main);
+        SectionsPagerAdapter sectionsPagerAdapter =
+                new SectionsPagerAdapter(getSupportFragmentManager(), 0, this);
+        ViewPager viewPager = findViewById(R.id.view_pager);
+        viewPager.setAdapter(sectionsPagerAdapter);
+        TabLayout tabs = findViewById(R.id.tabs);
+        tabs.setupWithViewPager(viewPager);
+
+        //use if Managers want to send employees messages and vice versa
+        FloatingActionButton fab = findViewById(R.id.fab);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
     }
 
     @Override
@@ -44,12 +59,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             getSupportFragmentManager().popBackStack();
         }
-
-    }
-
-    public void generateSelectionQueue(Schematic schematic, boolean v, int currentPosition,
-                                       int n, int count, int cost, int ans) {
-
 
     }
 
