@@ -1,5 +1,6 @@
 package crysalis.example.yssa.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import crysalis.example.yssa.databinding.FragmentRegisterBinding;
+
 
 public class RegisterFragment extends Fragment {
 
@@ -29,6 +31,12 @@ public class RegisterFragment extends Fragment {
         FragmentRegisterBinding binding = FragmentRegisterBinding.inflate(inflater);
         View v = binding.getRoot();
         Button registerButton = binding.registerButton;
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), HomeActivity.class));
+            }
+        });
         EditText etUsername = binding.etRegisterUsername;
         EditText etPassword = binding.etRegisterPassword;
         return v;

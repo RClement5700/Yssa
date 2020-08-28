@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/offWhite"
+    android:background="@color/colorPrimary"
     tools:context=".ui.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -37,8 +37,8 @@
     <FrameLayout
         android:id="@+id/fragments_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
         />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

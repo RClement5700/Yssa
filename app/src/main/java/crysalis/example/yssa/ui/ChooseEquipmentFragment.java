@@ -18,6 +18,14 @@ public class ChooseEquipmentFragment extends Fragment {
     String[] forkliftInspectionCheckList;
     String[] electricPalletJackInspectionChecklist;
 
+       /*TODO:
+           -merge this Fragment and ChooseDepartmentFragment
+           -change scroll direction to horizontal
+           -when item is selected, it will light up and be added to a key:value pair
+           -key:value pair will be passed to InspectEquipmentFragment
+           -when item is deselected, it will be removed from the key:value pair
+     */
+
     public ChooseEquipmentFragment() {
         //empty constructor
     }
@@ -38,7 +46,7 @@ public class ChooseEquipmentFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     fm.beginTransaction()
-                            .replace(R.id.fragments_container,
+                            .replace(R.id.homescreen_fragment_container,
                                     new InspectEquipmentFragment(forkliftInspectionCheckList))
                             .commit();
                 }
@@ -48,7 +56,7 @@ public class ChooseEquipmentFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 fm.beginTransaction()
-                        .replace(R.id.fragments_container,
+                        .replace(R.id.homescreen_fragment_container,
                                 new InspectEquipmentFragment(electricPalletJackInspectionChecklist ))
                         .commit();
             }
@@ -56,4 +64,6 @@ public class ChooseEquipmentFragment extends Fragment {
 
         return view;
     }
+
+
 }

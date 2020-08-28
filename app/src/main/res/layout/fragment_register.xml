@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorPrimary"
+    android:background="@color/offWhite"
     tools:context=".ui.RegisterFragment">
 
     <LinearLayout
@@ -26,7 +26,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/anton"
             android:text="@string/username"
-            android:textColor="@color/offWhite"
+            android:textColor="@color/colorPrimary"
             android:textSize="24sp" />
 
         <EditText
@@ -57,7 +57,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/anton"
             android:text="@string/password"
-            android:textColor="@color/offWhite"
+            android:textColor="@color/colorPrimary"
             android:textSize="24sp" />
 
         <EditText
@@ -90,7 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/management"
-            android:textColor="@color/offWhite"
+            android:textColor="@color/colorPrimary"
             android:textSize="24sp"
             android:layout_margin="8dp"
             />
@@ -104,6 +104,8 @@
         android:fontFamily="@font/anton"
         android:text="@string/register"
         android:textSize="24sp"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/offWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

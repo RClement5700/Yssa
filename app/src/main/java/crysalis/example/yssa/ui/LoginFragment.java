@@ -1,5 +1,6 @@
 package crysalis.example.yssa.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,14 +28,9 @@ public class LoginFragment extends Fragment {
         FragmentLoginBinding binding = FragmentLoginBinding.inflate(inflater);
         View v = binding.getRoot();
         binding.loginButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragments_container, new ChooseDepartmentFragment())
-                        .addToBackStack(TAG)
-                        .commit();
+                startActivity(new Intent(getActivity(), HomeActivity.class));
             }
         });
         return v;

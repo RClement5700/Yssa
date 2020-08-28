@@ -17,6 +17,11 @@ import data.DepartmentRecyclerViewAdapter;
 
 public class ChooseDepartmentFragment extends Fragment {
 
+    /*TODO:
+        -back button should direct user directly to MainActivity
+        -Use tabs and viewpager instead of floating images
+        -merge this Fragment and ChooseEquipmentFragment
+    */
     public ChooseDepartmentFragment() {
         //empty constructor
     }

@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-
         //use if Managers want to send employees messages and vice versa
         FloatingActionButton fab = findViewById(R.id.fab);
 
@@ -47,19 +46,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-    @Override
-    public void onBackPressed() {
-
-        int count = getSupportFragmentManager().getBackStackEntryCount();
-
-        if (count == 0) {
-            super.onBackPressed();
-            //additional code
-        } else {
-            getSupportFragmentManager().popBackStack();
-        }
-
-    }
-
 }
