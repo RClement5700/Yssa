@@ -45,4 +45,6 @@ public class ChooseDepartmentFragment extends Fragment {
         rvChooseDepartment.setHasFixedSize(true);
         return view;
     }
+
+
 }

@@ -35,11 +35,12 @@ public class RegisterFragment extends Fragment {
         binding.registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(new Intent(getActivity(), HomeActivity.class));
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .add(R.id.fragments_container, new ChooseDepartmentFragment())
-                        .addToBackStack(TAG)
-                        .commit();
+                //proceed to Registration form
+
+//                getActivity().getSupportFragmentManager().beginTransaction()
+//                        .add(R.id.fragments_container, new ChooseDepartmentFragment())
+//                        .addToBackStack(TAG)
+//                        .commit();
             }
         });
         EditText etUsername = binding.etRegisterUsername;

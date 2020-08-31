@@ -5,15 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import crysalis.example.yssa.R;
-import crysalis.example.yssa.ui.ChooseAssignmentFragment;
-import crysalis.example.yssa.ui.ChooseDepartmentFragment;
 import crysalis.example.yssa.ui.InspectEquipmentFragment;
 import crysalis.example.yssa.ui.TrainerFragment;
 
@@ -22,7 +19,7 @@ public class AssignmentRecyclerViewAdapter extends
         RecyclerView.Adapter<AssignmentRecyclerViewAdapter.AssignmentViewHolder> {
 
     static final int[] assignments = {R.drawable.trainer, R.drawable.orderpicker,
-            R.drawable.replenish, R.drawable.hooks};
+            R.drawable.replenish, R.drawable.hooks, R.drawable.loader};
     String[] checklist = null;
     Context context;
     FragmentManager fm;
@@ -47,7 +44,7 @@ public class AssignmentRecyclerViewAdapter extends
 
             @Override
             public void onClick(View view) {
-                if (position == 1 || position == 3) {
+                if (position == 1 || position == 3 || position == 4) {
                     checklist = context.getResources().getStringArray(R.array.electric_pallet_jack_inspection_data_list);
                 }
                 else if (position == 2) {

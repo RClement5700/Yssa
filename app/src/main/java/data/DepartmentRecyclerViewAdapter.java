@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
@@ -13,13 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.ui.ChooseAssignmentFragment;
-import crysalis.example.yssa.ui.InspectEquipmentFragment;
 
 
 public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<DepartmentRecyclerViewAdapter.DepartmentViewHolder> {
 
-    static final int[] departments = {R.drawable.grocery2, R.drawable.produce2,
-            R.drawable.dairy2, R.drawable.meat2};
+    static final int[] departments = {R.drawable.grocery, R.drawable.produce,
+            R.drawable.dairy, R.drawable.meat};
     static final String TAG = "Choose Equipment Fragment";
     Context context;
     FragmentManager fm;

@@ -23,17 +23,17 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.login, R.string.register};
     private final Context mContext;
+    FragmentManager fm;
 
     public SectionsPagerAdapter(@NonNull FragmentManager fm, int behavior, Context mContext) {
         super(fm, behavior);
         this.mContext = mContext;
+        this.fm = fm;
     }
 
     @Override
     public Fragment getItem(int position) {
-        if (position == 1) {
-            return new RegisterFragment();
-        }
+        if (position == 1) return new RegisterFragment();
         return new LoginFragment();
     }
 

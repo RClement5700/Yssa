@@ -14,7 +14,6 @@ import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentLoginBinding;
 
 
-
 public class LoginFragment extends Fragment {
     static final String TAG = "Choose Department Fragment";
     public LoginFragment() {
@@ -32,7 +31,7 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
 //                startActivity(new Intent(getActivity(), HomeActivity.class));
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .add(R.id.fragments_container, new ChooseDepartmentFragment())
+                        .replace(R.id.fragments_container, new ChooseDepartmentFragment())
                         .addToBackStack(TAG)
                         .commit();
             }
