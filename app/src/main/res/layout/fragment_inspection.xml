@@ -60,7 +60,7 @@
             android:layout_margin="8dp"
             android:background="@color/offWhite"
             android:text="@string/complete"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@android:color/holo_red_dark" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
