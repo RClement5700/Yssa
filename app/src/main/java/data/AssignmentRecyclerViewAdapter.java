@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.ui.ChooseAssignmentFragment;
 import crysalis.example.yssa.ui.ChooseDepartmentFragment;
+import crysalis.example.yssa.ui.InspectEquipmentFragment;
 
 
 public class AssignmentRecyclerViewAdapter extends
@@ -22,6 +23,7 @@ public class AssignmentRecyclerViewAdapter extends
     static final int[] assignments = {R.drawable.trainer, R.drawable.orderpicker,
             R.drawable.replenish, R.drawable.hooks};
     static final String TAG = "Choose Department Fragment";
+    static String[] checklist;
     Context context;
     FragmentManager fm;
 
@@ -42,11 +44,21 @@ public class AssignmentRecyclerViewAdapter extends
         holder.assignmentImage.setImageResource(assignments[position]);
         holder.assignmentImage.setAdjustViewBounds(true);
 
+        if (position == 0) {
+            checklist = null;
+        }
+
+        else if (position == 1 || position == 3) {
+            checklist = context.getResources().getStringArray(R.array.electric_pallet_jack_inspection_data_list);
+        }
+        else {
+            checklist = context.getResources().getStringArray(R.array.forklift_inspection_data_list);
+        }
         holder.assignmentImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 fm.beginTransaction()
-                        .replace(R.id.homescreen_fragment_container, new ChooseDepartmentFragment())
+                        .replace(R.id.homescreen_fragment_container, new InspectEquipmentFragment(checklist))
                         .addToBackStack(TAG)
                         .commit();
             }

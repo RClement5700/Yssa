@@ -17,7 +17,7 @@
             android:layout_margin="8dp"
             android:fontFamily="@font/anton"
             android:text="@string/chooseassignment"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@android:color/holo_red_dark"
             android:textSize="24sp"/>
 
     <androidx.recyclerview.widget.RecyclerView
