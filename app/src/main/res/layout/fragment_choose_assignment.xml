@@ -18,7 +18,7 @@
             android:fontFamily="@font/anton"
             android:text="@string/chooseassignment"
             android:textColor="@android:color/holo_red_dark"
-            android:textSize="24sp"/>
+            android:textSize="36sp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_choose_assigment"
