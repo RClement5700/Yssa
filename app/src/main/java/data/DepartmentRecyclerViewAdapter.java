@@ -13,13 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.ui.ChooseAssignmentFragment;
+import crysalis.example.yssa.ui.InspectEquipmentFragment;
 
 
 public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<DepartmentRecyclerViewAdapter.DepartmentViewHolder> {
 
-    static String[] departmentsTitles;
-    static final int[] departments = {R.drawable.grocery, R.drawable.produce,
-            R.drawable.dairy, R.drawable.meat};
+    static final int[] departments = {R.drawable.grocery2, R.drawable.produce2,
+            R.drawable.dairy2, R.drawable.meat2};
     static final String TAG = "Choose Equipment Fragment";
     Context context;
     FragmentManager fm;
@@ -27,7 +27,6 @@ public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<Departme
     public DepartmentRecyclerViewAdapter(Context context, FragmentManager fm) {
         this.context = context;
         this.fm = fm;
-        departmentsTitles = context.getResources().getStringArray(R.array.department_titles);
     }
 
     @NonNull
@@ -40,14 +39,14 @@ public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<Departme
     @Override
     public void onBindViewHolder(@NonNull DepartmentViewHolder holder, int position) {
         holder.departmentImage.setImageResource(departments[position]);
-        holder.departmentTitle.setText(departmentsTitles[position]);
         holder.departmentImage.setAdjustViewBounds(true);
 
         holder.departmentImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 fm.beginTransaction()
-                        .replace(R.id.homescreen_fragment_container, new ChooseAssignmentFragment())
+                        //need arraylist of parts
+                        //.replace(R.id.homescreen_fragment_container, new InspectEquipmentFragment())
                         .addToBackStack(TAG)
                         .commit();
             }
@@ -62,11 +61,9 @@ public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<Departme
     static class DepartmentViewHolder extends RecyclerView.ViewHolder {
 
         ImageView departmentImage;
-        TextView departmentTitle;
         public DepartmentViewHolder(@NonNull View itemView, final FragmentManager fm) {
             super(itemView);
             departmentImage = itemView.findViewById(R.id.iv_department_image);
-            departmentTitle = itemView.findViewById(R.id.tv_department_title);
         }
     }
 }
