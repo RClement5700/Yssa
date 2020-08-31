@@ -55,13 +55,13 @@ public class AssignmentRecyclerViewAdapter extends
                 }
                 if (checklist != null) {
                     fm.beginTransaction()
-                            .replace(R.id.homescreen_fragment_container, new InspectEquipmentFragment(checklist))
+                            .replace(R.id.fragments_container, new InspectEquipmentFragment(checklist))
                             .addToBackStack(null)
                             .commit();
                 }
                 else {
                     fm.beginTransaction()
-                            .replace(R.id.homescreen_fragment_container, new TrainerFragment())
+                            .replace(R.id.fragments_container, new TrainerFragment())
                             .addToBackStack(null)
                             .commit();
                 }

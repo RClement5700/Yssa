@@ -46,7 +46,7 @@ public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<Departme
             public void onClick(View view) {
                 fm.beginTransaction()
                         //need arraylist of parts
-                        .replace(R.id.homescreen_fragment_container, new ChooseAssignmentFragment())
+                        .replace(R.id.fragments_container, new ChooseAssignmentFragment())
                         .addToBackStack(TAG)
                         .commit();
             }

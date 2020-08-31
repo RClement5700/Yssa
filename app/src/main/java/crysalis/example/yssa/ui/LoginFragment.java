@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentLoginBinding;
 
 
@@ -29,7 +30,11 @@ public class LoginFragment extends Fragment {
         binding.loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), HomeActivity.class));
+//                startActivity(new Intent(getActivity(), HomeActivity.class));
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .add(R.id.fragments_container, new ChooseDepartmentFragment())
+                        .addToBackStack(TAG)
+                        .commit();
             }
         });
         return v;

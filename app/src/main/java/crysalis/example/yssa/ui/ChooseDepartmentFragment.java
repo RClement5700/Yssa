@@ -33,6 +33,8 @@ public class ChooseDepartmentFragment extends Fragment {
         FragmentChooseDepartmentBinding binding = FragmentChooseDepartmentBinding.inflate(
                 LayoutInflater.from(getContext()));
         View view = binding.getRoot();
+        getActivity().findViewById(R.id.tabs).setVisibility(View.GONE);
+        getActivity().findViewById(R.id.view_pager).setVisibility(View.GONE);
         RecyclerView rvChooseDepartment = view.findViewById(R.id.rv_choose_department);
         DepartmentRecyclerViewAdapter departmentRecyclerViewAdapter =
                 new DepartmentRecyclerViewAdapter(getActivity(),
