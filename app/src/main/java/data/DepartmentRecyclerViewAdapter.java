@@ -12,12 +12,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import crysalis.example.yssa.R;
-import crysalis.example.yssa.ui.ChooseEquipmentFragment;
+import crysalis.example.yssa.ui.ChooseAssignmentFragment;
 
 
-/*
-    TODO: why is the last image in the recyclerview being cropped?
- */
 public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<DepartmentRecyclerViewAdapter.DepartmentViewHolder> {
 
     static String[] departmentsTitles;
@@ -50,7 +47,7 @@ public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<Departme
             @Override
             public void onClick(View view) {
                 fm.beginTransaction()
-                        .replace(R.id.homescreen_fragment_container, new ChooseEquipmentFragment())
+                        .replace(R.id.homescreen_fragment_container, new ChooseAssignmentFragment())
                         .addToBackStack(TAG)
                         .commit();
             }
