@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
             //additional code
         } else {
             getSupportFragmentManager().popBackStack();
+
         }
     }
 }

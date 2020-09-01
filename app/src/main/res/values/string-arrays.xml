@@ -76,7 +76,14 @@
         <item>PRODUCE</item>
         <item>DAIRY</item>
         <item>MEAT</item>
+    </string-array>
 
+    <string-array name="assignment_titles">
+        <item>TRAINER</item>
+        <item>ORDER PICKERS</item>
+        <item>REPLENISH</item>
+        <item>HOOKS</item>
+        <item>LOADER</item>
     </string-array>
 
 </resources>
