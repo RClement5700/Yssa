@@ -2,11 +2,12 @@ package pojos;
 
 import java.util.ArrayList;
 
-public class Department extends ArrayList<Aisle> {
+public class Department {
     String departmentTitle;
+    ArrayList<Aisle> aisles;
 
-    public Department(String departmentTitle) {
+    public Department(String departmentTitle, ArrayList<Aisle> aisles) {
         this.departmentTitle = departmentTitle;
+        this.aisles = aisles;
     }
-
 }

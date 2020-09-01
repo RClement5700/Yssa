@@ -1,17 +1,14 @@
 package pojos;
 
-import java.util.HashMap;
+public class Slot {
 
-/*
-    key     = position ID
-    value   = check digit
- */
-public class Slot extends HashMap<Integer, Integer>
-{
     String productDescription;
+    int positionId;
+    int checkDigit;
 
-    public Slot(String productDescription) {
+    public Slot(String productDescription, int positionId, int checkDigit) {
         this.productDescription = productDescription;
-
+        this.positionId = positionId;
+        this.checkDigit = checkDigit;
     }
 }

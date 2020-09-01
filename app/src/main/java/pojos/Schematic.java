@@ -5,6 +5,10 @@ package pojos;
 
 import java.util.ArrayList;
 
-public class Schematic extends ArrayList<Department> {
+public class Schematic {
+    ArrayList<Department> departments;
 
+    public Schematic(ArrayList<Department> departments) {
+        this.departments = departments;
+    }
 }
