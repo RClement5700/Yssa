@@ -1,11 +1,21 @@
 package crysalis.example.yssa.ui;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
@@ -44,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        connectToSqlDatabase(getApplicationContext());
     }
 
     @Override
@@ -56,5 +68,35 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().popBackStack();
 
         }
+    }
+
+
+    //TODO: redownload and reconfigure mamp
+    //      ask Garrett for sample URL
+    public void connectToSqlDatabase(final Context context) {
+        RequestQueue queue = Volley.newRequestQueue(context);
+        String url ="https://10.0.2.2:8889/";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(context, "MySQL oonnection successful: " + response,
+                                Toast.LENGTH_LONG).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //connect to backup cloud server
+                        Toast.makeText(context, "Connection error: " + error,
+                                Toast.LENGTH_LONG).show();
+                        System.err.println("Error: " + error);
+                    }
+                }
+        );
+
+// Add the request to the RequestQueue.
+        queue.add(stringRequest);
     }
 }
