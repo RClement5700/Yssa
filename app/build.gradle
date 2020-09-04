@@ -2,9 +2,16 @@ apply plugin: 'com.android.application'
 
 android {
 
-    viewBinding {
-        enabled = true
+    buildFeatures {
+        viewBinding = true;
     }
+
+    packagingOptions {
+        pickFirst "META-INF/INDEX.LIST"
+    }
+//    viewBinding {
+//        enabled = true
+//    }
     compileSdkVersion 29
     buildToolsVersion "30.0.0"
 
@@ -35,6 +42,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'//TabLayout dependency
     implementation 'com.android.volley:volley:1.1.1'
+    implementation 'com.unboundid:unboundid-ldapsdk:4.0.5'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

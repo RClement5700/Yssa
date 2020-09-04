@@ -3,32 +3,29 @@ package crysalis.example.yssa.ui;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
+import com.unboundid.ldap.sdk.AddRequest;
+import com.unboundid.ldap.sdk.LDAPConnection;
+import com.unboundid.ldap.sdk.LDAPException;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import crysalis.example.yssa.R;
 import data.SectionsPagerAdapter;
+import pojos.Employee;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     /* TODO:
     -openfire for userdata base
-    -Room for internal storage of user credentials etc
+    -Room/SharedPreferences for internal storage
     -all tasks and services will be run in this activity
     -Don't replace fragments when buttons are pushed; addToBackStack instead and update back button
         accordingly
@@ -61,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
         new ConnectToSqlDatabase().execute();
+        new ConnectToLDAPDirectory(getApplicationContext()).execute();
 
     }
 
@@ -78,14 +75,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //openfire admin console http://172.20.4.51:9090
-
-
+    /*
+    TODO:
+        match username:employeeIDs in database to username:employeeIDs in directory
+     */
     static class ConnectToSqlDatabase extends AsyncTask<String, Void, String> {
 
         String url = "jdbc:mysql://10.0.2.2:8889/yssa";
         String username = "root";
         String password = "adminadmin";
+        ArrayList<Employee> employees = new ArrayList<Employee>();
+
 
         @Override
         protected String doInBackground(String... strings) {
@@ -96,8 +96,13 @@ public class MainActivity extends AppCompatActivity {
                 PreparedStatement stmt = con.prepareStatement("SELECT * FROM employees");
                 ResultSet resultSet = stmt.executeQuery();
                 if(resultSet.next()) {
-                    System.err.println(resultSet.getString(1));
-                };
+                    Employee employee =
+                            new Employee(resultSet.getInt(2),
+                            resultSet.getString(1), resultSet.getString(3),
+                            resultSet.getString(4));
+                    employees.add(employee);
+                    System.err.println("username: " + employee.getUsername());
+                }
             }
             catch (IllegalAccessException | InstantiationException | SQLException |
                     ClassNotFoundException e) {
@@ -105,5 +110,60 @@ public class MainActivity extends AppCompatActivity {
             }
             return null;
         }
+
+        //will be moved to ConnectToLDAPDirectory
+        public ArrayList<Employee> getEmployees() {
+            return employees;
+        }
     }
+
+
+    /*
+    TODO:
+        retrieve usernames from directory
+     */
+    static class ConnectToLDAPDirectory extends AsyncTask<String, Void, String> {
+
+        Context context;
+        ConnectToLDAPDirectory(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            int PORT = 389;
+            LDAPConnection c;
+            AddRequest request;
+            String address = "10.0.2.2";
+            try {
+                c = new LDAPConnection(address, PORT); //,DN,password);
+               System.err.println("Connecting to directory...");
+                if (c.isConnected()) {
+                    System.err.println("Connection complete...");
+                }
+            } catch (LDAPException | RuntimeException e) {
+                Toast.makeText(context, "Error Connecting to directory...",
+                        Toast.LENGTH_SHORT).show();
+                System.err.println("Error Connecting");
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+//        public ArrayList<Employee> getEmployees() {
+//            return employees;
+//        }
+    }
+
+    //openfire admin console http://172.20.4.51:9090
+    static class ConnectToXMPPServer extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            return null;
+        }
+    }
+
 }
