@@ -1,5 +1,6 @@
 package crysalis.example.yssa.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.unboundid.ldap.sdk.AddRequest;
 import com.unboundid.ldap.sdk.LDAPConnection;
 import com.unboundid.ldap.sdk.LDAPException;
+import com.unboundid.ldap.sdk.SearchRequest;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -86,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
         String password = "adminadmin";
         ArrayList<Employee> employees = new ArrayList<Employee>();
 
-
         @Override
         protected String doInBackground(String... strings) {
 
@@ -134,18 +135,18 @@ public class MainActivity extends AppCompatActivity {
 
             int PORT = 389;
             LDAPConnection c;
-            AddRequest request;
             String address = "10.0.2.2";
             try {
                 c = new LDAPConnection(address, PORT); //,DN,password);
                System.err.println("Connecting to directory...");
                 if (c.isConnected()) {
                     System.err.println("Connection complete...");
+                    c.bind("cn=Manager,dc=catosystems,dc=com","uptown5700");
+//                    c.searchForEntry(new SearchRequest());
                 }
             } catch (LDAPException | RuntimeException e) {
-                Toast.makeText(context, "Error Connecting to directory...",
-                        Toast.LENGTH_SHORT).show();
-                System.err.println("Error Connecting");
+
+                System.err.println("Error connecting to directory");
                 e.printStackTrace();
             }
             return null;
