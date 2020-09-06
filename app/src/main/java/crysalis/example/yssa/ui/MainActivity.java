@@ -1,11 +1,9 @@
 package crysalis.example.yssa.ui;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -13,10 +11,8 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
-import com.unboundid.ldap.sdk.AddRequest;
 import com.unboundid.ldap.sdk.LDAPConnection;
 import com.unboundid.ldap.sdk.LDAPException;
-import com.unboundid.ldap.sdk.SearchRequest;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -26,7 +22,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import crysalis.example.yssa.R;
-import data.SectionsPagerAdapter;
+import adapters.SectionsPagerAdapter;
 import pojos.Employee;
 
 public class MainActivity extends AppCompatActivity {
@@ -87,13 +83,14 @@ public class MainActivity extends AppCompatActivity {
         String username = "root";
         String password = "adminadmin";
         ArrayList<Employee> employees = new ArrayList<Employee>();
+        Connection con;
 
         @Override
         protected String doInBackground(String... strings) {
 
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                Connection con = DriverManager.getConnection(url, username, password);
+                con = DriverManager.getConnection(url, username, password);
                 PreparedStatement stmt = con.prepareStatement("SELECT * FROM employees");
                 ResultSet resultSet = stmt.executeQuery();
                 if(resultSet.next()) {

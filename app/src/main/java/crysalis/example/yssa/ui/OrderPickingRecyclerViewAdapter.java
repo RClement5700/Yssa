@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import crysalis.example.yssa.R;
-import pojos.Department;
 import pojos.Order;
 
 public class OrderPickingRecyclerViewAdapter extends

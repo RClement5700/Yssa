@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import crysalis.example.yssa.databinding.FragmentInspectionBinding;
-import data.InspectionSheetRecyclerViewAdapter;
+import adapters.InspectionSheetRecyclerViewAdapter;
 
 public class InspectEquipmentFragment extends Fragment {
 

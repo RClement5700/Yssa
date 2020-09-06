@@ -1,14 +1,14 @@
 package crysalis.example.yssa.ui;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+
 import crysalis.example.yssa.R;
+import crysalis.example.yssa.databinding.FragmentOrderPickingBinding;
 import pojos.Department;
 import pojos.Order;
 
@@ -21,7 +21,10 @@ public class OrderPickingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_order_picking, container, false);
+        FragmentOrderPickingBinding binding =
+                FragmentOrderPickingBinding.inflate(inflater, container, false);
+        View v = binding.getRoot();
+
+        return v;
     }
 }

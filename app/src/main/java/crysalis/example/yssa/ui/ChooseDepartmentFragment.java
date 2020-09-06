@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentChooseDepartmentBinding;
-import data.DepartmentRecyclerViewAdapter;
+import adapters.DepartmentRecyclerViewAdapter;
 
 public class ChooseDepartmentFragment extends Fragment {
 
