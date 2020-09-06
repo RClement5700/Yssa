@@ -1,4 +1,4 @@
-package crysalis.example.yssa.ui;
+package adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -32,6 +32,21 @@ public class OrderPickingRecyclerViewAdapter extends
     @Override
     public void onBindViewHolder(@NonNull OrderPickingRecyclerViewHolder holder, int position) {
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                /*
+                    TODO:
+                        -open alert dialog that prompts for checkdigit
+                        -ask for quantity after correct checkdigit is input
+                        -make arraylist for go-backs
+                        -if quantity is less than expected:
+                            -ask for quantity being input
+                            -goBacksArrayList.add(quantity - input)
+                 */
+            }
+        });
     }
 
     @Override
