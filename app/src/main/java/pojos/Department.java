@@ -10,4 +10,8 @@ public class Department {
         this.departmentTitle = departmentTitle;
         this.aisles = aisles;
     }
+
+    public int getAisleCount() {
+        return aisles.size();
+    }
 }

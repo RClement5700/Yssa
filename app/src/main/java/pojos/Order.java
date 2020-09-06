@@ -21,4 +21,8 @@ public class Order {
         this.completionTime = completionTime;
         this.location = location;
     }
+
+    public int getProductCount() {
+        return products.size();
+    }
 }
