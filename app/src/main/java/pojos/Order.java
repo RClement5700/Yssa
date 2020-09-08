@@ -24,6 +24,14 @@ public class Order {
         this.doorNumber = doorNumber;
     }
 
+    public ArrayList<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(ArrayList<Product> products) {
+        this.products = products;
+    }
+
     public int getProductCount() {
         return products.size();
     }

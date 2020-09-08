@@ -11,9 +11,11 @@ import android.widget.CompoundButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentInspectionBinding;
 import adapters.InspectionSheetRecyclerViewAdapter;
 
@@ -37,6 +39,7 @@ public class InspectEquipmentFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        final FragmentManager fm = getActivity().getSupportFragmentManager();
         FragmentInspectionBinding binding =
                 FragmentInspectionBinding.inflate(LayoutInflater.from(getContext()));
         View v = binding.getRoot();
@@ -58,6 +61,10 @@ public class InspectEquipmentFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //direct to designated homescreen
+                fm.beginTransaction()
+                        .replace(R.id.fragments_container, new OrderPickingFragment())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 

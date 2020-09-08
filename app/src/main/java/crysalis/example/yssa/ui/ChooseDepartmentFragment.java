@@ -1,5 +1,6 @@
 package crysalis.example.yssa.ui;
 
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import adapters.DepartmentRecyclerViewAdapter;
 
 public class ChooseDepartmentFragment extends Fragment {
 
+    static final String TAG = "Choose Department Fragment";
     /*TODO:
         -back button should direct user directly to MainActivity
         -Use tabs and viewpager instead of floating images
@@ -45,6 +47,7 @@ public class ChooseDepartmentFragment extends Fragment {
         rvChooseDepartment.setHasFixedSize(true);
         return view;
     }
+
 
 
 }

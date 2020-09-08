@@ -1,6 +1,7 @@
 package crysalis.example.yssa.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -66,10 +67,16 @@ public class MainActivity extends AppCompatActivity {
         int count = getSupportFragmentManager().getBackStackEntryCount();
         if (count == 0) {
             super.onBackPressed();
-            //additional code
-        } else {
+        }
+        else if(getSupportFragmentManager().getFragments().get(0) ==
+                getSupportFragmentManager().findFragmentByTag("android:switcher:2131362085:0") &&
+            getSupportFragmentManager().getBackStackEntryCount() == 1)
+        {
+            System.err.println("Entry count: " + getSupportFragmentManager().getBackStackEntryCount());
+            startActivity(new Intent(this, MainActivity.class));
+        }
+        else {
             getSupportFragmentManager().popBackStack();
-
         }
     }
 
