@@ -27,15 +27,12 @@ import adapters.SectionsPagerAdapter;
 import pojos.Employee;
 
 public class MainActivity extends AppCompatActivity {
-
-    static final String TAG = "Login Fragment";
-
     /* TODO:
-    -openfire for userdata base
-    -Room/SharedPreferences for internal storage
+    -openfire for messenger
+    -openLdap for directory
+    -mamp/mysql for external database
+    -Room/SharedPreferences for internal storage of user credentials
     -all tasks and services will be run in this activity
-    -Don't replace fragments when buttons are pushed; addToBackStack instead and update back button
-        accordingly
     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
                 getSupportFragmentManager().findFragmentByTag("android:switcher:2131362085:0") &&
             getSupportFragmentManager().getBackStackEntryCount() == 1)
         {
-            System.err.println("Entry count: " + getSupportFragmentManager().getBackStackEntryCount());
             startActivity(new Intent(this, MainActivity.class));
         }
         else {
@@ -101,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 PreparedStatement stmt = con.prepareStatement("SELECT * FROM employees");
                 ResultSet resultSet = stmt.executeQuery();
                 if(resultSet.next()) {
+                    System.err.println("Database Connected");
                     Employee employee =
                             new Employee(resultSet.getInt(2),
                             resultSet.getString(1), resultSet.getString(3),
@@ -149,7 +146,6 @@ public class MainActivity extends AppCompatActivity {
 //                    c.searchForEntry(new SearchRequest());
                 }
             } catch (LDAPException | RuntimeException e) {
-
                 System.err.println("Error connecting to directory");
                 e.printStackTrace();
             }

@@ -18,7 +18,6 @@ import adapters.DepartmentRecyclerViewAdapter;
 
 public class ChooseDepartmentFragment extends Fragment {
 
-    static final String TAG = "Choose Department Fragment";
     /*TODO:
         -back button should direct user directly to MainActivity
         -Use tabs and viewpager instead of floating images
