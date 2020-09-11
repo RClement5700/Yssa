@@ -1,8 +1,11 @@
 package pojos;
 
+import java.util.ArrayList;
+
 public class OrderPicker extends Employee {
 
     Order order;
+    ArrayList<Slot> goBacks;
 
     public OrderPicker(int employeeId, String username, String password, String assignment)
     {
@@ -27,5 +30,17 @@ public class OrderPicker extends Employee {
         //update inventory
         //replace by implementing ProductDamagedListener interface
         return slot.getProduct();
+    }
+
+    public void shortProduct(Slot slot) {
+
+    }
+
+    public void skipSlot(Slot slot) {
+        //add to end of pick list; update recyclerView
+    }
+
+    public void addToGoBacks(Slot slot) {
+        goBacks.add(slot);
     }
 }

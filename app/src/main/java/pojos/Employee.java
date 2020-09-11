@@ -1,5 +1,7 @@
 package pojos;
 
+import java.sql.Time;
+
 public class Employee {
 
     private int employeeId;
@@ -28,5 +30,21 @@ public class Employee {
 
     public String getAssignment() {
         return assignment;
+    }
+
+    public void punchIn(Time time) {
+
+    }
+
+    public void punchOut(Time time) {
+
+    }
+
+    public void goToBreak(Time time) {
+        //will receive notification 2.5 mins before it is time to return to work
+    }
+
+    public void goToLunch(Time time) {
+        //will receive notification 5 mins before it is time to return to work
     }
 }
