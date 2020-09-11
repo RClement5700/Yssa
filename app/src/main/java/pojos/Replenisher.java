@@ -1,11 +1,14 @@
 package pojos;
 
-public class Replenisher extends Employee {
+import interfaces.EmptySlotListener;
+
+public class Replenisher extends Employee implements EmptySlotListener {
     public Replenisher(int employeeId, String username, String password, String assignment) {
         super(employeeId, username, password, assignment);
     }
 
-    public void replenish(Slot slot) {
+    @Override
+    public void replenish(Slot slot, Product product) {
 
     }
 }

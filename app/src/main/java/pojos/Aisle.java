@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Aisle extends ArrayList<Slot> {
 
+    boolean isAscending;
     int aisleNumber;
     ArrayList<Slot> slots;
 
@@ -11,5 +12,9 @@ public class Aisle extends ArrayList<Slot> {
 
         this.slots = slots;
         this.aisleNumber = aisleNumber;
+    }
+
+    public void setAscending(boolean ascending) {
+        isAscending = ascending;
     }
 }

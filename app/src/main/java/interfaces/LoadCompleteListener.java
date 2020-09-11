@@ -1,7 +1,7 @@
 package interfaces;
 
-public interface LoadCompleteListener {
+import pojos.Load;
 
-    public void completeLoad();
-    public boolean isLoadComplete();
+public interface LoadCompleteListener {
+    public void completeLoad(Load load);
 }
