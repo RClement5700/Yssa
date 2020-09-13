@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.ui.LoginFragment;
+import crysalis.example.yssa.ui.ManagementConsoleFragment;
 import crysalis.example.yssa.ui.RegisterFragment;
 
 
@@ -21,7 +22,7 @@ import crysalis.example.yssa.ui.RegisterFragment;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.login, R.string.register};
+    private static final int[] TAB_TITLES = new int[]{R.string.associate, R.string.management};
     private final Context mContext;
     FragmentManager fm;
 
@@ -33,7 +34,9 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        if (position == 1) return new RegisterFragment();
+        if (position == 1) {
+            return new ManagementConsoleFragment();
+        }
         return new LoginFragment();
     }
 
