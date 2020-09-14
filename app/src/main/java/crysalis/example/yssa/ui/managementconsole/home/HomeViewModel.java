@@ -1,4 +1,4 @@
-package crysalis.example.yssa.ui.ui.home;
+package crysalis.example.yssa.ui.managementconsole.home;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

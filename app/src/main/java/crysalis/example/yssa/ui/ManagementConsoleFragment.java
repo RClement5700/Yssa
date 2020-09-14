@@ -32,23 +32,7 @@ public class ManagementConsoleFragment extends Fragment implements DirectoryUpda
 
         FragmentManagementConsoleBinding binding =
                 FragmentManagementConsoleBinding.inflate(inflater, container, false);
-        final DrawerLayout managamentConsoleDrawer = binding.managementConsoleDrawer;
-        managamentConsoleDrawer.measure();
-        final NavigationView nvManagementConsole = binding.nvManagementConsole;
-        nvManagementConsole.inflateMenu(R.menu.menu_management_console);
-        nvManagementConsole.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                fm.beginTransaction()
-                        .add(R.id.container_management_console, new RegisterFragment())
-                        .addToBackStack(null)
-                        .commit();
-                managamentConsoleDrawer.closeDrawers();
-                return menuItem.collapseActionView();
-            }
-        });
         View v = binding.getRoot();
-
         return v;
     }
 

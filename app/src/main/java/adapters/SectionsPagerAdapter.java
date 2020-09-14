@@ -35,6 +35,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         if (position == 1) {
+            //Do I need a tabbed activity for homescreen?
             return new ManagementConsoleFragment();
         }
         return new LoginFragment();
