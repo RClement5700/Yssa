@@ -1,10 +1,12 @@
 package crysalis.example.yssa.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -32,6 +34,13 @@ public class ManagementConsoleFragment extends Fragment implements DirectoryUpda
 
         FragmentManagementConsoleBinding binding =
                 FragmentManagementConsoleBinding.inflate(inflater, container, false);
+        Button loginBtn = binding.managementLoginBtn;
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), ManagementConsoleActivity.class));
+            }
+        });
         View v = binding.getRoot();
         return v;
     }

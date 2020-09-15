@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="crysalis.example.yssa.ui.managementconsole.home.HomeFragment"
+        android:name="crysalis.example.yssa.ui.managementconsole.MyAccountInfoFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_my_account_info" />
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="crysalis.example.yssa.ui.managementconsole.gallery.GalleryFragment"
+        android:name="crysalis.example.yssa.ui.managementconsole.EmployeeDirectoryFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_employee_directory" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="crysalis.example.yssa.ui.managementconsole.slideshow.SlideshowFragment"
+        android:name="crysalis.example.yssa.ui.managementconsole.MessengerFragment"
         android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_messenger" />
 </navigation>
