@@ -9,7 +9,17 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import adapters.OrderPickingRecyclerViewAdapter;
 import adapters.SpacesItemDecoration;
@@ -17,12 +27,13 @@ import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentOrderPickingBinding;
 import pojos.Department;
 import pojos.Order;
-import pojos.Product;
 
 public class OrderPickingFragment extends Fragment {
 
     Department department;
     Order order;
+    Connection connection;
+
     public OrderPickingFragment(Department department, Order order) {
         // Required empty public constructor
         this.department = department;
@@ -30,16 +41,6 @@ public class OrderPickingFragment extends Fragment {
     }
 
     public OrderPickingFragment() {
-        Product product = new Product(0, 0, 0,
-                0, 0, null);
-        int i = 0;
-        ArrayList<Product> products = new ArrayList<Product>();
-        while(i < 10) {
-            products.add(product);
-            i++;
-        }
-        order = new Order(products, 0, 0, 0, null,
-                false, null);
     }
 
     @Override
@@ -53,6 +54,29 @@ public class OrderPickingFragment extends Fragment {
         int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.spacing);
         rvProductList.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
         View v = binding.getRoot();
+        downloadOrders("admin", "adminadmin",
+                "jdbc:mysql://10.0.2.2:8889/yssa");
+
+        //cannot retrieve and display data from background process
         return v;
+    }
+
+    public void downloadOrders(String username, String password, String url) {
+
+        Order order = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            connection = DriverManager.getConnection(url, username, password);
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM orders");
+            ResultSet resultSet = stmt.executeQuery();
+            if (resultSet.next()) {
+                order = new Order(null, resultSet.getInt(0), resultSet.getInt(1),
+                        0, null, false, null);
+            }
+
+        } catch (IllegalAccessException | java.lang.InstantiationException | SQLException |
+                ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -11,17 +11,17 @@ public class Order {
     int palletCount;
     Time completionTime;
     boolean status; //complete or incomplete
-    String doorNumber; //door/stage number
+    String location; //door/stage number
 
     public Order(ArrayList<Product> products, int orderNumber, int storeNumber, int palletCount,
-                 Time completionTime, boolean status, String doorNumber) {
+                 Time completionTime, boolean status, String location) {
         this.products = products;
         this.orderNumber = orderNumber;
         this.storeNumber = storeNumber;
         this.palletCount = palletCount;
         this.completionTime = completionTime;
         this.status = status;
-        this.doorNumber = doorNumber;
+        this.location = location;
     }
 
     public ArrayList<Product> getProducts() {
@@ -34,6 +34,14 @@ public class Order {
 
     public int getProductCount() {
         return products.size();
+    }
+
+    public int getOrderNumber() {
+        return orderNumber;
+    }
+
+    public int getStoreNumber() {
+        return storeNumber;
     }
 
     public boolean getStatus() {

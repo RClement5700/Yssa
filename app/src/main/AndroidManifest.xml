@@ -17,6 +17,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <service
+            android:name="services.CrysalisFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="services.LoginService"
+            android:exported="false">
+        </service>
         <activity
             android:name=".ui.ManagementConsoleActivity"
             android:label="@string/title_activity_management_console"

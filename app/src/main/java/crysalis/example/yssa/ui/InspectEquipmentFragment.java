@@ -62,6 +62,7 @@ public class InspectEquipmentFragment extends Fragment {
             public void onClick(View v) {
                 //direct to designated homescreen
                 fm.beginTransaction()
+                        //need to pass data into OrderPickingFragment
                         .replace(R.id.fragments_container, new OrderPickingFragment())
                         .addToBackStack(null)
                         .commit();
