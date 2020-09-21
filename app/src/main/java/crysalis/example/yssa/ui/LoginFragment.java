@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentLoginBinding;
+import services.LoginService;
 
 
 public class LoginFragment extends Fragment {
@@ -25,10 +26,11 @@ public class LoginFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         FragmentLoginBinding binding = FragmentLoginBinding.inflate(inflater);
         View v = binding.getRoot();
+
         binding.loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(new Intent(getActivity(), HomeActivity.class));
+
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragments_container, new ChooseDepartmentFragment())
                         .addToBackStack(TAG)

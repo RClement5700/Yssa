@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-//        new ConnectToSqlDatabase().execute();
         startService(new Intent(this, LoginService.class));
     }
 
