@@ -1,5 +1,6 @@
 package crysalis.example.yssa.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.unboundid.ldap.sdk.LDAPConnection;
+
 import java.sql.Connection;
 
 import adapters.OrderPickingRecyclerViewAdapter;
@@ -17,6 +20,7 @@ import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentOrderPickingBinding;
 import pojos.Department;
 import pojos.Order;
+import services.LoginService;
 
 public class OrderPickingFragment extends Fragment {
 
@@ -44,10 +48,8 @@ public class OrderPickingFragment extends Fragment {
         int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.spacing);
         rvProductList.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
         View v = binding.getRoot();
-//        downloadOrders("admin", "adminadmin",
-//                "jdbc:mysql://10.0.2.2:8889/yssa");
-
-        //cannot retrieve and display data from background process
+        LoginService service = LoginService.getInstance();
+        Connection sqlConnection = service.getSqlConnection();
         return v;
     }
 

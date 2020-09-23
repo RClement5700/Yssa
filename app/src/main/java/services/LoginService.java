@@ -16,12 +16,42 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import pojos.Employee;
 
 public class LoginService extends Service {
 
-    public LoginService() {
+    private static LoginService instance;
+    private Connection sqlConnection;
+    private LDAPConnection ldapConnection;
+
+    public static LoginService getInstance() {
+        return instance;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        instance = this;
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    sqlConnection = new ConnectToSqlDatabaseTask().execute().get();
+                    ldapConnection = new ConnectToLDAPDirectoryTask().execute().get();
+
+                } catch (ExecutionException | InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        runnable.run();
+        return super.onStartCommand(intent, flags, startId);
     }
 
     @Nullable
@@ -30,24 +60,19 @@ public class LoginService extends Service {
         return null;
     }
 
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                new ConnectToSqlDatabaseTask().execute();
-                new ConnectToLDAPDirectoryTask().execute();
-            }
-        };
-        runnable.run();
-        return super.onStartCommand(intent, flags, startId);
+    public Connection getSqlConnection() {
+        return sqlConnection;
+    }
+
+    public LDAPConnection getLdapConnection() {
+        return ldapConnection;
     }
 
     /*
-    TODO:
-        match username:employeeIDs in database to username:employeeIDs in directory
-     */
-    static class ConnectToSqlDatabaseTask extends AsyncTask<String, Void, String> {
+            TODO:
+                match username:employeeIDs in database to username:employeeIDs in directory
+             */
+    static class ConnectToSqlDatabaseTask extends AsyncTask<String, Void, Connection> {
 
         String url = "jdbc:mysql://10.0.2.2:8889/yssa";
         String username = "root";
@@ -56,7 +81,7 @@ public class LoginService extends Service {
         Connection con;
 
         @Override
-        protected String doInBackground(String... strings) {
+        protected Connection doInBackground(String... strings) {
 
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -77,7 +102,7 @@ public class LoginService extends Service {
                     ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            return null;
+            return con;
         }
     }
 
@@ -85,26 +110,16 @@ public class LoginService extends Service {
   TODO:
       retrieve usernames from directory
    */
-    static class ConnectToLDAPDirectoryTask extends AsyncTask<String, Void, String> {
+    static class ConnectToLDAPDirectoryTask extends AsyncTask<String, Void, LDAPConnection> {
 
-        static ConnectToLDAPDirectoryTask task;
         int PORT = 389;
         LDAPConnection c;
         String address = "10.0.2.2";
         String dn = "cn=Manager,dc=catosystems,dc=com";
         String dnPassword = "uptown5700";
 
-        public static ConnectToLDAPDirectoryTask getInstance() {
-            if (task == null) {
-                return new ConnectToLDAPDirectoryTask();
-            }
-            else {
-                return task;
-            }
-        }
-
         @Override
-        protected String doInBackground(String... strings) {
+        protected LDAPConnection doInBackground(String... strings) {
             try {
                 c = new LDAPConnection(address, PORT, dn, dnPassword); //,DN,password);
                 System.err.println("Connecting to directory...");
@@ -119,7 +134,7 @@ public class LoginService extends Service {
                 System.err.println("Error connecting to directory");
                 e.printStackTrace();
             }
-            return null;
+            return c;
         }
     }
 
