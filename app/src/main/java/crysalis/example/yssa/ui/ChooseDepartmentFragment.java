@@ -1,6 +1,5 @@
 package crysalis.example.yssa.ui;
 
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +11,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import adapters.DepartmentRecyclerViewAdapter;
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentChooseDepartmentBinding;
-import adapters.DepartmentRecyclerViewAdapter;
 
 public class ChooseDepartmentFragment extends Fragment {
 

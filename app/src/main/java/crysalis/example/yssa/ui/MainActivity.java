@@ -1,8 +1,6 @@
 package crysalis.example.yssa.ui;
 
-import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 
@@ -12,19 +10,9 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
-import com.unboundid.ldap.sdk.LDAPConnection;
-import com.unboundid.ldap.sdk.LDAPException;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-
-import crysalis.example.yssa.R;
 import adapters.SectionsPagerAdapter;
-import pojos.Employee;
+import crysalis.example.yssa.R;
 import services.LoginService;
 
 public class MainActivity extends AppCompatActivity {

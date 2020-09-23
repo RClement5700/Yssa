@@ -7,15 +7,15 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="crysalis.example.yssa.ui.managementconsole.MyAccountInfoFragment"
+        android:name="crysalis.example.yssa.ui.managementconsole.MyAccountFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_my_account_info" />
+        tools:layout="@layout/fragment_my_account" />
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="crysalis.example.yssa.ui.managementconsole.EmployeeDirectoryFragment"
+        android:name="crysalis.example.yssa.ui.managementconsole.UsersFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_employee_directory" />
+        tools:layout="@layout/fragment_users" />
 
     <fragment
         android:id="@+id/nav_slideshow"

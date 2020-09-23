@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentLoginBinding;
-import services.LoginService;
 
 
 public class LoginFragment extends Fragment {

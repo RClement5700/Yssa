@@ -12,7 +12,6 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.ui.LoginFragment;
 import crysalis.example.yssa.ui.ManagementConsoleFragment;
-import crysalis.example.yssa.ui.RegisterFragment;
 
 
 /**

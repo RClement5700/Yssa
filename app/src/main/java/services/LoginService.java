@@ -1,7 +1,6 @@
 package services;
 
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.IBinder;
@@ -10,7 +9,6 @@ import androidx.annotation.Nullable;
 
 import com.unboundid.ldap.sdk.LDAPConnection;
 import com.unboundid.ldap.sdk.LDAPException;
-import com.unboundid.ldap.sdk.SearchRequest;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
 import pojos.Employee;
 
 public class LoginService extends Service {

@@ -11,8 +11,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import crysalis.example.yssa.databinding.FragmentChooseAssignmentBinding;
 import adapters.AssignmentRecyclerViewAdapter;
+import crysalis.example.yssa.databinding.FragmentChooseAssignmentBinding;
 
 public class ChooseAssignmentFragment extends Fragment {
 

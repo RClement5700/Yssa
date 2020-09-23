@@ -1,7 +1,5 @@
 package pojos;
 
-import java.util.ArrayList;
-
 import interfaces.LoadCompleteListener;
 
 public class Loader extends Employee implements LoadCompleteListener {

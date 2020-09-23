@@ -1,7 +1,6 @@
 package adapters;
 
 import android.content.Context;
-import android.graphics.Rect;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,7 +59,7 @@ public class OrderPickingRecyclerViewAdapter extends
 
     @Override
     public int getItemCount() {
-        return order.getProductCount();
+        return order.getProducts().size();
     }
 
     static class OrderPickingRecyclerViewHolder extends RecyclerView.ViewHolder {
