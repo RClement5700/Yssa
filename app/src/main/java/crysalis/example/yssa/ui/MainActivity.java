@@ -13,7 +13,7 @@ import com.google.android.material.tabs.TabLayout;
 
 import adapters.SectionsPagerAdapter;
 import crysalis.example.yssa.R;
-import services.LoginService;
+import services.YssaConnectionService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        startService(new Intent(this, LoginService.class));
+        startService(new Intent(this, YssaConnectionService.class));
     }
 
     @Override

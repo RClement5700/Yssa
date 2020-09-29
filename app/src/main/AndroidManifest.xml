@@ -25,7 +25,7 @@
             </intent-filter>
         </service>
         <service
-            android:name="services.LoginService"
+            android:name="services.YssaConnectionService"
             android:exported="false">
         </service>
         <activity

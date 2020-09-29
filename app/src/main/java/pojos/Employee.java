@@ -7,13 +7,11 @@ public class Employee {
     private int employeeId;
     private String username;
     private String password;
-    private String assignment;
 
-    public Employee(int employeeId, String username, String password, String assignment) {
+    public Employee(int employeeId, String username, String password) {
         this.employeeId = employeeId;
         this.username = username;
         this.password = password;
-        this.assignment = assignment;
     }
 
     public int getEmployeeId() {
@@ -26,10 +24,6 @@ public class Employee {
 
     public String getPassword() {
         return password;
-    }
-
-    public String getAssignment() {
-        return assignment;
     }
 
     public void punchIn(Time time) {

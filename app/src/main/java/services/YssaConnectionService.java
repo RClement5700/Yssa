@@ -10,23 +10,30 @@ import androidx.annotation.Nullable;
 import com.unboundid.ldap.sdk.LDAPConnection;
 import com.unboundid.ldap.sdk.LDAPException;
 
+import org.jivesoftware.smack.AbstractXMPPConnection;
+import org.jivesoftware.smack.SmackException;
+import org.jivesoftware.smack.XMPPConnection;
+import org.jivesoftware.smack.XMPPException;
+import org.jivesoftware.smack.tcp.XMPPTCPConnection;
+import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration;
+
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 import pojos.Employee;
 
-public class LoginService extends Service {
+public class YssaConnectionService extends Service {
 
-    private static LoginService instance;
+    private static YssaConnectionService instance;
     private Connection sqlConnection;
     private LDAPConnection ldapConnection;
+    private XMPPConnection openfireConnection;
 
-    public static LoginService getInstance() {
+    public static YssaConnectionService getInstance() {
         return instance;
     }
 
@@ -44,6 +51,7 @@ public class LoginService extends Service {
                 try {
                     sqlConnection = new ConnectToSqlDatabaseTask().execute().get();
                     ldapConnection = new ConnectToLDAPDirectoryTask().execute().get();
+                    openfireConnection = new ConnectToOpenfireTask().execute().get();
 
                 } catch (ExecutionException | InterruptedException e) {
                     e.printStackTrace();
@@ -68,10 +76,14 @@ public class LoginService extends Service {
         return ldapConnection;
     }
 
+    public XMPPConnection getOpenfireConnection() {
+        return openfireConnection;
+    }
+
     /*
-            TODO:
-                match username:employeeIDs in database to username:employeeIDs in directory
-             */
+        TODO:
+            match username:employeeIDs in database to username:employeeIDs in directory
+     */
     static class ConnectToSqlDatabaseTask extends AsyncTask<String, Void, Connection> {
 
         String url = "jdbc:mysql://10.0.2.2:8889/yssa";
@@ -82,20 +94,12 @@ public class LoginService extends Service {
 
         @Override
         protected Connection doInBackground(String... strings) {
-
             try {
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
                 con = DriverManager.getConnection(url, username, password);
-                PreparedStatement stmt = con.prepareStatement("SELECT * FROM employees");
-                ResultSet resultSet = stmt.executeQuery();
-                if(resultSet.next()) {
-                    System.err.println("Database Connected");
-                    Employee employee =
-                            new Employee(resultSet.getInt(2),
-                                    resultSet.getString(1), resultSet.getString(3),
-                                    resultSet.getString(4));
-                    employees.add(employee);
-                    System.err.println("username: " + employee.getUsername());
+                System.err.println("Connecting to SQL database...");
+                if (!con.isClosed()) {
+                    System.err.println("SQL database connection complete");
                 }
             }
             catch (IllegalAccessException | InstantiationException | SQLException |
@@ -106,10 +110,6 @@ public class LoginService extends Service {
         }
     }
 
-    /*
-  TODO:
-      retrieve usernames from directory
-   */
     static class ConnectToLDAPDirectoryTask extends AsyncTask<String, Void, LDAPConnection> {
 
         int PORT = 389;
@@ -124,11 +124,7 @@ public class LoginService extends Service {
                 c = new LDAPConnection(address, PORT, dn, dnPassword); //,DN,password);
                 System.err.println("Connecting to directory...");
                 if (c.isConnected()) {
-                    System.err.println("Directory Connection Complete");
-//                    System.err.println(
-//                            c.getEntry("uid="+uid+",ou=People,dc=catosystems,dc=com")
-//                    );
-
+                    System.err.println("LDAP Directory Connection Complete");
                 }
             } catch (LDAPException | RuntimeException e) {
                 System.err.println("Error connecting to directory");
@@ -139,13 +135,33 @@ public class LoginService extends Service {
     }
 
     //openfire admin console http://172.20.4.51:9090
-    static class ConnectToFireBaseTask extends AsyncTask<String, Void, String> {
+    static class ConnectToOpenfireTask extends AsyncTask<String, Void, AbstractXMPPConnection> {
 
+        String username = "8993";
+        String password = "uptown5700";
         @Override
-        protected String doInBackground(String... strings) {
+        protected AbstractXMPPConnection doInBackground(String... strings) {
 
-            return null;
+            XMPPTCPConnectionConfiguration.Builder configBuilder = XMPPTCPConnectionConfiguration.builder();
+            configBuilder.setUsernameAndPassword(username, password);
+            configBuilder.setHost("http://10.0.2.2:5554");
+            configBuilder.setPort(5222);
+//            configBuilder.setResource("SomeResource");
+//            configBuilder.setXmppDomain("jabber.org");
+
+            AbstractXMPPConnection connection = new XMPPTCPConnection(configBuilder.build());
+// Connect to the server
+            try {
+                connection.connect();
+//                connection.login();
+            } catch (SmackException | IOException | XMPPException | InterruptedException e) {
+                e.printStackTrace();
+            }
+// Log into the server
+            return connection;
         }
     }
+
+
 
 }

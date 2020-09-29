@@ -59,7 +59,8 @@ public class OrderPickingRecyclerViewAdapter extends
 
     @Override
     public int getItemCount() {
-        return order.getProducts().size();
+//        return order.getProducts().size();
+        return 0;
     }
 
     static class OrderPickingRecyclerViewHolder extends RecyclerView.ViewHolder {

@@ -5,15 +5,15 @@ import interfaces.LoadCompleteListener;
 public class Loader extends Employee implements LoadCompleteListener {
 
     private Load loadManifest;
-    public Loader(int employeeId, String username, String password, String assignment)
+    public Loader(int employeeId, String username, String password)
     {
-        super(employeeId, username, password, assignment);
+        super(employeeId, username, password);
     }
 
-    public Loader(int employeeId, String username, String password, String assignment,
+    public Loader(int employeeId, String username, String password,
                   Load loadManifest)
     {
-        super(employeeId, username, password, assignment);
+        super(employeeId, username, password);
         this.loadManifest = loadManifest;
     }
 

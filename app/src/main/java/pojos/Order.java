@@ -16,7 +16,7 @@ public class Order {
     String location; //door/stage number
     STATUS status;
 
-    enum STATUS {
+    public enum STATUS {
         ASSIGNED,
         UNASSIGNED
     }
