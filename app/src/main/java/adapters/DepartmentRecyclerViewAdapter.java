@@ -11,7 +11,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import crysalis.example.yssa.R;
-import crysalis.example.yssa.ui.ChooseAssignmentFragment;
+import crysalis.example.yssa.ui.ChooseDesignationFragment;
 
 
 public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<DepartmentRecyclerViewAdapter.DepartmentViewHolder> {
@@ -31,7 +31,7 @@ public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<Departme
     @Override
     public DepartmentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new DepartmentViewHolder(LayoutInflater.from(context)
-                .inflate(R.layout.department_item_view, parent, false), fm);
+                .inflate(R.layout.item_view_department, parent, false), fm);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<Departme
             @Override
             public void onClick(View view) {
                 fm.beginTransaction()
-                        .replace(R.id.fragments_container, new ChooseAssignmentFragment())
+                        .replace(R.id.fragments_container, new ChooseDesignationFragment())
                         .addToBackStack(TAG)
                         .commit();
             }

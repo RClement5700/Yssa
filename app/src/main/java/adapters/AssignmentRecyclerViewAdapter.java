@@ -4,83 +4,69 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import crysalis.example.yssa.R;
-import crysalis.example.yssa.ui.InspectEquipmentFragment;
-import crysalis.example.yssa.ui.TrainerFragment;
-
+import pojos.Assignment;
 
 public class AssignmentRecyclerViewAdapter extends
-        RecyclerView.Adapter<AssignmentRecyclerViewAdapter.AssignmentViewHolder> {
-
-    static final int[] assignments = {R.drawable.trainer, R.drawable.orderpicker,
-            R.drawable.replenish, R.drawable.hooks, R.drawable.loader};
-//    static final int[] assignments = {R.drawable.architecture, R.drawable.cyberconnectivity,
-//        R.drawable.lightspeed, R.drawable.merica, R.drawable.androidwallpaper};
-//    static final int[] assignmentTitles = {R.array.assignment_titles};
-    String[] checklist = null;
+        RecyclerView.Adapter<AssignmentRecyclerViewAdapter.AssignmentRecyclerViewHolder> {
+    Assignment assignment;
     Context context;
-    FragmentManager fm;
 
-    public AssignmentRecyclerViewAdapter(Context context, FragmentManager fm) {
+    public AssignmentRecyclerViewAdapter(Assignment assignment, Context context) {
+        this.assignment = assignment;
         this.context = context;
-        this.fm = fm;
+    }
+
+    public AssignmentRecyclerViewAdapter(Context context) {
+        this.context = context;
     }
 
     @NonNull
     @Override
-    public AssignmentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new AssignmentViewHolder(LayoutInflater.from(context)
-                .inflate(R.layout.assignment_item_view, parent, false), fm);
+    public AssignmentRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(context)
+                .inflate(R.layout.item_view_assignment, parent, false);
+        return new AssignmentRecyclerViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AssignmentViewHolder holder, int position) {
-        holder.assignmentImage.setImageResource(assignments[position]);
-        holder.assignmentImage.setAdjustViewBounds(true);
-        if (position == 1 || position == 3 || position == 4) {
-            checklist = context.getResources().getStringArray(R.array.electric_pallet_jack_inspection_data_list);
-        }
-        else if (position == 2) {
-            checklist = context.getResources().getStringArray(R.array.forklift_inspection_data_list);
-        }
-        holder.assignmentImage.setOnClickListener(new View.OnClickListener() {
+    public void onBindViewHolder(@NonNull AssignmentRecyclerViewHolder holder, int position) {
+
+        final ViewGroup container = holder.itemView.findViewById(R.id.user_input_container);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public void onClick(View view) {
-                if (checklist != null) {
-                    fm.beginTransaction()
-                            .replace(R.id.fragments_container, new InspectEquipmentFragment(checklist))
-                            .addToBackStack(null)
-                            .commit();
-                }
-                else {
-                    fm.beginTransaction()
-                            .replace(R.id.fragments_container, new TrainerFragment())
-                            .addToBackStack(null)
-                            .commit();
-                }
+            public void onClick(View v) {
+                /*
+                    TODO:
+                        -inflate view that prompts for checkdigit
+                        -ask for quantity after correct checkdigit is input
+                        -make arraylist for go-backs
+                        -if quantity is less than expected:
+                            -ask for quantity being input
+                            -goBacksArrayList.add(quantity - input)
+                 */
+                LayoutInflater.from(context).inflate(R.layout.fragment_user_input,
+                        container,
+                        false);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return assignments.length;
+//        return order.getProducts().size();
+        return 0;
     }
 
-    static class AssignmentViewHolder extends RecyclerView.ViewHolder {
+    static class AssignmentRecyclerViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView assignmentImage;
-        TextView assignmentTitle;
-        public AssignmentViewHolder(@NonNull View itemView, final FragmentManager fm) {
+        public AssignmentRecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
-            assignmentImage = itemView.findViewById(R.id.iv_assignment_image);
         }
     }
 }

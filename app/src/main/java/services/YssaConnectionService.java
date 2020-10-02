@@ -11,13 +11,18 @@ import com.unboundid.ldap.sdk.LDAPConnection;
 import com.unboundid.ldap.sdk.LDAPException;
 
 import org.jivesoftware.smack.AbstractXMPPConnection;
+import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.SmackException;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.tcp.XMPPTCPConnection;
 import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration;
+import org.jxmpp.stringprep.XmppStringprepException;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -51,7 +56,7 @@ public class YssaConnectionService extends Service {
                 try {
                     sqlConnection = new ConnectToSqlDatabaseTask().execute().get();
                     ldapConnection = new ConnectToLDAPDirectoryTask().execute().get();
-                    openfireConnection = new ConnectToOpenfireTask().execute().get();
+//                    openfireConnection = new ConnectToOpenfireTask().execute().get();
 
                 } catch (ExecutionException | InterruptedException e) {
                     e.printStackTrace();
@@ -135,32 +140,47 @@ public class YssaConnectionService extends Service {
     }
 
     //openfire admin console http://172.20.4.51:9090
-    static class ConnectToOpenfireTask extends AsyncTask<String, Void, AbstractXMPPConnection> {
+//    static class ConnectToOpenfireTask extends AsyncTask<String, Void, XMPPTCPConnection> {
 
-        String username = "8993";
-        String password = "uptown5700";
-        @Override
-        protected AbstractXMPPConnection doInBackground(String... strings) {
-
-            XMPPTCPConnectionConfiguration.Builder configBuilder = XMPPTCPConnectionConfiguration.builder();
-            configBuilder.setUsernameAndPassword(username, password);
-            configBuilder.setHost("http://10.0.2.2:5554");
-            configBuilder.setPort(5222);
-//            configBuilder.setResource("SomeResource");
-//            configBuilder.setXmppDomain("jabber.org");
-
-            AbstractXMPPConnection connection = new XMPPTCPConnection(configBuilder.build());
-// Connect to the server
-            try {
-                connection.connect();
-//                connection.login();
-            } catch (SmackException | IOException | XMPPException | InterruptedException e) {
-                e.printStackTrace();
-            }
-// Log into the server
-            return connection;
-        }
-    }
+//        String username = "8993";
+//        String password = "uptown5700";
+//        @Override
+//        protected XMPPTCPConnection doInBackground(String... strings) {
+//            XMPPTCPConnection connection;
+//            XMPPTCPConnectionConfiguration.Builder config = XMPPTCPConnectionConfiguration.builder();
+//                config.setKeystoreType("BKS");
+//                String str = System.getProperty("javax.net.ssl.trustStore");
+//                if (str == null) {
+//                    str = System.getProperty("java.home") + File.separator + "etc" + File.separator + "security"
+//                            + File.separator + "cacerts.bks";
+//                }
+//                config.setKeystorePath(str);
+//            config.setHost("10.0.2.2");
+//            config.setUsernameAndPassword(username, password);
+//            config.setSecurityMode(ConnectionConfiguration.SecurityMode.disabled);
+//            config.setSendPresence(false);
+//            try {
+//            config.setHostAddress(InetAddress.getByName("10.0.2.2"));
+//            config.setPort(5222);
+////            config.setResource("myResource");
+//            config.setDebuggerEnabled(true);
+////            config.setXmppDomain("myDomain");
+//            }
+//            catch(UnknownHostException e) {
+//                e.printStackTrace();
+//            }
+//            connection = new XMPPTCPConnection(config.build());
+//            connection.setUseStreamManagement(false);
+//            try {
+//                connection.connect();
+//            }
+//            catch(IOException | SmackException | XMPPException | InterruptedException e) {
+//                System.err.println("Error connecting to openfire...");
+//                e.printStackTrace();
+//            }
+//            return connection;
+//        }
+//    }
 
 
 

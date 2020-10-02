@@ -26,6 +26,8 @@ public class ChooseDepartmentFragment extends Fragment {
         //empty constructor
     }
 
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,

@@ -32,7 +32,7 @@ public class InspectionSheetRecyclerViewAdapter extends
     @Override
     public InspectionSheetRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new InspectionSheetRecyclerViewHolder(LayoutInflater.from(context)
-                .inflate(R.layout.inspection_item_view, parent, false));
+                .inflate(R.layout.item_view_inspection, parent, false));
     }
 
     @Override

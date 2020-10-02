@@ -11,10 +11,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import adapters.AssignmentRecyclerViewAdapter;
-import crysalis.example.yssa.databinding.FragmentChooseAssignmentBinding;
+import adapters.DesignationRecyclerViewAdapter;
+import crysalis.example.yssa.databinding.FragmentChooseDesignationBinding;
 
-public class ChooseAssignmentFragment extends Fragment {
+public class ChooseDesignationFragment extends Fragment {
 
        /*TODO:
            -merge this Fragment and ChooseDepartmentFragment
@@ -24,20 +24,20 @@ public class ChooseAssignmentFragment extends Fragment {
            -when item is deselected, it will be removed from the key:value pair
      */
 
-    public ChooseAssignmentFragment() {
+    public ChooseDesignationFragment() {
         //empty constructor
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        FragmentChooseAssignmentBinding binding = FragmentChooseAssignmentBinding.inflate(inflater,
+        FragmentChooseDesignationBinding binding = FragmentChooseDesignationBinding.inflate(inflater,
                 container, false);
         View view = binding.getRoot();
-        RecyclerView rvChooseAssignment = binding.rvChooseAssigment;
-        rvChooseAssignment.setAdapter(new AssignmentRecyclerViewAdapter(getContext(),
+        RecyclerView rvChooseDesignation = binding.rvChooseDesignation;
+        rvChooseDesignation.setAdapter(new DesignationRecyclerViewAdapter(getContext(),
                 getActivity().getSupportFragmentManager()));
-        rvChooseAssignment.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvChooseDesignation.setLayoutManager(new LinearLayoutManager(getActivity()));
         return view;
     }
 

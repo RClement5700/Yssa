@@ -9,16 +9,10 @@ public class Order {
     OrderPicker orderPicker;
     int orderNumber;
     int customerNumber;
-    int sectionNumber; //department
-    int palletCount;
-    Time startTime;
-    Time completionTime;
-    String location; //door/stage number
-    STATUS status;
 
     public enum STATUS {
-        ASSIGNED,
-        UNASSIGNED
+        COMPLETE,
+        INCOMPLETE
     }
 
     public Order(ArrayList<Product> products) {
@@ -26,18 +20,11 @@ public class Order {
     }
 
     public Order(ArrayList<Product> products, OrderPicker orderPicker, int orderNumber,
-                 int customerNumber, int sectionNumber, int palletCount, Time startTime,
-                 Time completionTime, String location, STATUS status) {
+                 int customerNumber) {
         this.products = products;
         this.orderPicker = orderPicker;
         this.orderNumber = orderNumber;
         this.customerNumber = customerNumber;
-        this.sectionNumber = sectionNumber;
-        this.palletCount = palletCount;
-        this.startTime = startTime;
-        this.completionTime = completionTime;
-        this.location = location;
-        this.status = status;
     }
 
     public ArrayList<Product> getProducts() {
@@ -70,53 +57,5 @@ public class Order {
 
     public void setCustomerNumber(int customerNumber) {
         this.customerNumber = customerNumber;
-    }
-
-    public int getSectionNumber() {
-        return sectionNumber;
-    }
-
-    public void setSectionNumber(int sectionNumber) {
-        this.sectionNumber = sectionNumber;
-    }
-
-    public int getPalletCount() {
-        return palletCount;
-    }
-
-    public void setPalletCount(int palletCount) {
-        this.palletCount = palletCount;
-    }
-
-    public Time getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Time startTime) {
-        this.startTime = startTime;
-    }
-
-    public Time getCompletionTime() {
-        return completionTime;
-    }
-
-    public void setCompletionTime(Time completionTime) {
-        this.completionTime = completionTime;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public STATUS getStatus() {
-        return status;
-    }
-
-    public void setStatus(STATUS status) {
-        this.status = status;
     }
 }
