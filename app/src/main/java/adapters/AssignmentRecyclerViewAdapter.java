@@ -8,16 +8,22 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 import crysalis.example.yssa.R;
 import pojos.Assignment;
 
 public class AssignmentRecyclerViewAdapter extends
         RecyclerView.Adapter<AssignmentRecyclerViewAdapter.AssignmentRecyclerViewHolder> {
-    Assignment assignment;
+    ArrayList<Assignment> assignments;
     Context context;
 
-    public AssignmentRecyclerViewAdapter(Assignment assignment, Context context) {
-        this.assignment = assignment;
+    //this will be a list of Assignments
+    //will be blank if no assignments have been assigned for the day
+    //completed assignments will be listed beneath the current assignment
+    //clicking an assignment will open a list of Products to be picked
+    public AssignmentRecyclerViewAdapter(ArrayList<Assignment> assignments, Context context) {
+        this.assignments = assignments;
         this.context = context;
     }
 
@@ -35,32 +41,11 @@ public class AssignmentRecyclerViewAdapter extends
 
     @Override
     public void onBindViewHolder(@NonNull AssignmentRecyclerViewHolder holder, int position) {
-
-        final ViewGroup container = holder.itemView.findViewById(R.id.user_input_container);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                /*
-                    TODO:
-                        -inflate view that prompts for checkdigit
-                        -ask for quantity after correct checkdigit is input
-                        -make arraylist for go-backs
-                        -if quantity is less than expected:
-                            -ask for quantity being input
-                            -goBacksArrayList.add(quantity - input)
-                 */
-                LayoutInflater.from(context).inflate(R.layout.fragment_user_input,
-                        container,
-                        false);
-            }
-        });
     }
 
     @Override
     public int getItemCount() {
-//        return order.getProducts().size();
-        return 0;
+        return assignments.size();
     }
 
     static class AssignmentRecyclerViewHolder extends RecyclerView.ViewHolder {
