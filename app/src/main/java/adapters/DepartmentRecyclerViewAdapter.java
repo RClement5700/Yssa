@@ -11,7 +11,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import crysalis.example.yssa.R;
-import crysalis.example.yssa.ui.ChooseDesignationFragment;
+import crysalis.example.yssa.ui.associateconsole.ChooseDesignationFragment;
 
 
 public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<DepartmentRecyclerViewAdapter.DepartmentViewHolder> {
@@ -43,7 +43,7 @@ public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<Departme
             @Override
             public void onClick(View view) {
                 fm.beginTransaction()
-                        .replace(R.id.fragments_container, new ChooseDesignationFragment())
+//                        .replace(R.id.fragments_container, new ChooseDesignationFragment())
                         .addToBackStack(TAG)
                         .commit();
             }

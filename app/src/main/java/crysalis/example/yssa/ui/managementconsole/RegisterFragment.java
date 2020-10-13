@@ -1,4 +1,4 @@
-package crysalis.example.yssa.ui;
+package crysalis.example.yssa.ui.managementconsole;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

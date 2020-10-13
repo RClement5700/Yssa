@@ -1,4 +1,4 @@
-package crysalis.example.yssa.ui;
+package crysalis.example.yssa.ui.associateconsole;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -63,7 +63,7 @@ public class InspectEquipmentFragment extends Fragment {
                 //direct to designated homescreen
                 fm.beginTransaction()
                         //need to pass data into OrderPickingFragment
-                        .replace(R.id.fragments_container, new AssignmentsListViewFragment())
+//                        .replace(R.id.fragments_container, new AssignmentsListViewFragment())
                         .addToBackStack(null)
                         .commit();
             }

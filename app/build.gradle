@@ -15,11 +15,11 @@ android {
 //        enabled = true
 //    }
     compileSdkVersion 29
-    buildToolsVersion "30.0.0"
+    buildToolsVersion "30.0.2"
 
     defaultConfig {
         applicationId "crysalis.example.yssa"
-        minSdkVersion 28
+        minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"

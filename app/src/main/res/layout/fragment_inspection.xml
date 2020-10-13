@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/offWhite"
-    tools:context=".ui.InspectEquipmentFragment">
+    tools:context=".ui.associateconsole.InspectEquipmentFragment">
 
     <TextView
         android:id="@+id/tv_inspect_equipment"

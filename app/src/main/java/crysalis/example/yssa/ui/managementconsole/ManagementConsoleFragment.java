@@ -1,4 +1,4 @@
-package crysalis.example.yssa.ui;
+package crysalis.example.yssa.ui.managementconsole;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import crysalis.example.yssa.databinding.FragmentManagementConsoleBinding;
+import crysalis.example.yssa.ui.ManagementConsoleActivity;
 import interfaces.DirectoryUpdatedListener;
 
 public class ManagementConsoleFragment extends Fragment implements DirectoryUpdatedListener {

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/offWhite"
-    tools:context=".ui.RegisterFragment">
+    tools:context=".ui.managementconsole.RegisterFragment">
 
     <LinearLayout
         android:id="@+id/register_username_layout"

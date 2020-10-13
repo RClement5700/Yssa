@@ -3,19 +3,20 @@ package crysalis.example.yssa.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.tabs.TabLayout;
 
-import adapters.SectionsPagerAdapter;
 import crysalis.example.yssa.R;
+import crysalis.example.yssa.databinding.ActivityLoginBinding;
 import services.YssaConnectionService;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     /* TODO:
     -openfire for messenger
@@ -30,19 +31,18 @@ public class MainActivity extends AppCompatActivity {
     -retrieve orders
     */
 
+    EditText etUsername;
+    EditText etPassword;
+    Button btnLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        SectionsPagerAdapter sectionsPagerAdapter =
-                new SectionsPagerAdapter(getSupportFragmentManager(), 1, this);
-        ViewPager viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(sectionsPagerAdapter);
-        TabLayout tabs = findViewById(R.id.tabs);
-        tabs.setupWithViewPager(viewPager);
+        ActivityLoginBinding binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
         //use if Managers want to send employees messages and vice versa
         FloatingActionButton fab = findViewById(R.id.fab);
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,22 +51,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         startService(new Intent(this, YssaConnectionService.class));
-    }
-
-    @Override
-    public void onBackPressed() {
-        int count = getSupportFragmentManager().getBackStackEntryCount();
-        if (count == 0) {
-            super.onBackPressed();
-        }
-        else if(getSupportFragmentManager().getFragments().get(0) ==
-                getSupportFragmentManager().findFragmentByTag("android:switcher:2131362085:0") &&
-            getSupportFragmentManager().getBackStackEntryCount() == 1)
-        {
-            startActivity(new Intent(this, MainActivity.class));
-        }
-        else {
-            getSupportFragmentManager().popBackStack();
-        }
+        etUsername = binding.etLoginUsername;
+        etPassword = binding.etLoginPassword;
+        btnLogin = binding.loginButton;
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String username =  etUsername.getText().toString();
+                String password =  etPassword.getText().toString();
+            }
+        });
     }
 }

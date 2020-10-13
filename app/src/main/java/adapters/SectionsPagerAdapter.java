@@ -10,8 +10,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import crysalis.example.yssa.R;
-import crysalis.example.yssa.ui.LoginFragment;
-import crysalis.example.yssa.ui.ManagementConsoleFragment;
 
 
 /**
@@ -33,11 +31,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        if (position == 1) {
-            //Do I need a tabbed activity for homescreen?
-            return new ManagementConsoleFragment();
-        }
-        return new LoginFragment();
+        return new Fragment();
     }
 
     @Nullable

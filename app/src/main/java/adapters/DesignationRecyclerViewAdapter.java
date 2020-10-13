@@ -12,8 +12,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import crysalis.example.yssa.R;
-import crysalis.example.yssa.ui.InspectEquipmentFragment;
-import crysalis.example.yssa.ui.TrainerFragment;
+import crysalis.example.yssa.ui.associateconsole.InspectEquipmentFragment;
+import crysalis.example.yssa.ui.associateconsole.TrainerFragment;
 
 
 public class DesignationRecyclerViewAdapter extends
@@ -55,13 +55,13 @@ public class DesignationRecyclerViewAdapter extends
             public void onClick(View view) {
                 if (checklist != null) {
                     fm.beginTransaction()
-                            .replace(R.id.fragments_container, new InspectEquipmentFragment(checklist))
+//                            .replace(R.id.fragments_container, new InspectEquipmentFragment(checklist))
                             .addToBackStack(null)
                             .commit();
                 }
                 else {
                     fm.beginTransaction()
-                            .replace(R.id.fragments_container, new TrainerFragment())
+//                            .replace(R.id.fragments_container, new TrainerFragment())
                             .addToBackStack(null)
                             .commit();
                 }
