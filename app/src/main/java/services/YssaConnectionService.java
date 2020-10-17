@@ -25,11 +25,14 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
+import pojos.Assignment;
 import pojos.Employee;
+import pojos.Order;
 
 public class YssaConnectionService extends Service {
 
@@ -55,7 +58,7 @@ public class YssaConnectionService extends Service {
             public void run() {
                 try {
                     sqlConnection = new ConnectToSqlDatabaseTask().execute().get();
-                    ldapConnection = new ConnectToLDAPDirectoryTask().execute().get();
+//                    ldapConnection = new ConnectToLDAPDirectoryTask().execute().get();
 //                    openfireConnection = new ConnectToOpenfireTask().execute().get();
 
                 } catch (ExecutionException | InterruptedException e) {
@@ -112,6 +115,12 @@ public class YssaConnectionService extends Service {
                 e.printStackTrace();
             }
             return con;
+        }
+
+        public void retrieveProducts() {
+            try {
+                ResultSet rs = con.prepareStatement().executeQuery();
+            }
         }
     }
 

@@ -1,16 +1,16 @@
 package pojos;
 
 public class Product {
-    int productNumber;
+    int productId;
     int length;
     int width;
     int height;
     double weight;
     String description;
 
-    public Product(int productNumber, int length, int width, int height, double weight,
+    public Product(int productId, int length, int width, int height, double weight,
                    String description) {
-        this.productNumber = productNumber;
+        this.productId = productId;
         this.length = length;
         this.width = width;
         this.height = height;

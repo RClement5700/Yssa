@@ -3,12 +3,12 @@ package pojos;
 public class Slot {
 
     private Product product;
-    private int location;
+    private int slotId;
     private int checkDigit;
 
-    public Slot(Product product, int location, int checkDigit) {
+    public Slot(Product product, int slotId, int checkDigit) {
         this.product = product;
-        this.location = location;
+        this.slotId = slotId;
         this.checkDigit = checkDigit;
     }
 
@@ -16,8 +16,8 @@ public class Slot {
         return product;
     }
 
-    public int getLocation() {
-        return location;
+    public int getslotId() {
+        return slotId;
     }
 
     public int getCheckDigit() {
