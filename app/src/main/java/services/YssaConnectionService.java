@@ -33,6 +33,8 @@ import java.util.concurrent.ExecutionException;
 import pojos.Assignment;
 import pojos.Employee;
 import pojos.Order;
+import pojos.Product;
+import pojos.Slot;
 
 public class YssaConnectionService extends Service {
 
@@ -96,7 +98,7 @@ public class YssaConnectionService extends Service {
 
         String url = "jdbc:mysql://10.0.2.2:8889/yssa";
         String username = "root";
-        String password = "adminadmin";
+        String password = "root";
         ArrayList<Employee> employees = new ArrayList<Employee>();
         Connection con;
 
@@ -108,6 +110,8 @@ public class YssaConnectionService extends Service {
                 System.err.println("Connecting to SQL database...");
                 if (!con.isClosed()) {
                     System.err.println("SQL database connection complete");
+                    retrieveProducts();
+                    retrieveSlots();
                 }
             }
             catch (IllegalAccessException | InstantiationException | SQLException |
@@ -117,10 +121,77 @@ public class YssaConnectionService extends Service {
             return con;
         }
 
-        public void retrieveProducts() {
+        public ArrayList<Order> retrieveOrders() {
+            ArrayList<Order> orders = new ArrayList<>();
+            ArrayList<Product> products = new ArrayList<>();
             try {
-                ResultSet rs = con.prepareStatement().executeQuery();
+                ResultSet rs = con.prepareStatement("SELECT * FROM `orders`").executeQuery();
+                while (rs.next()) {
+                    ResultSet rs2 = con.prepareStatement("SELECT * FROM `orderItems` WHERE " +
+                            "`OrderId` = " + rs.getInt(1)).executeQuery();
+                    while(rs2.next()) {
+                        Product product = getProduct(rs2.getInt(2));
+                        products.add(product);
+                    }
+                    Order order = new Order(products, rs.getInt(1), rs.getBoolean(2));
+                    orders.add(order);
+                }
             }
+            catch(SQLException e) {
+                e.printStackTrace();
+                System.err.println("Error loading products from MySQL...");
+            }
+
+            return orders;
+        }
+
+        public ArrayList<Product> retrieveProducts() {
+            ArrayList<Product> products = new ArrayList<>();
+            try {
+                ResultSet rs = con.prepareStatement("SELECT * FROM `products`").executeQuery();
+                while (rs.next()) {
+                    Product product = new Product(rs.getInt(1), rs.getInt(2), rs.getInt(3),
+                            rs.getInt(4), rs.getInt(5), rs.getString(6));
+                    products.add(product);
+                }
+            }
+            catch(SQLException e) {
+                e.printStackTrace();
+                System.err.println("Error loading products from MySQL...");
+            }
+            return products;
+        }
+
+        public Product getProduct(int productId) {
+            Product product = null;
+            try {
+                ResultSet rs = con.prepareStatement("SELECT * FROM `products` WHERE `ProductId`=" +
+                        productId).executeQuery();
+                if (rs.next()) {
+                    product = new Product(rs.getInt(1), rs.getInt(2), rs.getInt(3),
+                            rs.getInt(4), rs.getInt(5), rs.getString(6));
+                }
+            }
+            catch(SQLException e) {
+                e.printStackTrace();
+                System.err.println("Error retrieving product: " + productId + " from MySQL");
+            }
+            return product;
+        }
+        public ArrayList<Slot> retrieveSlots() {
+            ArrayList<Slot> slots = new ArrayList<>();
+            try {
+                ResultSet rs = con.prepareStatement("SELECT * FROM `slots`").executeQuery();
+                while (rs.next()) {
+                    Slot slot = new Slot(rs.getInt(1), rs.getInt(2), getProduct(rs.getInt(3)));
+                    slots.add(slot);
+                }
+            }
+            catch(SQLException e) {
+                e.printStackTrace();
+                System.err.println("Error loading slots from MySQL...");
+            }
+            return slots;
         }
     }
 

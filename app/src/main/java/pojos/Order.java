@@ -9,14 +9,21 @@ public class Order {
     OrderPicker orderPicker;
     int orderNumber;
     int customerNumber;
-
-    public enum STATUS {
-        COMPLETE,
-        INCOMPLETE
-    }
+    boolean status;
 
     public Order(ArrayList<Product> products) {
         this.products = products;
+    }
+
+    public Order(int orderNumber, boolean status) {
+        this.orderNumber = orderNumber;
+        this.status = status;
+    }
+
+    public Order(ArrayList<Product> products, int orderNumber, boolean status) {
+        this.products = products;
+        this.orderNumber = orderNumber;
+        this.status = status;
     }
 
     public Order(ArrayList<Product> products, OrderPicker orderPicker, int orderNumber,

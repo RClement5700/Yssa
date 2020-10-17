@@ -5,10 +5,10 @@ public class Product {
     int length;
     int width;
     int height;
-    double weight;
+    int weight;
     String description;
 
-    public Product(int productId, int length, int width, int height, double weight,
+    public Product(int productId, int length, int width, int height, int weight,
                    String description) {
         this.productId = productId;
         this.length = length;
