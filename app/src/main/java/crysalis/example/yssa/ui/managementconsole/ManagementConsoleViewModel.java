@@ -1,8 +1,6 @@
 package crysalis.example.yssa.ui.managementconsole;
 
 import android.content.Context;
-import android.view.ViewGroup;
-
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModel;

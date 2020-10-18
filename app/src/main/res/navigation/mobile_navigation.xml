@@ -3,23 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/mc_my_account_layout"
+    >
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/mc_my_account_layout"
         android:name="crysalis.example.yssa.ui.managementconsole.MyAccountFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_my_account" />
+        android:label="@string/mc_my_account"
+        tools:layout="@layout/fragment_my_account"
+
+        />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="crysalis.example.yssa.ui.managementconsole.UsersFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_users" />
+        android:id="@+id/mc_manage_associates_layout"
+        android:name="crysalis.example.yssa.ui.managementconsole.ManageAssociatesFragment"
+        android:label="@string/mc_associates"
+        tools:layout="@layout/fragment_manage_associates" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/mc_messenger_layout"
         android:name="crysalis.example.yssa.ui.managementconsole.MessengerFragment"
-        android:label="@string/menu_slideshow"
+        android:label="@string/mc_messenger"
         tools:layout="@layout/fragment_messenger" />
 </navigation>

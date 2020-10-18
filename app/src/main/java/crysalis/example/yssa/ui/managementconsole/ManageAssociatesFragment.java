@@ -8,18 +8,18 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import crysalis.example.yssa.databinding.FragmentUsersBinding;
+import crysalis.example.yssa.databinding.FragmentManageAssociatesBinding;
 import pojos.Employee;
 
 
-public class UsersFragment extends Fragment {
+public class ManageAssociatesFragment extends Fragment {
 
 
     //TODO: All employee directory functions will take place here
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        FragmentUsersBinding binding =
-                FragmentUsersBinding.inflate(inflater, container, false);
+        FragmentManageAssociatesBinding binding =
+                FragmentManageAssociatesBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 

@@ -12,8 +12,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.ActivityLoginBinding;
+import pojos.Order;
+import pojos.Product;
+import pojos.Slot;
 import services.YssaConnectionService;
 
 public class LoginActivity extends AppCompatActivity {
@@ -50,7 +58,83 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String username =  etUsername.getText().toString();
                 String password =  etPassword.getText().toString();
+                startActivity(new Intent(getApplicationContext(), ManagementConsoleActivity.class));
             }
         });
+    }
+
+    public ArrayList<Order> retrieveOrders(Connection con) {
+        ArrayList<Order> orders = new ArrayList<>();
+        ArrayList<Product> products = new ArrayList<>();
+        try {
+            ResultSet rs = con.prepareStatement("SELECT * FROM `orders`").executeQuery();
+            while (rs.next()) {
+                ResultSet rs2 = con.prepareStatement("SELECT * FROM `orderItems` WHERE " +
+                        "`OrderId` = " + rs.getInt(1)).executeQuery();
+                while(rs2.next()) {
+                    Product product = getProduct(rs2.getInt(2));
+                    products.add(product);
+                }
+                Order order = new Order(products, rs.getInt(1), rs.getBoolean(2));
+                orders.add(order);
+                System.err.println("OrderId: " + order.getOrderNumber());
+            }
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+            System.err.println("Error loading products from MySQL...");
+        }
+
+        return orders;
+    }
+
+    public ArrayList<Product> retrieveProducts(Connection con) {
+        ArrayList<Product> products = new ArrayList<>();
+        try {
+            ResultSet rs = con.prepareStatement("SELECT * FROM `products`").executeQuery();
+            while (rs.next()) {
+                Product product = new Product(rs.getInt(1), rs.getInt(2), rs.getInt(3),
+                        rs.getInt(4), rs.getInt(5), rs.getString(6));
+                products.add(product);
+            }
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+            System.err.println("Error loading products from MySQL...");
+        }
+        return products;
+    }
+
+    public Product getProduct(int productId) {
+        Connection con = YssaConnectionService.getInstance().getSqlConnection();
+        Product product = null;
+        try {
+            ResultSet rs = con.prepareStatement("SELECT * FROM `products` WHERE `ProductId`=" +
+                    productId).executeQuery();
+            if (rs.next()) {
+                product = new Product(rs.getInt(1), rs.getInt(2), rs.getInt(3),
+                        rs.getInt(4), rs.getInt(5), rs.getString(6));
+            }
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+            System.err.println("Error retrieving product: " + productId + " from MySQL");
+        }
+        return product;
+    }
+    public ArrayList<Slot> retrieveSlots(Connection con) {
+        ArrayList<Slot> slots = new ArrayList<>();
+        try {
+            ResultSet rs = con.prepareStatement("SELECT * FROM `slots`").executeQuery();
+            while (rs.next()) {
+                Slot slot = new Slot(rs.getInt(1), rs.getInt(2), getProduct(rs.getInt(3)));
+                slots.add(slot);
+            }
+        }
+        catch(SQLException e) {
+            e.printStackTrace();
+            System.err.println("Error loading slots from MySQL...");
+        }
+        return slots;
     }
 }
