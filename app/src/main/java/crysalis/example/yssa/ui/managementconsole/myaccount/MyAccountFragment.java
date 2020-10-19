@@ -1,4 +1,4 @@
-package crysalis.example.yssa.ui.console.manageassociates;
+package crysalis.example.yssa.ui.managementconsole.myaccount;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,18 +14,18 @@ import androidx.lifecycle.ViewModelProvider;
 
 import crysalis.example.yssa.R;
 
-public class ManageAssociatesFragment extends Fragment {
+public class MyAccountFragment extends Fragment {
 
-    private ManageAssociatesViewModel manageAssociatesViewModel;
+    private MyAccountViewModel myAccountViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ViewModelProvider viewModelProvider = new ViewModelProvider(this);
-        manageAssociatesViewModel =
-                viewModelProvider.get(ManageAssociatesViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_manage_associates, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
-        manageAssociatesViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        myAccountViewModel =
+                viewModelProvider.get(MyAccountViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_my_account, container, false);
+        final TextView textView = root.findViewById(R.id.text_home);
+        myAccountViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

@@ -1,4 +1,4 @@
-package crysalis.example.yssa.ui.console.assignments;
+package crysalis.example.yssa.ui.managementconsole.schematic;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,11 +13,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import crysalis.example.yssa.R;
 
-public class AssignmentsFragment extends Fragment {
+public class SchematicFragment extends Fragment {
 
-    private AssignmentsViewModel assignmentsViewModel;
+    private SchematicViewModel schematicViewModel;
 
-    public AssignmentsFragment() {
+    public SchematicFragment() {
         // Required empty public constructor
     }
     @Override
@@ -25,11 +25,11 @@ public class AssignmentsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ViewModelProvider viewModelProvider = new ViewModelProvider(this);
-        assignmentsViewModel =
-                viewModelProvider.get(AssignmentsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_assignments, container, false);
-        final TextView textView = root.findViewById(R.id.text_assignments);
-        assignmentsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        schematicViewModel =
+                viewModelProvider.get(SchematicViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_schematic, container, false);
+        final TextView textView = root.findViewById(R.id.text_schematic);
+        schematicViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

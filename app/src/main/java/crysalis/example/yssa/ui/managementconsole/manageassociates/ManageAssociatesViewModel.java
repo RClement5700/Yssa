@@ -1,16 +1,16 @@
-package crysalis.example.yssa.ui.console.myaccount;
+package crysalis.example.yssa.ui.managementconsole.manageassociates;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class MyAccountViewModel extends ViewModel {
+public class ManageAssociatesViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public MyAccountViewModel() {
+    public ManageAssociatesViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("This is gallery fragment");
     }
 
     public LiveData<String> getText() {

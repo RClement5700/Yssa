@@ -1,16 +1,16 @@
-package crysalis.example.yssa.ui.console.manageassociates;
+package crysalis.example.yssa.ui.managementconsole.messenger;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ManageAssociatesViewModel extends ViewModel {
+public class MessengerViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public ManageAssociatesViewModel() {
+    public MessengerViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
+        mText.setValue("This is slideshow fragment");
     }
 
     public LiveData<String> getText() {

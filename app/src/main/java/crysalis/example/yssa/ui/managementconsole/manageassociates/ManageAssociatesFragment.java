@@ -1,4 +1,4 @@
-package crysalis.example.yssa.ui.console.messenger;
+package crysalis.example.yssa.ui.managementconsole.manageassociates;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,19 +14,18 @@ import androidx.lifecycle.ViewModelProvider;
 
 import crysalis.example.yssa.R;
 
+public class ManageAssociatesFragment extends Fragment {
 
-public class MessengerFragment extends Fragment {
-
-    private MessengerViewModel messengerViewModel;
+    private ManageAssociatesViewModel manageAssociatesViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ViewModelProvider viewModelProvider = new ViewModelProvider(this);
-        messengerViewModel =
-                viewModelProvider.get(MessengerViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_messenger, container, false);
-        final TextView textView = root.findViewById(R.id.text_slideshow);
-        messengerViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        manageAssociatesViewModel =
+                viewModelProvider.get(ManageAssociatesViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_manage_associates, container, false);
+        final TextView textView = root.findViewById(R.id.text_gallery);
+        manageAssociatesViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

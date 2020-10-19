@@ -1,14 +1,14 @@
-package crysalis.example.yssa.ui.console.schematic;
+package crysalis.example.yssa.ui.managementconsole.assignments;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class SchematicViewModel extends ViewModel {
+public class AssignmentsViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public SchematicViewModel() {
+    public AssignmentsViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is gallery fragment");
     }

@@ -1,16 +1,16 @@
-package crysalis.example.yssa.ui.console.messenger;
+package crysalis.example.yssa.ui.managementconsole.myaccount;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class MessengerViewModel extends ViewModel {
+public class MyAccountViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public MessengerViewModel() {
+    public MyAccountViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is slideshow fragment");
+        mText.setValue("This is home fragment");
     }
 
     public LiveData<String> getText() {

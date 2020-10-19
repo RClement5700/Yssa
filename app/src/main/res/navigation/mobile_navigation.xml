@@ -7,30 +7,30 @@
 
     <fragment
         android:id="@+id/my_account"
-        android:name="crysalis.example.yssa.ui.console.myaccount.MyAccountFragment"
+        android:name="crysalis.example.yssa.ui.managementconsole.myaccount.MyAccountFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_my_account" />
 
     <fragment
         android:id="@+id/manage_associates"
-        android:name="crysalis.example.yssa.ui.console.manageassociates.ManageAssociatesFragment"
+        android:name="crysalis.example.yssa.ui.managementconsole.manageassociates.ManageAssociatesFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_manage_associates" />
 
     <fragment
         android:id="@+id/messenger"
-        android:name="crysalis.example.yssa.ui.console.messenger.MessengerFragment"
+        android:name="crysalis.example.yssa.ui.managementconsole.messenger.MessengerFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_messenger" />
 
     <fragment
         android:id="@+id/schematic"
-        android:name="crysalis.example.yssa.ui.console.schematic.SchematicFragment"
+        android:name="crysalis.example.yssa.ui.managementconsole.schematic.SchematicFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_schematic" />
     <fragment
         android:id="@+id/assignments"
-        android:name="crysalis.example.yssa.ui.console.assignments.AssignmentsFragment"
+        android:name="crysalis.example.yssa.ui.managementconsole.assignments.AssignmentsFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_assignments" />
 </navigation>
