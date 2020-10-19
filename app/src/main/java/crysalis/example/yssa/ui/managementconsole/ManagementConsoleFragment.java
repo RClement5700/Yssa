@@ -29,13 +29,13 @@ public class ManagementConsoleFragment extends Fragment implements DirectoryUpda
 
         FragmentManagementConsoleBinding binding =
                 FragmentManagementConsoleBinding.inflate(inflater, container, false);
-        Button loginBtn = binding.managementLoginBtn;
-        loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), ManagementConsoleActivity.class));
-            }
-        });
+//        Button loginBtn = binding.managementLoginBtn;
+//        loginBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(getActivity(), ManagementConsoleActivity.class));
+//            }
+//        });
         View v = binding.getRoot();
         return v;
     }

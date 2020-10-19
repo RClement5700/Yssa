@@ -18,20 +18,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <service
-            android:name="services.CrysalisFirebaseMessagingService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-        <service
             android:name="services.YssaConnectionService"
             android:exported="false">
         </service>
         <activity
             android:name=".ui.ManagementConsoleActivity"
             android:label="@string/title_activity_management_console"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ui.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
