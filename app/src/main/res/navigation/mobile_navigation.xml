@@ -28,6 +28,11 @@
         android:name="crysalis.example.yssa.ui.console.schematic.SchematicFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_schematic" />
+    <fragment
+        android:id="@+id/assignments"
+        android:name="crysalis.example.yssa.ui.console.assignments.AssignmentsFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_assignments" />
 </navigation>
 
     <!--<?xml version="1.0" encoding="utf-8"?>-->

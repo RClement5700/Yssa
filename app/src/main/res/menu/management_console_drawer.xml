@@ -20,5 +20,9 @@
             android:id="@+id/schematic"
             android:icon="@android:drawable/ic_menu_myplaces"
             android:title="@string/mc_schematic" />
+        <item
+            android:id="@+id/assignments"
+            android:icon="@android:drawable/ic_menu_agenda"
+            android:title="@string/mc_assignments" />
     </group>
 </menu>
