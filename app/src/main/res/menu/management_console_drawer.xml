@@ -16,5 +16,9 @@
             android:id="@+id/messenger"
             android:icon="@android:drawable/sym_action_chat"
             android:title="@string/mc_messenger" />
+        <item
+            android:id="@+id/schematic"
+            android:icon="@android:drawable/ic_menu_myplaces"
+            android:title="@string/mc_schematic" />
     </group>
 </menu>

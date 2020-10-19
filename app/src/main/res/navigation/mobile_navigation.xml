@@ -22,6 +22,12 @@
         android:name="crysalis.example.yssa.ui.console.messenger.MessengerFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_messenger" />
+
+    <fragment
+        android:id="@+id/schematic"
+        android:name="crysalis.example.yssa.ui.console.schematic.SchematicFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_schematic" />
 </navigation>
 
     <!--<?xml version="1.0" encoding="utf-8"?>-->
