@@ -45,8 +45,8 @@ public class ManagementConsoleActivity extends AppCompatActivity {
                 R.id.manage_associates,
                 R.id.messenger,
                 R.id.schematic,
-                R.id.assignments
-                )
+                R.id.assignments,
+                R.id.schedule)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

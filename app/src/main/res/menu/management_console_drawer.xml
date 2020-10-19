@@ -24,5 +24,9 @@
             android:id="@+id/assignments"
             android:icon="@android:drawable/ic_menu_agenda"
             android:title="@string/mc_assignments" />
+        <item
+            android:id="@+id/schedule"
+            android:icon="@android:drawable/ic_menu_my_calendar"
+            android:title="@string/mc_schedule" />
     </group>
 </menu>

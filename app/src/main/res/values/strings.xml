@@ -25,6 +25,7 @@
     <string name="enter_check_digit">Enter Check Digit: </string>
     <string name="enter_quantity">Enter Quantity: </string>
     <string name="title_activity_management_console">ManagementConsoleActivity</string>
+    <string name="welcome_management_employee">Welcome Back </string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -36,6 +37,7 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
 
+    <string name="mc_schedule">Schedule</string>
     <string name="mc_assignments">Assignments</string>
     <string name="mc_schematic">Schematic</string>
     <string name="mc_my_account">My Account</string>

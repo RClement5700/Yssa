@@ -1,16 +1,16 @@
-package crysalis.example.yssa.ui.managementconsole.myaccount;
+package crysalis.example.yssa.ui.managementconsole.schedule;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class MyAccountViewModel extends ViewModel {
+public class ScheduleViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public MyAccountViewModel() {
+    public ScheduleViewModel() {
         mText = new MutableLiveData<>();
-//        mText.setValue("This is home fragment");
+        mText.setValue("This is gallery fragment");
     }
 
     public LiveData<String> getText() {
