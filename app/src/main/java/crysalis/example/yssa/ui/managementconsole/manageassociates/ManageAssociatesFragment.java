@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import crysalis.example.yssa.R;
 
@@ -24,13 +25,14 @@ public class ManageAssociatesFragment extends Fragment {
         manageAssociatesViewModel =
                 viewModelProvider.get(ManageAssociatesViewModel.class);
         View root = inflater.inflate(R.layout.fragment_manage_associates, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
-        manageAssociatesViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+//        final TextView textView = root.findViewById(R.id.text_gallery);
+        final RecyclerView rvManageAssociates = (RecyclerView) root.findViewById(R.id.rv_manage_associates);
+//        manageAssociatesViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+//            @Override
+//            public void onChanged(@Nullable String s) {
+//                textView.setText(s);
+//            }
+//        });
         return root;
     }
 }

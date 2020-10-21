@@ -6,12 +6,12 @@ public class Employee {
 
     private int employeeId;
     private String username;
-    private String password;
+    private String fullName;
 
-    public Employee(int employeeId, String username, String password) {
+    public Employee(int employeeId, String username, String fullName) {
         this.employeeId = employeeId;
         this.username = username;
-        this.password = password;
+        this.fullName = fullName;
     }
 
     public int getEmployeeId() {
@@ -22,8 +22,8 @@ public class Employee {
         return username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getFullName() {
+        return fullName;
     }
 
     public void punchIn(Time time) {

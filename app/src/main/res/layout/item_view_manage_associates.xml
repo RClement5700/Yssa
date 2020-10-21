@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/offWhite">
+
+    <CheckBox
+        android:id="@+id/checkbox_manage_associate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        />
+    <TextView
+        android:id="@+id/tv_associate_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/partplaceholder"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        android:layout_margin="8dp"
+        />
+</LinearLayout>
