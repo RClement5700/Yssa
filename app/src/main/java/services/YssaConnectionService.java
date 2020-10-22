@@ -79,22 +79,6 @@ public class YssaConnectionService extends Service {
         return null;
     }
 
-    public Connection getSqlConnection() {
-        return sqlConnection;
-    }
-    
-    public LDAPConnection getLdapConnection() {
-        return ldapConnection;
-    }
-
-    public XMPPConnection getOpenfireConnection() {
-        return openfireConnection;
-    }
-
-    /*
-        TODO:
-            match username:employeeIDs in database to username:employeeIDs in directory
-     */
     static class ConnectToSqlDatabaseTask extends AsyncTask<String, Void, Connection> {
 
         private ArrayList<Employee> employees;
@@ -115,7 +99,6 @@ public class YssaConnectionService extends Service {
                 System.err.println("Connecting to SQL database...");
                 if (!con.isClosed()) {
                     System.err.println("SQL database connection complete");
-                    retrieveUsers();
                 }
             }
             catch (IllegalAccessException | InstantiationException | SQLException |
@@ -124,33 +107,6 @@ public class YssaConnectionService extends Service {
             }
             return con;
         }
-
-        private void retrieveUsers(String userType, ArrayList<Employee> employees) {
-            userType = "`" + userType;
-            try {
-                ResultSet rs = con.prepareStatement("SELECT * FROM " + userType + "Users`").executeQuery();
-                while (rs.next()) {
-                    int employeeId = rs.getInt(1);
-                    String username = rs.getString(2);
-                    String fullName = rs.getString(3);
-                    Employee employee = new Employee(employeeId, username, fullName);
-                    employees.add(employee);
-
-                    System.err.println("users: " + username);
-                }
-            }
-            catch(SQLException e) {
-                e.printStackTrace();
-                System.err.println("Error loading products from MySQL...");
-            }
-        }
-
-        public void retrieveUsers() {
-            employees = new ArrayList<>();
-            retrieveUsers("management", employees);
-            retrieveUsers("associate", employees);
-        }
-
     }
 
     static class ConnectToLDAPDirectoryTask extends AsyncTask<String, Void, LDAPConnection> {

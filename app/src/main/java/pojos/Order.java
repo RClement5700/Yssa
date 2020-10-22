@@ -6,9 +6,9 @@ import java.util.ArrayList;
 public class Order {
 
     ArrayList<Product> products;
-    OrderPicker orderPicker;
     int orderNumber;
     int customerNumber;
+    int userId;
     boolean status;
 
     public Order(ArrayList<Product> products) {
@@ -20,17 +20,21 @@ public class Order {
         this.status = status;
     }
 
+    public Order(int orderNumber, int userId, boolean status) {
+        this.orderNumber = orderNumber;
+        this.userId = userId;
+        this.status = status;
+    }
+
     public Order(ArrayList<Product> products, int orderNumber, boolean status) {
         this.products = products;
         this.orderNumber = orderNumber;
         this.status = status;
     }
 
-    public Order(ArrayList<Product> products, OrderPicker orderPicker, int orderNumber,
+    public Order(ArrayList<Product> products, int orderNumber,
                  int customerNumber) {
-        this.products = products;
-        this.orderPicker = orderPicker;
-        this.orderNumber = orderNumber;
+        this.products = products;this.orderNumber = orderNumber;
         this.customerNumber = customerNumber;
     }
 
@@ -40,14 +44,6 @@ public class Order {
 
     public void setProducts(ArrayList<Product> products) {
         this.products = products;
-    }
-
-    public OrderPicker getOrderPicker() {
-        return orderPicker;
-    }
-
-    public void setOrderPicker(OrderPicker orderPicker) {
-        this.orderPicker = orderPicker;
     }
 
     public int getOrderNumber() {
@@ -64,5 +60,9 @@ public class Order {
 
     public void setCustomerNumber(int customerNumber) {
         this.customerNumber = customerNumber;
+    }
+
+    public int getUserId() {
+        return userId;
     }
 }

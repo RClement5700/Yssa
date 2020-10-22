@@ -53,6 +53,14 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
 
+    <string name="username_placeholder">Username:</string>
+    <string name="user_id_placeholder">UserId:</string>
+    <string name="associate_name_placeholder">Name:</string>
+
+    <string name="order_id">Order Id:</string>
+    <string name="user_id">User Id:</string>
+
+
     <!--
        -product description
        -order number

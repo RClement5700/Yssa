@@ -2,6 +2,8 @@ package crysalis.example.yssa.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -9,26 +11,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.zip.Inflater;
+import java.util.concurrent.ExecutionException;
 
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.ActivityLoginBinding;
+import crysalis.example.yssa.ui.managementconsole.ManagementConsoleActivity;
 import pojos.Employee;
 
 public class LoginActivity extends AppCompatActivity {
@@ -59,6 +50,13 @@ public class LoginActivity extends AppCompatActivity {
                 loginTask.setUserId(username);
                 loginTask.setPassword(password);
                 loginTask.execute();
+                SharedPreferences preferences = getSharedPreferences("userCredentials", 0);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putInt("username", username);
+                editor.putString("password", password);
+                editor.apply();
+                startActivity(new Intent(LoginActivity.this,
+                        ManagementConsoleActivity.class));
             }
         });
     }
@@ -108,7 +106,6 @@ public class LoginActivity extends AppCompatActivity {
                     String fullName = rs.getString(3);
                     employee = new Employee(employeeId, username, fullName);
 //                    employees.add(employee);
-                    System.err.println("users: " + username);
                 }
             } catch (SQLException e) {
                 e.printStackTrace();

@@ -48,8 +48,6 @@ public class AssignmentsListViewFragment extends Fragment {
         int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.spacing);
         rvProductList.addItemDecoration(new SpacesItemDecoration(spacingInPixels));
         View v = binding.getRoot();
-        YssaConnectionService service = YssaConnectionService.getInstance();
-        sqlConnection = service.getSqlConnection();
         return v;
     }
 }
