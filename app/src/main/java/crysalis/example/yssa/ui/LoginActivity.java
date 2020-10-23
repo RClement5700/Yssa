@@ -14,9 +14,11 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.GoogleApi;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -39,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     ProgressBar loading;
     Button loginBtn;
     FirebaseAuth mAuth;
+    final String TAG = "LoginActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         loading = (ProgressBar) findViewById(R.id.loading);
         loading.setVisibility(View.GONE);
         loginBtn = (Button) findViewById(R.id.login);
+        mAuth.signOut();
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,27 +79,30 @@ public class LoginActivity extends AppCompatActivity {
 //    }
 
     public void login() {
+        System.err.println("project id: " +
+                FirebaseApp.getInstance().getOptions().getProjectId());
+        System.err.println("this project id: " +
+                mAuth.getApp().getOptions().getProjectId());
+        System.err.println("API key: " + mAuth.getApp().getOptions().getApiKey());
         mAuth.signInWithEmailAndPassword("rohan.clement@levosonus.com",
-                "yssaclement2020")
+                "yssa.clement2020")
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-//                            Log.d(TAG, "signInWithEmail:success");
+                            Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             System.err.println("Signing in...");
                             loginComplete();
                         } else {
                             // If sign in fails, display a message to the user.
-//                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             System.err.println(task.getException());
 //                            updateUI(null);
                         }
-
-                        // ...
                     }
                 });
     }
