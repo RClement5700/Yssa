@@ -47,13 +47,12 @@ dependencies {
     implementation 'com.unboundid:unboundid-ldapsdk:4.0.5'
     implementation group: 'com.novell.ldap', name: 'jldap', version: '4.3'
     implementation "org.igniterealtime.smack:smack-java7:4.2.2"
-//    api "org.igniterealtime.smack:smack-java8-full:4.4.0-alpha4"
-    // Optional for XMPPTCPConnection
-    implementation "org.igniterealtime.smack:smack-tcp:4.2.2"
-    // Optional for XMPP-IM (RFC 6121) support (Roster, Threaded Chats, …)
-    implementation "org.igniterealtime.smack:smack-im:4.2.2"
-    // Optional for XMPP extensions support
-    implementation 'org.igniterealtime.smack:smack-extensions:4.2.2'
+
+    implementation platform('com.google.firebase:firebase-bom:25.12.0')
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-core:17.5.1'
+    implementation 'com.google.android.gms:play-services-auth:18.1.0'
+    implementation 'com.google.firebase:firebase-auth:19.4.0'
 
 
 

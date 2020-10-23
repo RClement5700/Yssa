@@ -10,19 +10,7 @@ import androidx.annotation.Nullable;
 import com.unboundid.ldap.sdk.LDAPConnection;
 import com.unboundid.ldap.sdk.LDAPException;
 
-import org.jivesoftware.smack.AbstractXMPPConnection;
-import org.jivesoftware.smack.ConnectionConfiguration;
-import org.jivesoftware.smack.SmackException;
-import org.jivesoftware.smack.XMPPConnection;
-import org.jivesoftware.smack.XMPPException;
-import org.jivesoftware.smack.tcp.XMPPTCPConnection;
-import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration;
-import org.jxmpp.stringprep.XmppStringprepException;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -42,7 +30,6 @@ public class YssaConnectionService extends Service {
     private Connection sqlConnection;
     private ArrayList<Employee> employees;
     private LDAPConnection ldapConnection;
-    private XMPPConnection openfireConnection;
 
     public static YssaConnectionService getInstance() {
         return instance;

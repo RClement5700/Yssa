@@ -1,15 +1,25 @@
 package crysalis.example.yssa.ui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -28,11 +38,13 @@ public class LoginActivity extends AppCompatActivity {
     EditText etPassword;
     ProgressBar loading;
     Button loginBtn;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        mAuth = FirebaseAuth.getInstance();
         ActivityLoginBinding binding = ActivityLoginBinding.inflate(getLayoutInflater());
         etUsername = (EditText) findViewById(R.id.username);
         etPassword = (EditText) findViewById(R.id.password);
@@ -42,76 +54,49 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.err.println("attempting login");
-                loading.setVisibility(View.VISIBLE);
-                int username = Integer.parseInt(etUsername.getText().toString());
-                String password = etPassword.getText().toString();
-                ConnectToSqlDatabaseTask loginTask = new ConnectToSqlDatabaseTask();
-                loginTask.setUserId(username);
-                loginTask.setPassword(password);
-                loginTask.execute();
-                SharedPreferences preferences = getSharedPreferences("userCredentials", 0);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putInt("username", username);
-                editor.putString("password", password);
-                editor.apply();
-                startActivity(new Intent(LoginActivity.this,
-                        ManagementConsoleActivity.class));
+                login();
             }
         });
     }
 
-    static class ConnectToSqlDatabaseTask extends AsyncTask<String, Void, Employee> {
+    public void loginComplete() {
+        Intent intent = new Intent(LoginActivity.this,
+                ManagementConsoleActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        System.err.println("currentuser: " +mAuth.getCurrentUser());
+        startActivity(intent);
+    }
 
-        String url = "jdbc:mysql://10.0.2.2:8889/yssa";
-        String admin_username = "root";
-        String admin_password = "root";
-        int userId;
-        String password;
-        Connection con;
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        // Check if user is signed in (non-null) and update UI accordingly.
+//        loginComplete();
+//    }
 
-        @Override
-        protected Employee doInBackground(String... strings) {
-            try {
-                Class.forName("com.mysql.jdbc.Driver").newInstance();
-                con = DriverManager.getConnection(url, admin_username, admin_password);
-                System.err.println("Connecting to SQL database...");
-                if (!con.isClosed()) {
-                    System.err.println("SQL database connection complete");
-                    return login(userId, password);
-                }
-            } catch (IllegalAccessException | InstantiationException | SQLException |
-                    ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
+    public void login() {
+        mAuth.signInWithEmailAndPassword("rohan.clement@levosonus.com",
+                "yssaclement2020")
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+//                            Log.d(TAG, "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            System.err.println("Signing in...");
+                            loginComplete();
+                        } else {
+                            // If sign in fails, display a message to the user.
+//                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                            System.err.println(task.getException());
+//                            updateUI(null);
+                        }
 
-        public void setUserId(int userId) {
-            this.userId = userId;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
-
-        private Employee login(int userId, String password) {
-            Employee employee = null;
-            try {
-                ResultSet rs = con.prepareStatement("SELECT * FROM `users` WHERE `UserId`="
-                        + userId + " and `password`=\"" + password + "\"").executeQuery();
-                while (rs.next()) {
-                    int employeeId = rs.getInt(1);
-                    String username = rs.getString(2);
-                    String fullName = rs.getString(3);
-                    employee = new Employee(employeeId, username, fullName);
-//                    employees.add(employee);
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-                System.err.println("Error loading products from MySQL...");
-            }
-            return employee;
-        }
+                        // ...
+                    }
+                });
     }
 }

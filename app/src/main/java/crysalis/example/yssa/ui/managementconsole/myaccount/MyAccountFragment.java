@@ -12,7 +12,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import crysalis.example.yssa.R;
+import crysalis.example.yssa.ui.managementconsole.ManagementConsoleActivity;
 
 public class MyAccountFragment extends Fragment {
 
@@ -20,17 +24,21 @@ public class MyAccountFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
         ViewModelProvider viewModelProvider = new ViewModelProvider(this);
         myAccountViewModel =
                 viewModelProvider.get(MyAccountViewModel.class);
         View root = inflater.inflate(R.layout.fragment_my_account, container, false);
         final TextView textView = root.findViewById(R.id.welcome_management_employee);
-        myAccountViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        System.err.println(user);
+//        textView.setText(string);
+//        myAccountViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+//            @Override
+//            public void onChanged(@Nullable String s) {
+//                textView.setText(s);
+//            }
+//        });
         return root;
     }
 }
