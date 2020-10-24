@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "946652081258",
-    "firebase_url": "https://yssa-30764.firebaseio.com",
-    "project_id": "yssa-30764",
-    "storage_bucket": "yssa-30764.appspot.com"
+    "project_number": "198741819738",
+    "firebase_url": "https://yssa-b0f41.firebaseio.com",
+    "project_id": "yssa-b0f41",
+    "storage_bucket": "yssa-b0f41.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:946652081258:android:76bf63009eb01bf333ee13",
+        "mobilesdk_app_id": "1:198741819738:android:a8170390570b7d131fb363",
         "android_client_info": {
           "package_name": "crysalis.example.yssa"
         }
       },
       "oauth_client": [
         {
-          "client_id": "946652081258-sg476ejrmdtqt16argp9dvqqhovncrnh.apps.googleusercontent.com",
+          "client_id": "198741819738-6in85tvu5unlf387vf9krj0mrj7pslki.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "crysalis.example.yssa",
@@ -23,20 +23,20 @@
           }
         },
         {
-          "client_id": "946652081258-f5kd94ohjdqdt57236lf1lqv30so8i6l.apps.googleusercontent.com",
+          "client_id": "198741819738-d4847bhesdcetj4en2elc2apsl6tjq42.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCiv7aO0lfbBxLpYHfG1JQC_t-O_UE5wpA"
+          "current_key": "AIzaSyAZrLuW8VczHMHUSnEE1Fwz6EpnrTFu05A"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "946652081258-f5kd94ohjdqdt57236lf1lqv30so8i6l.apps.googleusercontent.com",
+              "client_id": "198741819738-d4847bhesdcetj4en2elc2apsl6tjq42.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
