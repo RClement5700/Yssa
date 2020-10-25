@@ -5,18 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
 import crysalis.example.yssa.R;
-import crysalis.example.yssa.ui.managementconsole.ManagementConsoleActivity;
 
 public class MyAccountFragment extends Fragment {
 
@@ -30,15 +26,14 @@ public class MyAccountFragment extends Fragment {
                 viewModelProvider.get(MyAccountViewModel.class);
         View root = inflater.inflate(R.layout.fragment_my_account, container, false);
         final TextView textView = root.findViewById(R.id.welcome_management_employee);
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        System.err.println(user);
-//        textView.setText(string);
-//        myAccountViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
+        final FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        textView.append("\n" + currentUser.getEmail());
+        myAccountViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
+                textView.setText(s);
+            }
+        });
         return root;
     }
 }
