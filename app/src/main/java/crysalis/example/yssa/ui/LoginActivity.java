@@ -3,7 +3,11 @@ package crysalis.example.yssa.ui;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -16,6 +20,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -65,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    public void loginComplete() {
+    private void loginComplete() {
         Intent intent = new Intent(LoginActivity.this,
                 ManagementConsoleActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -74,12 +79,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginHelper(String email, String password) {
-        System.err.println("Signing in...");
-        System.err.println("project id: " +
-                FirebaseApp.getInstance().getOptions().getProjectId());
-        System.err.println("this project id: " +
-                mAuth.getApp().getOptions().getProjectId());
-        System.err.println("API key: " + mAuth.getApp().getOptions().getApiKey());
         mAuth.signInWithEmailAndPassword(email,
                 password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

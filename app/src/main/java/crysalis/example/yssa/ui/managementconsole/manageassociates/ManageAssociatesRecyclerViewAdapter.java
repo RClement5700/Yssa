@@ -1,17 +1,15 @@
 package crysalis.example.yssa.ui.managementconsole.manageassociates;
 
-import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
+
 import crysalis.example.yssa.R;
 import pojos.Employee;
 
