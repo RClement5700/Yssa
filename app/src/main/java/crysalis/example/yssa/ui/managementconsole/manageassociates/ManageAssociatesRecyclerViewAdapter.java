@@ -8,18 +8,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.ArrayList;
 
 import crysalis.example.yssa.R;
-import pojos.Employee;
 
 public class ManageAssociatesRecyclerViewAdapter extends
         RecyclerView.Adapter<ManageAssociatesRecyclerViewAdapter.ManageAssociatesRecyclerViewHolder> {
 
-    ArrayList<Employee> employees;
+    ArrayList<FirebaseUser> firebaseUsers;
 
-    public ManageAssociatesRecyclerViewAdapter(ArrayList<Employee> employees) {
-        this.employees = employees;
+    public ManageAssociatesRecyclerViewAdapter(ArrayList<FirebaseUser> firebaseUsers) {
+        this.firebaseUsers = firebaseUsers;
     }
 
     @Override
@@ -31,14 +32,14 @@ public class ManageAssociatesRecyclerViewAdapter extends
 
     @Override
     public void onBindViewHolder(ManageAssociatesRecyclerViewHolder holder, int position) {
-        holder.tvUserId.setText(employees.get(position).getEmployeeId());
-        holder.tvUsername.setText(employees.get(position).getUsername());
-        holder.tvFullName.setText(employees.get(position).getFullName());
+        holder.tvUserId.setText(firebaseUsers.get(position).getUid());
+        holder.tvUsername.setText(firebaseUsers.get(position).getDisplayName());
+        holder.tvFullName.setText(firebaseUsers.get(position).getEmail());
     }
 
     @Override
     public int getItemCount() {
-        return employees.size();
+        return firebaseUsers.size();
     }
 
     static class ManageAssociatesRecyclerViewHolder extends RecyclerView.ViewHolder {

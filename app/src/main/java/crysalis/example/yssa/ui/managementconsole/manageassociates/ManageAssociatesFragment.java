@@ -4,7 +4,9 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,16 +18,25 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.internal.firebase_auth.zza;
+import com.google.android.gms.internal.firebase_auth.zzff;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.FirebaseUserMetadata;
 import com.google.firebase.auth.GetTokenResult;
+import com.google.firebase.auth.MultiFactor;
+import com.google.firebase.auth.MultiFactorInfo;
+import com.google.firebase.auth.UserInfo;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -34,6 +45,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import crysalis.example.yssa.R;
@@ -156,8 +168,8 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
     }
 
 
-    private void addUser(String email, String password, String displayName, String fullName,
-                        Integer employeeId) {
+    private void addUser(final String email, String password, final String displayName, String fullName,
+                         final Integer employeeId) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
@@ -165,7 +177,14 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
-                            authenticateUser();
+
+                            /*
+                            TODO:
+                                -update new user credentials at runtime didn't work
+                                instead, follow ManageUsers tutorial from
+                                https://firebase.google.com/docs/auth/admin/manage-users#java_4
+                             */
+
                             mAuth.signOut();
                             authenticateUser();
                         } else {
@@ -197,6 +216,7 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
                         Log.w(TAG, "Error writing document: ", e);
                     }
                 });
+
     }
 
     public void deleteUser() {

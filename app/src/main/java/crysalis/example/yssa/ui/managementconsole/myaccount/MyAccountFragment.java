@@ -14,16 +14,16 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.auth.User;
 
 import crysalis.example.yssa.R;
 
 public class MyAccountFragment extends Fragment {
 
     private MyAccountViewModel myAccountViewModel;
-
+    FirebaseAuth mAuth;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
         ViewModelProvider viewModelProvider = new ViewModelProvider(this);
         myAccountViewModel =
                 viewModelProvider.get(MyAccountViewModel.class);
@@ -31,6 +31,7 @@ public class MyAccountFragment extends Fragment {
         final TextView textView = root.findViewById(R.id.welcome_management_employee);
         final FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         textView.append("\n" + currentUser.getEmail());
+        System.err.println("DisplayName: " + currentUser.getDisplayName());
         myAccountViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
