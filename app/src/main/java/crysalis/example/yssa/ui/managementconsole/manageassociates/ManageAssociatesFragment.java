@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,9 +25,12 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,7 +52,7 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
     RecyclerView rvManageAssociates;
     ManageAssociatesRecyclerViewAdapter adapter;
     ImageButton addUserButton, deleteUserButton, filterUserButton;
-    String email, password, displayName, fullName;
+    String email, password, displayName, fullName, currentUser;
     int employeeId;
 
     @Override
@@ -64,6 +68,7 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
         deleteUserButton = binding.imgBtnDeleteUser;
         deleteUserButton.setOnClickListener(this);
         filterUserButton = binding.imgBtnFilterUsers;
+        currentUser = mAuth.getCurrentUser().getEmail();
 
 //        rvManageAssociates = root.findViewById(R.id.rv_manage_associates);
 //        rvManageAssociates.setAdapter(new ManageAssociatesRecyclerViewAdapter(employees));
@@ -92,6 +97,8 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
         builder.setIcon(android.R.drawable.ic_input_add);
         View addUserDialog = LayoutInflater.from(getContext()).inflate(R.layout.dialog_ui_add_user,
                 (ViewGroup) getView(), false);
+        final ProgressBar progressBar = addUserDialog.findViewById(R.id.progress_bar_new_user);
+        progressBar.setVisibility(View.GONE);
         final EditText inputEmail = addUserDialog.findViewById(R.id.et_enter_email);
         final EditText inputPassword = addUserDialog.findViewById(R.id.et_enter_password);
         final EditText inputDisplayName = addUserDialog.findViewById(R.id.et_enter_display_name);
@@ -106,6 +113,7 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
         builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                progressBar.setVisibility(View.VISIBLE);
                 email = inputEmail.getText().toString();
                 password = inputPassword.getText().toString();
                 displayName = inputDisplayName.getText().toString();
@@ -113,6 +121,7 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
                 String stringEmployeeId = inputEmployeeId.getText().toString();
                 employeeId = Integer.parseInt(stringEmployeeId);
                 addUser(email, password, displayName, fullName, employeeId);
+                progressBar.setVisibility(View.GONE);
             }
         });
         builder.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -124,10 +133,31 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
         builder.show();
     }
 
+    private void authenticateUser() {
+        db.collection("users")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String verifyEmail = (String) document.getData().get("email");
+                                if (verifyEmail.equals(currentUser)) {
+                                    Log.d(TAG, document.getId() + " => " + document.getData().get("email"));
+                                    String currentPassword = (String) document.getData().get("password");
+                                    mAuth.signInWithEmailAndPassword(currentUser, currentPassword);
+                                }
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+    }
+
 
     private void addUser(String email, String password, String displayName, String fullName,
                         Integer employeeId) {
-        final String currentEmail = mAuth.getCurrentUser().getEmail();
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
@@ -135,25 +165,9 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
+                            authenticateUser();
                             mAuth.signOut();
-                            DocumentReference docRef = db.collection("users").document("8ZEhQnHY4WGeYuuNgY7e");
-                            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                    if (task.isSuccessful()) {
-                                        DocumentSnapshot document = task.getResult();
-                                        if (document.exists()) {
-                                            Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                                            String currentPassword = document.getString("password");
-                                            mAuth.signInWithEmailAndPassword(currentEmail, currentPassword);
-                                        } else {
-                                            Log.d(TAG, "No such document");
-                                        }
-                                    } else {
-                                        Log.d(TAG, "get failed with ", task.getException());
-                                    }
-                                }
-                            });
+                            authenticateUser();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
