@@ -183,6 +183,8 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
                                 -update new user credentials at runtime didn't work
                                 instead, follow ManageUsers tutorial from
                                 https://firebase.google.com/docs/auth/admin/manage-users#java_4
+                                -research offline speech recognition
+                                -research openfire vs firebase
                              */
 
                             mAuth.signOut();
