@@ -64,6 +64,11 @@
 
     <string name="order_id">Order Id:</string>
     <string name="user_id">User Id:</string>
+    <string name="update_email">Update Email</string>
+    <string name="update_display_name">Update Display Name</string>
+    <string name="update_password">Update Password</string>
+    <string name="enter_img_path">Enter Image Path</string>
+    <string name="submit">Submit</string>\
 
 
     <!--
