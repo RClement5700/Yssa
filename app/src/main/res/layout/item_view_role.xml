@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="200dp"
-    android:layout_height="200dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:background="@drawable/black_blue_gradient"
+    tools:context=".ui.associateconsole.chooserole.RoleItemViewFragment"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <TextView
-        android:id="@+id/tv_role_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/offWhite"
-        android:textSize="36sp"
-        android:fontFamily="@font/anton"
-        android:background="@drawable/black_blue_gradient"/>
     <ImageView
         android:id="@+id/iv_role_image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:layout_gravity="center"
+        android:maxHeight="480dp"
         android:adjustViewBounds="true"
         android:scaleType="centerInside"
-        android:background="@drawable/round_edges"
         />
+
+    <CheckBox
+        android:id="@+id/checkbox_role"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_gravity="center"
+        android:buttonTint="@color/offWhite"
+        />
+
+
 </LinearLayout>

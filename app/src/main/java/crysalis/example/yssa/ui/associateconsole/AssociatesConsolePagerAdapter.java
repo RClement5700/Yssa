@@ -38,7 +38,7 @@ public class AssociatesConsolePagerAdapter extends FragmentPagerAdapter {
         else if (position == 1) {
             return new ChooseDepartmentFragment();
         }
-        return new ChooseRoleFragment();
+        return new ChooseRoleFragment(mContext);
     }
 
     @Nullable

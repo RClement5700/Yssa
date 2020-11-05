@@ -80,7 +80,7 @@
 
     <string-array name="role_titles">
         <item>ORDER PICKER</item>
-        <item>REPLENISHER</item>
+        <item>REPLENISH</item>
         <item>LOADER</item>
         <item>TRAINER</item>
     </string-array>

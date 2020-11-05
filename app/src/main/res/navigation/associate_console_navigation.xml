@@ -10,14 +10,16 @@
         android:name="crysalis.example.yssa.ui.associateconsole.chooserole.ChooseRoleFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_choose_role" >
-        <action
-            android:id="@+id/action_choose_role_to_manage_associates"
-            app:destination="@id/manage_associates" />
     </fragment>
 
     <fragment
-        android:id="@+id/manage_associates"
-        android:name="crysalis.example.yssa.ui.managementconsole.manageassociates.ManageAssociatesFragment"
+        android:id="@+id/choose_department"
+        android:name="crysalis.example.yssa.ui.associateconsole.ChooseDepartmentFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_manage_associates" />
+        tools:layout="@layout/fragment_choose_department" />
+    <fragment
+        android:id="@+id/inspect_equipment"
+        android:name="crysalis.example.yssa.ui.associateconsole.InspectEquipmentFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_inspection" />
 </navigation>
