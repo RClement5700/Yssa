@@ -5,10 +5,12 @@ import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
-import androidx.fragment.app.FragmentManager;
+import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,7 +19,6 @@ import android.view.View;
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.ActivityAssociateConsoleBinding;
 import crysalis.example.yssa.ui.LoginActivity;
-import crysalis.example.yssa.ui.associateconsole.chooserole.ChooseRoleFragment;
 import crysalis.example.yssa.ui.managementconsole.ManagementConsoleActivity;
 
 public class AssociateConsoleActivity extends AppCompatActivity {
@@ -27,14 +28,10 @@ public class AssociateConsoleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
-        setContentView(R.layout.activity_associate_console);
         ActivityAssociateConsoleBinding binding = ActivityAssociateConsoleBinding.inflate(getLayoutInflater());
-        FragmentManager fm = getSupportFragmentManager();
-        fm.beginTransaction()
-                .add(R.id.associate_console_container, new ChooseRoleFragment())
-                .addToBackStack(null)
-                .commit();
-        FloatingActionButton fab = findViewById(R.id.fab);
+        View view = binding.getRoot();
+        Toolbar toolbar = view.findViewById(R.id.toolbar_associate);
+        FloatingActionButton fab = view.findViewById(R.id.fab_associate);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,6 +39,16 @@ public class AssociateConsoleActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        TabLayout tabLayout = view.findViewById(R.id.associate_tab_layout);
+        ViewPager viewPager = view.findViewById(R.id.associate_view_pager);
+        viewPager.setAdapter(new AssociatesConsolePagerAdapter(getSupportFragmentManager(),
+                0, this));
+        tabLayout.setupWithViewPager(viewPager);
+//        tabLayout.addTab(tabLayout.newTab().setText("Choose Role"));
+//        tabLayout.addTab(tabLayout.newTab().setText("Choose Department"));
+//        tabLayout.addTab(tabLayout.newTab().setText("Inspect Equipment"));
+        setSupportActionBar(toolbar);
+        setContentView(view);
     }
 
     @Override

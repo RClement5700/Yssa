@@ -7,9 +7,9 @@
     <string name="associate">Associate</string>
     <string name="forklift">Forklift</string>
     <string name="electricpalletjack">Electric Pallet Jack</string>
-    <string name="chooserole">Choose Your Role</string>
-    <string name="choosedepartment">Choose Your Department</string>
-    <string name="inspectequipment">Inspect Your Equipment</string>
+    <string name="chooserole">Role</string>
+    <string name="choosedepartment">Department</string>
+    <string name="inspectequipment">Inspect Equipment</string>
     <string name="departmentplaceholder">department....</string>
     <string name="partplaceholder">part....</string>
     <string name="check_all">Check All</string>
