@@ -4,28 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.managementconsole.ManagementConsoleActivity">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.appcompat.widget.AppCompatImageView
+    android:background="#000000"
+    tools:context=".ui.associateconsole.AssociateConsoleActivity">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/takeoff"/>
+        android:orientation="vertical">
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/black_blue_gradient"
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-    <include layout="@layout/content_management" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/title_activity_associate_console"
+            android:textSize="24sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            />
+    </androidx.appcompat.widget.Toolbar>
+    <FrameLayout
+        android:id="@+id/associate_console_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -33,7 +37,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:backgroundTint="@color/colorPrimary"
+        app:backgroundTint="@android:color/holo_blue_dark"
         app:srcCompat="@android:drawable/ic_dialog_email" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

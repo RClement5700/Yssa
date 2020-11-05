@@ -6,13 +6,22 @@ import androidx.lifecycle.ViewModel;
 
 public class MyAccountViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
+    private MutableLiveData<String> mEmail, mDisplayName, mImageUrl;
 
     public MyAccountViewModel() {
-        mText = new MutableLiveData<>();
+        mEmail = new MutableLiveData<>();
+        mDisplayName = new MutableLiveData<>();
+        mImageUrl = new MutableLiveData<>();
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public LiveData<String> getEmail() {
+        return mEmail;
     }
+    public LiveData<String> getDisplayName() {
+        return mDisplayName;
+    }
+    public LiveData<String> getImageUrl() {
+        return mImageUrl;
+    }
+
 }

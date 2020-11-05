@@ -7,7 +7,7 @@
     <string name="associate">Associate</string>
     <string name="forklift">Forklift</string>
     <string name="electricpalletjack">Electric Pallet Jack</string>
-    <string name="chooseassignment">Choose Your Assignment</string>
+    <string name="chooserole">Choose Your Role</string>
     <string name="choosedepartment">Choose Your Department</string>
     <string name="inspectequipment">Inspect Your Equipment</string>
     <string name="departmentplaceholder">department....</string>
@@ -53,6 +53,7 @@
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign In</string>
     <string name="action_sign_out">Sign Out</string>
+    <string name="action_switch_views">Load Associate View</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
@@ -68,7 +69,10 @@
     <string name="update_display_name">Update Display Name</string>
     <string name="update_password">Update Password</string>
     <string name="enter_img_path">Enter Image Path</string>
-    <string name="submit">Submit</string>\
+    <string name="submit">Submit</string>
+    <string name="title_activity_associate_console">Associate Console</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>\
 
 
     <!--

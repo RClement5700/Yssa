@@ -1,4 +1,4 @@
-package crysalis.example.yssa.ui.associateconsole;
+package crysalis.example.yssa.ui.associateconsole.chooserole;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,10 +11,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import adapters.DesignationRecyclerViewAdapter;
-import crysalis.example.yssa.databinding.FragmentChooseDesignationBinding;
+import crysalis.example.yssa.databinding.FragmentChooseRoleBinding;
 
-public class ChooseDesignationFragment extends Fragment {
+
+public class ChooseRoleFragment extends Fragment {
 
        /*TODO:
            -merge this Fragment and ChooseDepartmentFragment
@@ -24,22 +24,24 @@ public class ChooseDesignationFragment extends Fragment {
            -when item is deselected, it will be removed from the key:value pair
      */
 
-    public ChooseDesignationFragment() {
+    public ChooseRoleFragment() {
         //empty constructor
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        FragmentChooseDesignationBinding binding = FragmentChooseDesignationBinding.inflate(inflater,
+        FragmentChooseRoleBinding binding = FragmentChooseRoleBinding.inflate(inflater,
                 container, false);
         View view = binding.getRoot();
-        RecyclerView rvChooseDesignation = binding.rvChooseDesignation;
-        rvChooseDesignation.setAdapter(new DesignationRecyclerViewAdapter(getContext(),
-                getActivity().getSupportFragmentManager()));
-        rvChooseDesignation.setLayoutManager(new LinearLayoutManager(getActivity()));
+        RecyclerView rvChooseRole = binding.rvChooseRole;
+        RecyclerView rvChooseDepartment = binding.rvChooseDepartment;
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        llm.setOrientation(RecyclerView.HORIZONTAL);
+        RoleRecyclerViewAdapter rva = new RoleRecyclerViewAdapter();
+        rvChooseRole.setAdapter(rva);
+        rvChooseRole.setLayoutManager(llm);
         return view;
     }
-
 
 }

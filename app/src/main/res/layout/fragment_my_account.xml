@@ -25,7 +25,7 @@
             android:fontFamily="@font/anton"
             android:text="@string/welcome_management_employee"
             android:textAlignment="textStart"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -49,7 +49,7 @@
             android:fontFamily="@font/anton"
             android:hint="@string/update_email"
             android:textAlignment="textStart"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
             android:fontFamily="@font/anton"
             android:hint="@string/update_display_name"
             android:textAlignment="textStart"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
             android:fontFamily="@font/anton"
             android:hint="@string/update_password"
             android:textAlignment="textStart"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -133,7 +133,7 @@
         >
 
         <ImageView
-            android:id="@+id/iv_update_profile_picture"
+            android:id="@+id/iv_profile_picture"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
@@ -162,7 +162,7 @@
                     android:fontFamily="@font/anton"
                     android:hint="@string/enter_img_path"
                     android:textAlignment="textStart"
-                    android:textSize="20sp" />
+                    android:textSize="16sp" />
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

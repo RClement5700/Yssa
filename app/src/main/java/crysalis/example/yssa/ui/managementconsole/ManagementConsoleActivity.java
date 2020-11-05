@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.ui.LoginActivity;
+import crysalis.example.yssa.ui.associateconsole.AssociateConsoleActivity;
 
 public class ManagementConsoleActivity extends AppCompatActivity {
 
@@ -55,7 +56,7 @@ public class ManagementConsoleActivity extends AppCompatActivity {
                 R.id.schedule)
                 .setDrawerLayout(drawer)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavController navController = Navigation.findNavController(this, R.id.management_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
     }
@@ -64,11 +65,18 @@ public class ManagementConsoleActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.management_console_menu, menu);
-        menu.getItem(1).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+        menu.getItem(2).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 mAuth.signOut();
                 startActivity(new Intent(ManagementConsoleActivity.this, LoginActivity.class));
+                return true;
+            }
+        });
+        menu.getItem(1).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                startActivity(new Intent(ManagementConsoleActivity.this, AssociateConsoleActivity.class));
                 return true;
             }
         });
@@ -77,7 +85,7 @@ public class ManagementConsoleActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavController navController = Navigation.findNavController(this, R.id.management_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }

@@ -11,7 +11,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import crysalis.example.yssa.R;
-import crysalis.example.yssa.ui.associateconsole.ChooseDesignationFragment;
 
 
 public class DepartmentRecyclerViewAdapter extends RecyclerView.Adapter<DepartmentRecyclerViewAdapter.DepartmentViewHolder> {

@@ -78,12 +78,11 @@
         <item>MEAT</item>
     </string-array>
 
-    <string-array name="assignment_titles">
-        <item>TRAINER</item>
-        <item>ORDER PICKERS</item>
-        <item>REPLENISH</item>
-        <item>HOOKS</item>
+    <string-array name="role_titles">
+        <item>ORDER PICKER</item>
+        <item>REPLENISHER</item>
         <item>LOADER</item>
+        <item>TRAINER</item>
     </string-array>
 
 </resources>

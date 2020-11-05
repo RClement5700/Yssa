@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/associate_console_navigation"
+    app:startDestination="@+id/choose_role">
+
+    <fragment
+        android:id="@+id/choose_role"
+        android:name="crysalis.example.yssa.ui.associateconsole.chooserole.ChooseRoleFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_choose_role" >
+        <action
+            android:id="@+id/action_choose_role_to_manage_associates"
+            app:destination="@id/manage_associates" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/manage_associates"
+        android:name="crysalis.example.yssa.ui.managementconsole.manageassociates.ManageAssociatesFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_manage_associates" />
+</navigation>
