@@ -1,25 +1,14 @@
 package crysalis.example.yssa.ui.associateconsole.chooserole;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import crysalis.example.yssa.R;
-import crysalis.example.yssa.ui.associateconsole.ChooseDepartmentFragment;
-import crysalis.example.yssa.ui.associateconsole.InspectEquipmentFragment;
-import crysalis.example.yssa.ui.associateconsole.chooserole.ChooseRoleFragment;
 
 public class ChooseRolePagerAdapter extends FragmentPagerAdapter {
 

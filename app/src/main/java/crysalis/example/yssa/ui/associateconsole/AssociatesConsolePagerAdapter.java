@@ -10,8 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import crysalis.example.yssa.R;
-import crysalis.example.yssa.ui.associateconsole.ChooseDepartmentFragment;
-import crysalis.example.yssa.ui.associateconsole.InspectEquipmentFragment;
+import crysalis.example.yssa.ui.associateconsole.choosedepartment.ChooseDepartmentFragment;
 import crysalis.example.yssa.ui.associateconsole.chooserole.ChooseRoleFragment;
 
 public class AssociatesConsolePagerAdapter extends FragmentPagerAdapter {

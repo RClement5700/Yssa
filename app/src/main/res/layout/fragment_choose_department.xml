@@ -1,28 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/offWhite"
-    >
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/black_blue_gradient"
+    tools:context=".ui.associateconsole.choosedepartment.ChooseDepartmentFragment">
 
-    <TextView
-        android:id="@+id/tv_choose_department"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/department_view_pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/choosedepartment"
-        android:textSize="36sp"
-        android:fontFamily="@font/anton"
-        android:textColor="@android:color/holo_red_dark"
-        android:layout_margin="8dp"
-        android:gravity="center"
-        />
+        android:layout_height="wrap_content">
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/department_tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@drawable/black_blue_gradient"
+            android:theme="@style/AppTheme.AppBarOverlay">
+        </com.google.android.material.tabs.TabLayout>
+    </androidx.viewpager.widget.ViewPager>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_choose_department"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="8dp"
-        />
 </LinearLayout>

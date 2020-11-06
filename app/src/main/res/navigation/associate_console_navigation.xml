@@ -14,7 +14,7 @@
 
     <fragment
         android:id="@+id/choose_department"
-        android:name="crysalis.example.yssa.ui.associateconsole.ChooseDepartmentFragment"
+        android:name="crysalis.example.yssa.ui.associateconsole.choosedepartment.ChooseDepartmentFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_choose_department" />
     <fragment
