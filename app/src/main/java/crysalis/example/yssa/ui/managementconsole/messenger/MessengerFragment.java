@@ -17,21 +17,9 @@ import crysalis.example.yssa.R;
 
 public class MessengerFragment extends Fragment {
 
-    private MessengerViewModel messengerViewModel;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ViewModelProvider viewModelProvider = new ViewModelProvider(this);
-        messengerViewModel =
-                viewModelProvider.get(MessengerViewModel.class);
         View root = inflater.inflate(R.layout.fragment_messenger, container, false);
-        final TextView textView = root.findViewById(R.id.text_slideshow);
-        messengerViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
         return root;
     }
 }

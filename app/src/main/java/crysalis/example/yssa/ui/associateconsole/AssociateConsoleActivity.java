@@ -4,12 +4,18 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.Menu;
@@ -23,6 +29,7 @@ import crysalis.example.yssa.ui.managementconsole.ManagementConsoleActivity;
 
 public class AssociateConsoleActivity extends AppCompatActivity {
 
+    private AppBarConfiguration mAppBarConfiguration;
     FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +37,7 @@ public class AssociateConsoleActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         ActivityAssociateConsoleBinding binding = ActivityAssociateConsoleBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
-        Toolbar toolbar = view.findViewById(R.id.toolbar_associate);
+        Toolbar toolbar = view.findViewById(R.id.associate_toolbar);
         FloatingActionButton fab = view.findViewById(R.id.fab_associate);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,9 +51,6 @@ public class AssociateConsoleActivity extends AppCompatActivity {
         viewPager.setAdapter(new AssociatesConsolePagerAdapter(getSupportFragmentManager(),
                 0, this));
         tabLayout.setupWithViewPager(viewPager);
-//        tabLayout.addTab(tabLayout.newTab().setText("Choose Role"));
-//        tabLayout.addTab(tabLayout.newTab().setText("Choose Department"));
-//        tabLayout.addTab(tabLayout.newTab().setText("Inspect Equipment"));
         setSupportActionBar(toolbar);
         setContentView(view);
     }

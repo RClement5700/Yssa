@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="@drawable/black_blue_gradient"
     tools:context=".ui.associateconsole.choosedepartment.DepartmentItemViewFragment"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -24,6 +23,5 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:layout_gravity="center"
-        android:buttonTint="@color/offWhite"
         />
 </LinearLayout>

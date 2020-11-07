@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/black_blue_gradient"
     tools:context=".ui.associateconsole.choosedepartment.ChooseDepartmentFragment">
 
     <androidx.viewpager.widget.ViewPager
@@ -17,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="@drawable/black_blue_gradient"
+            android:background="@drawable/round_edges_black"
             android:theme="@style/AppTheme.AppBarOverlay">
         </com.google.android.material.tabs.TabLayout>
     </androidx.viewpager.widget.ViewPager>

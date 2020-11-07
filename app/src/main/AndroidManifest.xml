@@ -18,14 +18,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".ui.associateconsole.AssociateConsoleActivity"
-            android:label="@string/title_activity_associate_console"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <service
             android:name="services.YssaConnectionService"
             android:exported="false" />
+
+        <activity
+            android:name=".ui.associateconsole.AssociateConsoleActivity"
+            android:label="@string/title_activity_associate_console"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
             android:name=".ui.managementconsole.ManagementConsoleActivity"
@@ -34,7 +35,6 @@
         <activity android:name=".ui.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

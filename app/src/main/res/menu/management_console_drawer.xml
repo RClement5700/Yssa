@@ -11,7 +11,7 @@
         <item
             android:id="@+id/manage_associates"
             android:icon="@android:drawable/ic_menu_manage"
-            android:title="@string/mc_associates" />
+            android:title="@string/mc_manage_associates" />
         <item
             android:id="@+id/messenger"
             android:icon="@android:drawable/sym_action_chat"

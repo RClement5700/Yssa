@@ -4,7 +4,7 @@
         <!-- Customize your theme here. -->
 
         <!--        TODO: change toolbar color to offwhite without changing attributes-->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">#80000000</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
