@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -18,15 +19,21 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import crysalis.example.yssa.R;
-import crysalis.example.yssa.ui.LoginActivity;
+import crysalis.example.yssa.ui.login.LoginActivity;
 import crysalis.example.yssa.ui.associateconsole.AssociateConsoleActivity;
+import pojos.Employee;
 
 public class ManagementConsoleActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    static Employee currentEmployee;
+    FirebaseFirestore mFirestore;
     FirebaseAuth mAuth;
+    static final String TAG = "ManagementConsoleActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +41,7 @@ public class ManagementConsoleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_management_console);
         mAuth = FirebaseAuth.getInstance();
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.title_activity_management_console);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -45,6 +53,14 @@ public class ManagementConsoleActivity extends AppCompatActivity {
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+        TextView navHeaderUsername
+                = navigationView.getHeaderView(0).findViewById(R.id.nav_header_username);
+        TextView navHeaderEmail
+                = navigationView.getHeaderView(0).findViewById(R.id.nav_header_email);
+//        if (task.getStatus() == AsyncTask.Status.FINISHED) {
+//            navHeaderEmail.setText(mAuth.getCurrentUser().getEmail());
+//            navHeaderUsername.setText(currentEmployee.getFullName());
+//        }
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -59,6 +75,14 @@ public class ManagementConsoleActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.management_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+    }
+
+    private void initFirestore() {
+        mFirestore = FirebaseFirestore.getInstance();
+        // Get the 50 highest rated restaurants
+        Query mQuery = mFirestore.collection("users")
+                .orderBy("email", Query.Direction.DESCENDING)
+                .limit(10);
     }
 
     @Override

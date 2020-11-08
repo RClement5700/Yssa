@@ -4,18 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.Menu;
@@ -24,7 +19,7 @@ import android.view.View;
 
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.ActivityAssociateConsoleBinding;
-import crysalis.example.yssa.ui.LoginActivity;
+import crysalis.example.yssa.ui.login.LoginActivity;
 import crysalis.example.yssa.ui.managementconsole.ManagementConsoleActivity;
 
 public class AssociateConsoleActivity extends AppCompatActivity {

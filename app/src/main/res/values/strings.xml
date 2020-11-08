@@ -1,8 +1,44 @@
 <resources>
     <string name="app_name">Yssa</string>
+
+    <!--Main Activity-->
+    <string name="levo">levo</string>
+    <string name="sonus">S O N U S</string>
+    <string name="hello">Hello,</string>
+    <string name="infer_sign_in">Let\'s get you signed in!</string>
+
+    <!--Login Activity-->
+    <string name="title_activity_login">LoginActivity</string>
     <string name="username">Username:</string>
     <string name="password">Password:</string>
-    <string name="login">Login</string>
+    <string name="login">login</string>
+    <string name="login_caps">L O G I N</string>
+
+    <!--Welcome Fragment-->
+    <string name="welcome_employee">Welcome Back </string>
+
+
+    <!--Management Console Activity-->
+
+    <!--Management Console Nav Menu-->
+    <string name="mc_schedule">Schedule</string>
+    <string name="mc_assignments">Assignments</string>
+    <string name="mc_schematic">Schematic</string>
+    <string name="mc_my_account">My Account</string>
+    <string name="mc_messenger">Messenger</string>
+    <string name="mc_manage_associates">Manage Associates</string>
+
+    <!--My Account Fragment-->
+    <string name="update_email">Update Email</string>
+    <string name="update_display_name">Update Display Name</string>
+    <string name="update_password">Update Password</string>
+    <string name="enter_img_path">Enter Image Path</string>
+    <string name="submit">Submit</string>
+
+    <!--Manage Associates Fragment-->
+    <string name="add_user">Add User</string>
+
+
     <string name="register">Register</string>
     <string name="associate">Associate</string>
     <string name="forklift">Forklift</string>
@@ -27,8 +63,7 @@
     <string name="enter_display_name">Enter Display Name: </string>
     <string name="enter_full_name">Enter Full Name: </string>
     <string name="enter_employee_id">Enter Employee Id: </string>
-    <string name="title_activity_management_console">ManagementConsoleActivity</string>
-    <string name="welcome_management_employee">Welcome Back: </string>
+    <string name="title_activity_management_console">Management Console</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -37,17 +72,6 @@
     <string name="action_settings">Settings</string>
 
 
-<!--    Management Console-->
-    <string name="add_user">Add User</string>
-    <string name="mc_schedule">Schedule</string>
-    <string name="mc_assignments">Assignments</string>
-    <string name="mc_schematic">Schematic</string>
-    <string name="mc_my_account">My Account</string>
-    <string name="mc_messenger">Messenger</string>
-    <string name="mc_manage_associates">Manage Associates</string>
-
-
-    <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
@@ -66,14 +90,11 @@
 
     <string name="order_id">Order Id:</string>
     <string name="user_id">User Id:</string>
-    <string name="update_email">Update Email</string>
-    <string name="update_display_name">Update Display Name</string>
-    <string name="update_password">Update Password</string>
-    <string name="enter_img_path">Enter Image Path</string>
-    <string name="submit">Submit</string>
+
+
     <string name="title_activity_associate_console">Associate Console</string>
-
-
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

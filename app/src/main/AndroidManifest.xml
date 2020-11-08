@@ -24,20 +24,27 @@
             android:exported="false" />
 
         <activity
-            android:name=".ui.associateconsole.AssociateConsoleActivity"
-            android:label="@string/title_activity_associate_console"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
-        <activity
-            android:name=".ui.managementconsole.ManagementConsoleActivity"
-            android:label="@string/title_activity_management_console"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.LoginActivity">
+            android:name=".ui.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.associateconsole.AssociateConsoleActivity"
+            android:label="@string/title_activity_associate_console"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.managementconsole.ManagementConsoleActivity"
+            android:label="@string/title_activity_management_console"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
 
         <meta-data
             android:name="preloaded_fonts"

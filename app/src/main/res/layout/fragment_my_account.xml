@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:fontFamily="@font/anton"
-            android:text="@string/welcome_management_employee"
+            android:text="@string/welcome_employee"
             android:textAlignment="textStart"
             android:textSize="16sp" />
     </LinearLayout>
@@ -141,7 +141,7 @@
             android:src="@drawable/rocket"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:tint="@color/colorAccent"
+            android:tint="@android:color/holo_blue_light"
             android:background="@drawable/circle"
             />
 
