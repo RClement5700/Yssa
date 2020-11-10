@@ -1,6 +1,7 @@
 package crysalis.example.yssa.ui.managementconsole.manageassociates;
 
-import android.util.Log;
+import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,12 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -42,9 +38,13 @@ public class ManageAssociatesRecyclerViewAdapter extends
 
     @Override
     public void onBindViewHolder(ManageAssociatesRecyclerViewHolder holder, int position) {
-        holder.tvUserId.setText(employees.get(position).getEmployeeId() + "");
-        holder.tvUsername.setText(employees.get(position).getUsername());
-        holder.tvFullName.setText(employees.get(position).getFullName());
+        String employeeId = "" + employees.get(position).getEmployeeId();
+        String username = employees.get(position).getUsername();
+        String fullName = employees.get(position).getFullName();
+
+        holder.tvUserId.setText(employeeId);
+        holder.tvUsername.setText(username);
+        holder.tvFullName.setText(fullName);
     }
 
     @Override

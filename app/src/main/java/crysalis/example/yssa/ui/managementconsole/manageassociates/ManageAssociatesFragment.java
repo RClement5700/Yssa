@@ -3,10 +3,7 @@ package crysalis.example.yssa.ui.managementconsole.manageassociates;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcel;
 import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,39 +15,25 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.internal.firebase_auth.zza;
-import com.google.android.gms.internal.firebase_auth.zzff;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.FirebaseUserMetadata;
-import com.google.firebase.auth.GetTokenResult;
-import com.google.firebase.auth.MultiFactor;
-import com.google.firebase.auth.MultiFactorInfo;
-import com.google.firebase.auth.UserInfo;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import adapters.SpacesItemDecoration;
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentManageAssociatesBinding;
 import pojos.Employee;
@@ -63,6 +46,7 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
     Context context;
     RecyclerView rvManageAssociates;
     ImageButton addUserButton, deleteUserButton, filterUserButton;
+    ProgressBar progressBarLoadAssociates;
     String email, password, displayName, fullName, currentUser;
     int employeeId;
     ArrayList<Employee> employees;
@@ -76,6 +60,8 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
         employees = new ArrayList<Employee>();
         View root = inflater.inflate(R.layout.fragment_manage_associates, container, false);
         FragmentManageAssociatesBinding binding = FragmentManageAssociatesBinding.bind(root);
+        progressBarLoadAssociates = binding.progressBar;
+        progressBarLoadAssociates.setVisibility(View.VISIBLE);
         addUserButton = binding.imgBtnAddUser;
         addUserButton.setOnClickListener(this);
         deleteUserButton = binding.imgBtnDeleteUser;
@@ -104,6 +90,7 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
     }
 
     public void retrieveUsers() {
+        progressBarLoadAssociates.setVisibility(View.VISIBLE);
         mFirestore.collection("users")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -111,6 +98,7 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         Log.d(TAG, "Retrieving Users Task Complete ", task.getException());
                         if (task.isSuccessful()) {
+                            for (int i = 0; i < employees.size(); i++) employees.remove(i);
                             Log.d(TAG, "Num of Docs: " +
                                     task.getResult().getDocuments().size());
                             for (QueryDocumentSnapshot document : task.getResult()) {
@@ -118,7 +106,6 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
                                 String fullName = (String) document.get("fullName");
                                 String displayName = (String) document.get("displayName");
                                 Long employeeId = (Long) document.get("employeeId");
-                                Log.d(TAG, "Email: " + email);
                                 Employee employee = new Employee(employeeId.intValue(), displayName, fullName);
                                 employees.add(employee);
                             }
@@ -126,7 +113,10 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
                                     new ManageAssociatesRecyclerViewAdapter(employees, mFirestore));
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
+                            Toast.makeText(getContext(),
+                                    "Error retrieving users", Toast.LENGTH_LONG).show();
                         }
+                        progressBarLoadAssociates.setVisibility(View.GONE);
                     }
                 });
     }
@@ -137,8 +127,7 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
         builder.setIcon(android.R.drawable.ic_input_add);
         View addUserDialog = LayoutInflater.from(getContext()).inflate(R.layout.dialog_ui_add_user,
                 (ViewGroup) getView(), false);
-        final ProgressBar progressBar = addUserDialog.findViewById(R.id.progress_bar_new_user);
-        progressBar.setVisibility(View.GONE);
+        final ProgressBar progressBarNewUser = addUserDialog.findViewById(R.id.progress_bar_new_user);
         final EditText inputEmail = addUserDialog.findViewById(R.id.et_enter_email);
         final EditText inputPassword = addUserDialog.findViewById(R.id.et_enter_password);
         final EditText inputDisplayName = addUserDialog.findViewById(R.id.et_enter_display_name);
@@ -153,7 +142,7 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
         builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                progressBar.setVisibility(View.VISIBLE);
+                progressBarNewUser.setVisibility(View.VISIBLE);
                 email = inputEmail.getText().toString();
                 password = inputPassword.getText().toString();
                 displayName = inputDisplayName.getText().toString();
@@ -161,7 +150,7 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
                 String stringEmployeeId = inputEmployeeId.getText().toString();
                 employeeId = Integer.parseInt(stringEmployeeId);
                 addUser(email, password, displayName, fullName, employeeId);
-                progressBar.setVisibility(View.GONE);
+                progressBarNewUser.setVisibility(View.GONE);
             }
         });
         builder.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -196,6 +185,7 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
     }
 
 
+    //add user to Firebase
     private void addUser(final String email, String password, final String displayName, String fullName,
                          final Integer employeeId) {
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -205,16 +195,6 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
-
-                            /*
-                            TODO:
-                                -update new user credentials at runtime didn't work
-                                instead, follow ManageUsers tutorial from
-                                https://firebase.google.com/docs/auth/admin/manage-users#java_4
-                                -research offline speech recognition
-                                -research openfire vs firebase
-                             */
-
                             mAuth.signOut();
                             authenticateUser();
                         } else {
@@ -231,6 +211,8 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
         user.put("employeeId", employeeId);
         user.put("fullName", fullName);
         user.put("password",password);
+        
+        //add user to Firestore
         mFirestore.collection("users")
                 .add(user)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -246,7 +228,6 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
                         Log.w(TAG, "Error writing document: ", e);
                     }
                 });
-
     }
 
     public void deleteUser() {

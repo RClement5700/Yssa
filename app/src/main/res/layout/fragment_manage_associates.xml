@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
-            android:layout_margin="8dp"
+            android:layout_marginTop="8dp"
             android:background="#FFFFFF"
             android:orientation="horizontal">
 
@@ -40,16 +40,22 @@
         android:id="@+id/img_btn_filter_users"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
         android:background="@android:drawable/dialog_holo_light_frame"
         android:src="@android:drawable/ic_menu_sort_by_size" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_manage_associates"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_margin="8dp"
-            />
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_manage_associates"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="8dp"
+        />
 
 </LinearLayout>

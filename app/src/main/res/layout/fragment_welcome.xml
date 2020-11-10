@@ -64,6 +64,7 @@
             android:orientation="vertical"
             android:background="@android:drawable/dialog_holo_light_frame"
             >
+
             <ImageView
                 android:id="@+id/iv_profile_picture"
                 android:layout_width="150dp"
@@ -76,6 +77,13 @@
                 android:scaleType="fitCenter"
                 android:tint="@android:color/holo_blue_light"
                 android:background="@android:drawable/dialog_holo_light_frame"
+                />
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 />
 
             <TextView

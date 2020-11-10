@@ -2,11 +2,13 @@ package crysalis.example.yssa.ui.managementconsole;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -15,28 +17,40 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.ui.login.LoginActivity;
 import crysalis.example.yssa.ui.associateconsole.AssociateConsoleActivity;
+import pojos.Employee;
 
 public class ManagementConsoleActivity extends AppCompatActivity {
 
+    static final String TAG = "Management Console";
     private AppBarConfiguration mAppBarConfiguration;
+    FirebaseFirestore mFirestore;
     FirebaseAuth mAuth;
     FirebaseUser currentUser;
-    static final String TAG = "ManagementConsoleActivity";
+    Employee currentEmployee;
+    TextView navHeaderUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_management_console);
         mAuth = FirebaseAuth.getInstance();
+        mFirestore = FirebaseFirestore.getInstance();
         currentUser = mAuth.getCurrentUser();
+        buildCurrentEmployee();
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.title_activity_management_console);
         setSupportActionBar(toolbar);
@@ -50,12 +64,11 @@ public class ManagementConsoleActivity extends AppCompatActivity {
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        TextView navHeaderUsername
+        navHeaderUsername
                 = navigationView.getHeaderView(0).findViewById(R.id.nav_header_name);
         TextView navHeaderEmail
                 = navigationView.getHeaderView(0).findViewById(R.id.nav_header_email);
                 navHeaderEmail.setText(mAuth.getCurrentUser().getEmail());
-//            navHeaderUsername.setText(currentEmployee.getFullName());
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -70,6 +83,31 @@ public class ManagementConsoleActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.management_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+    }
+
+    public void buildCurrentEmployee() {
+        mFirestore.collection("users")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        Log.d(TAG, "Retrieving Users Task Complete ", task.getException());
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String email = (String) document.get("email");
+                                if (email.equals(currentUser.getEmail().toString())) {
+                                    String fullName = (String) document.get("fullName");
+                                    String displayName = (String) document.get("displayName");
+                                    Long employeeId = (Long) document.get("employeeId");
+                                    currentEmployee = new Employee(employeeId.intValue(), displayName, fullName);
+                                }
+                            }
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                        navHeaderUsername.setText(currentEmployee.getFullName());
+                    }
+                });
     }
 
     @Override
