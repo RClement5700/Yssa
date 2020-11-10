@@ -22,14 +22,18 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@android:drawable/ic_input_add" />
+                android:src="@android:drawable/ic_input_add"
+                android:background="@android:drawable/dialog_holo_light_frame"
+                />
 
             <ImageButton
                 android:id="@+id/img_btn_delete_user"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@android:drawable/ic_delete" />
+                android:src="@android:drawable/ic_delete"
+                android:background="@android:drawable/dialog_holo_light_frame"
+                />
         </LinearLayout>
 
     <ImageButton
@@ -37,6 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:background="@android:drawable/dialog_holo_light_frame"
         android:src="@android:drawable/ic_menu_sort_by_size" />
 
         <androidx.recyclerview.widget.RecyclerView

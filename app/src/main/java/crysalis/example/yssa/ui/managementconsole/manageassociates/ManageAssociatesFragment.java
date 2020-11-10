@@ -20,6 +20,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.internal.firebase_auth.zza;
@@ -40,6 +41,7 @@ import com.google.firebase.auth.UserInfo;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -48,6 +50,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import adapters.SpacesItemDecoration;
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentManageAssociatesBinding;
 import pojos.Employee;
@@ -55,36 +58,33 @@ import pojos.Employee;
 public class ManageAssociatesFragment extends Fragment implements View.OnClickListener {
 
     final static String TAG = "ManageAssociates";
-    ManageAssociatesViewModel manageAssociatesViewModel;
     FirebaseAuth mAuth;
-    FirebaseFirestore db;
+    FirebaseFirestore mFirestore;
     Context context;
-    FragmentManageAssociatesBinding binding;
-    ArrayList<Employee> employees;
     RecyclerView rvManageAssociates;
-    ManageAssociatesRecyclerViewAdapter adapter;
     ImageButton addUserButton, deleteUserButton, filterUserButton;
     String email, password, displayName, fullName, currentUser;
     int employeeId;
+    ArrayList<Employee> employees;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         context = getContext();
         mAuth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
+        mFirestore = FirebaseFirestore.getInstance();
+        employees = new ArrayList<Employee>();
         View root = inflater.inflate(R.layout.fragment_manage_associates, container, false);
-        binding = FragmentManageAssociatesBinding.bind(root);
+        FragmentManageAssociatesBinding binding = FragmentManageAssociatesBinding.bind(root);
         addUserButton = binding.imgBtnAddUser;
         addUserButton.setOnClickListener(this);
         deleteUserButton = binding.imgBtnDeleteUser;
         deleteUserButton.setOnClickListener(this);
         filterUserButton = binding.imgBtnFilterUsers;
         currentUser = mAuth.getCurrentUser().getEmail();
-
-//        rvManageAssociates = root.findViewById(R.id.rv_manage_associates);
-//        rvManageAssociates.setAdapter(new ManageAssociatesRecyclerViewAdapter(employees));
-//        rvManageAssociates.setLayoutManager(new LinearLayoutManager(context));
+        rvManageAssociates = binding.rvManageAssociates;
+        rvManageAssociates.setLayoutManager(new LinearLayoutManager(context));
+        retrieveUsers();
         return root;
     }
 
@@ -101,6 +101,34 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
             default:
                 break;
         }
+    }
+
+    public void retrieveUsers() {
+        mFirestore.collection("users")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        Log.d(TAG, "Retrieving Users Task Complete ", task.getException());
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "Num of Docs: " +
+                                    task.getResult().getDocuments().size());
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                String email = (String) document.get("email");
+                                String fullName = (String) document.get("fullName");
+                                String displayName = (String) document.get("displayName");
+                                Long employeeId = (Long) document.get("employeeId");
+                                Log.d(TAG, "Email: " + email);
+                                Employee employee = new Employee(employeeId.intValue(), displayName, fullName);
+                                employees.add(employee);
+                            }
+                            rvManageAssociates.setAdapter(
+                                    new ManageAssociatesRecyclerViewAdapter(employees, mFirestore));
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
     }
 
     public void buildUser() {
@@ -146,7 +174,7 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
     }
 
     private void authenticateUser() {
-        db.collection("users")
+        mFirestore.collection("users")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -203,7 +231,7 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
         user.put("employeeId", employeeId);
         user.put("fullName", fullName);
         user.put("password",password);
-        db.collection("users")
+        mFirestore.collection("users")
                 .add(user)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override

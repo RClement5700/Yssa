@@ -1,5 +1,6 @@
 package crysalis.example.yssa.ui.managementconsole.manageassociates;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,19 +9,28 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.auth.FirebaseUser;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
 import crysalis.example.yssa.R;
+import pojos.Employee;
 
 public class ManageAssociatesRecyclerViewAdapter extends
         RecyclerView.Adapter<ManageAssociatesRecyclerViewAdapter.ManageAssociatesRecyclerViewHolder> {
 
-    ArrayList<FirebaseUser> firebaseUsers;
+    private final static String TAG = "Firebase Users";
+    ArrayList<Employee> employees;
+    FirebaseFirestore mFirestore;
 
-    public ManageAssociatesRecyclerViewAdapter(ArrayList<FirebaseUser> firebaseUsers) {
-        this.firebaseUsers = firebaseUsers;
+    public ManageAssociatesRecyclerViewAdapter(ArrayList<Employee> employees,
+                                               FirebaseFirestore mFirestore) {
+        this.mFirestore = mFirestore;
+        this.employees = employees;
     }
 
     @Override
@@ -32,21 +42,20 @@ public class ManageAssociatesRecyclerViewAdapter extends
 
     @Override
     public void onBindViewHolder(ManageAssociatesRecyclerViewHolder holder, int position) {
-        holder.tvUserId.setText(firebaseUsers.get(position).getUid());
-        holder.tvUsername.setText(firebaseUsers.get(position).getDisplayName());
-        holder.tvFullName.setText(firebaseUsers.get(position).getEmail());
+        holder.tvUserId.setText(employees.get(position).getEmployeeId() + "");
+        holder.tvUsername.setText(employees.get(position).getUsername());
+        holder.tvFullName.setText(employees.get(position).getFullName());
     }
 
     @Override
     public int getItemCount() {
-        return firebaseUsers.size();
+        return employees.size();
     }
 
     static class ManageAssociatesRecyclerViewHolder extends RecyclerView.ViewHolder {
         TextView tvUserId;
         TextView tvUsername;
         TextView tvFullName;
-        ManageAssociatesItemViewModel itemViewModel;
 
         public ManageAssociatesRecyclerViewHolder(@NonNull View itemView) {
             super(itemView);

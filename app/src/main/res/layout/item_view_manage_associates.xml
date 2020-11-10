@@ -2,9 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/offWhite">
+    tools:context="ui.managementconsole.manageassociates.ManageAssociatesFragment"
+    android:background="@android:drawable/dialog_holo_light_frame">
 
     <CheckBox
         android:id="@+id/checkbox_manage_associate"
@@ -23,10 +25,10 @@
             android:id="@+id/tv_associate_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="@string/associate_name_placeholder"
             android:textColor="@color/colorPrimary"
             android:textSize="24sp"
-            android:layout_margin="8dp"
             />
         <TextView
             android:id="@+id/tv_associate_username"
@@ -35,16 +37,15 @@
             android:text="@string/username_placeholder"
             android:textColor="@color/colorPrimary"
             android:textSize="24sp"
-            android:layout_margin="8dp"
             />
         <TextView
             android:id="@+id/tv_associate_user_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:text="@string/user_id_placeholder"
             android:textColor="@color/colorPrimary"
             android:textSize="24sp"
-            android:layout_margin="8dp"
             />
     </LinearLayout>
 </LinearLayout>
