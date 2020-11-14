@@ -9,9 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
-
 import crysalis.example.yssa.R;
 
 public class MessengerRecyclerViewAdapter extends
