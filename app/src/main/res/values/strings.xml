@@ -38,6 +38,13 @@
     <!--Manage Associates Fragment-->
     <string name="add_user">Add User</string>
 
+    <string name="sender">Sender</string>
+    <string name="message_preview">Message</string>
+    <string name="time">Time</string>
+
+
+
+
 
     <string name="register">Register</string>
     <string name="associate">Associate</string>

@@ -9,7 +9,7 @@
     android:background="@android:drawable/dialog_holo_light_frame">
 
     <CheckBox
-        android:id="@+id/checkbox_manage_associate"
+        android:id="@+id/checkbox_messages"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
@@ -19,80 +19,42 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="8dp"
-            >
             <TextView
+                android:id="@+id/tv_sender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:text="@string/associate_name_placeholder"
+                android:layout_margin="8dp"
+                android:text="@string/sender"
                 android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
                 android:textSize="16sp"
                 />
 
             <TextView
-                android:id="@+id/tv_associate_name"
+                android:id="@+id/tv_time_recieved"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_gravity="center|end"
                 android:textColor="@color/colorPrimary"
+                android:text="@string/time"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:text="@string/username_placeholder"
-                android:textColor="@color/colorPrimary"
-                android:textSize="16sp"
-                />
 
             <TextView
-                android:id="@+id/tv_associate_username"
+                android:id="@+id/tv_message_preview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 android:textColor="@color/colorPrimary"
+                android:text="@string/message_preview"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:maxLines="2"
                 />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="8dp"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:text="@string/user_id_placeholder"
-                android:textColor="@color/colorPrimary"
-                android:textSize="16sp"
-                />
-
-            <TextView
-                android:id="@+id/tv_associate_user_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorPrimary"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                />
-        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
