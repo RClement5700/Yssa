@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,7 +25,7 @@ public class MessengerRecyclerViewAdapter extends
     @NonNull
     @Override
     public MessengerRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view_messages, parent);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view_chatrooms, parent);
         return new MessengerRecyclerViewHolder(v);
     }
 
@@ -42,6 +43,7 @@ public class MessengerRecyclerViewAdapter extends
         TextView timeRecieved;
         TextView sender;
         TextView messagePreview;
+        ImageView ivProfilePicture;
         CheckBox checkbox;
 
         public MessengerRecyclerViewHolder(@NonNull View itemView) {
@@ -49,6 +51,7 @@ public class MessengerRecyclerViewAdapter extends
             sender = itemView.findViewById(R.id.tv_sender);
             timeRecieved = itemView.findViewById(R.id.tv_time_recieved);
             messagePreview = itemView.findViewById(R.id.tv_message_preview);
+            ivProfilePicture = itemView.findViewById(R.id.iv_profile_picture);
             checkbox = itemView.findViewById(R.id.checkbox_messages);
         }
     }

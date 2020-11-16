@@ -22,6 +22,7 @@
             android:layout_height="wrap_content" />
 
         <ImageView
+            android:id="@+id/iv_profile_picture"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="8dp"
@@ -60,7 +61,7 @@
             android:padding="8dp"
             android:text="@string/message_preview"
             android:textColor="@color/colorPrimary"
-            android:background="@drawable/circle"
+            android:background="@drawable/round_edges_white"
             />
     </LinearLayout>
 

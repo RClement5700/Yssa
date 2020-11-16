@@ -17,8 +17,8 @@
 
     <fragment
         android:id="@+id/messenger"
-        android:name="crysalis.example.yssa.ui.managementconsole.messenger.MessengerFragment"
-        tools:layout="@layout/fragment_messenger" />
+        android:name="crysalis.example.yssa.ui.managementconsole.messenger.ChatroomFragment"
+        tools:layout="@layout/fragment_chatroom" />
 
     <fragment
         android:id="@+id/schematic"
