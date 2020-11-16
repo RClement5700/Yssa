@@ -17,6 +17,15 @@
 
     <fragment
         android:id="@+id/messenger"
+        android:name="crysalis.example.yssa.ui.managementconsole.messenger.MessengerFragment"
+        tools:layout="@layout/fragment_messenger" >
+        <action
+            android:id="@+id/action_messenger_to_chatroom"
+            app:destination="@id/chatroom" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/chatroom"
         android:name="crysalis.example.yssa.ui.managementconsole.messenger.ChatroomFragment"
         tools:layout="@layout/fragment_chatroom" />
 

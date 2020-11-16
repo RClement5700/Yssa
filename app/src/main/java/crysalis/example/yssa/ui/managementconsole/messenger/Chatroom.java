@@ -5,10 +5,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.ArrayList;
-
-import pojos.Message;
-
 @Entity(tableName = "chatroom_table")
 public class Chatroom {
 
@@ -18,27 +14,32 @@ public class Chatroom {
     private Integer mRoomId;
     @NonNull
     @ColumnInfo(name = "recipients")
-    private ArrayList<String> mRecipients;
+    private String mRecipients;
     @NonNull
     @ColumnInfo(name = "messages")
-    private ArrayList<Message> mMessages;
+    private String mMessages;
 
-    public Chatroom(@NonNull Integer mRoomId, @NonNull ArrayList<String> mRecipients,
-                    @NonNull ArrayList<Message> mMessages) {
+    //mRecipients and mMessages will need to be converted from ArrayList to JSONformat then into a
+    //string when going into Room and vice versa when being queried from Room
+    public Chatroom(@NonNull Integer mRoomId, @NonNull String mRecipients,
+                    @NonNull String mMessages) {
         this.mRoomId = mRoomId;
         this.mRecipients = mRecipients;
         this.mMessages = mMessages;
     }
 
-    public int getmRoomId() {
+    @NonNull
+    public Integer getRoomId() {
         return mRoomId;
     }
 
-    public ArrayList<String> getmRecipients() {
+    @NonNull
+    public String getRecipients() {
         return mRecipients;
     }
 
-    public ArrayList<Message> getmMessages() {
+    @NonNull
+    public String getMessages() {
         return mMessages;
     }
 }

@@ -51,43 +51,43 @@ public abstract class ChatroomDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
-        FirebaseFirestore mFirestore;
-        private final static String TAG = "RoomDatabaseCallback";
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-
-            mFirestore = FirebaseFirestore.getInstance();
-            // If you want to keep data through app restarts,
-            // comment out the following block
-            databaseWriteExecutor.execute(() -> {
-                // Populate the database in the background.
-                // If you want to start with more words, just add them.
-                ChatroomDao dao = INSTANCE.chatroomDao();
-                dao.deleteAll();
-                mFirestore.collection("chats")
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                Log.d(TAG, "Retrieving Chatrooms Task Complete ", task.getException());
-                                if (task.isSuccessful()) {
-                                    Log.d(TAG, "Num of Chatrroom Docs: " +
-                                            task.getResult().getDocuments().size());
-                                    for (QueryDocumentSnapshot document : task.getResult()) {
-                                        Long chatroomId = (Long) document.get("chatroomId");
-                                        ArrayList<String> recipients = (ArrayList<String>) document.get("recipients");
-                                        ArrayList<Message> messages = (ArrayList<Message>) document.get("messages");
-                                        Chatroom chatroom = new Chatroom(chatroomId.intValue(), recipients, messages);
-                                        dao.insert(chatroom);
-                                    }
-                                } else {
-                                    Log.d(TAG, "Error getting documents: ", task.getException());
-                                }
-                            }
-                        });
-            });
-        }
-    };
+//    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
+//        FirebaseFirestore mFirestore;
+//        private final static String TAG = "RoomDatabaseCallback";
+//        @Override
+//        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+//            super.onCreate(db);
+//
+//            mFirestore = FirebaseFirestore.getInstance();
+//            // If you want to keep data through app restarts,
+//            // comment out the following block
+//            databaseWriteExecutor.execute(() -> {
+//                // Populate the database in the background.
+//                // If you want to start with more words, just add them.
+//                ChatroomDao dao = INSTANCE.chatroomDao();
+//                dao.deleteAll();
+//                mFirestore.collection("chats")
+//                        .get()
+//                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                                Log.d(TAG, "Retrieving Chatrooms Task Complete ", task.getException());
+//                                if (task.isSuccessful()) {
+//                                    Log.d(TAG, "Num of Chatroom Docs: " +
+//                                            task.getResult().getDocuments().size());
+//                                    for (QueryDocumentSnapshot document : task.getResult()) {
+//                                        Long chatroomId = (Long) document.get("chatroomId");
+//                                        ArrayList<String> recipients = (ArrayList<String>) document.get("recipients");
+//                                        ArrayList<Message> messages = (ArrayList<Message>) document.get("messages");
+//                                        Chatroom chatroom = new Chatroom(chatroomId.intValue(), recipients, messages);
+//                                        dao.insert(chatroom);
+//                                    }
+//                                } else {
+//                                    Log.d(TAG, "Error getting documents: ", task.getException());
+//                                }
+//                            }
+//                        });
+//            });
+//        }
+//    };
 }
