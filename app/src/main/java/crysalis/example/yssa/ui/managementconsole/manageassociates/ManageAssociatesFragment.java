@@ -70,7 +70,7 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
         currentUser = mAuth.getCurrentUser().getEmail();
         rvManageAssociates = binding.rvManageAssociates;
         rvManageAssociates.setLayoutManager(new LinearLayoutManager(context));
-        retrieveUsers();
+        rvManageAssociates.setAdapter(new ManageAssociatesRecyclerViewAdapter(progressBarLoadAssociates));
         return root;
     }
 
@@ -87,38 +87,6 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
             default:
                 break;
         }
-    }
-
-    public void retrieveUsers() {
-        progressBarLoadAssociates.setVisibility(View.VISIBLE);
-        mFirestore.collection("users")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        Log.d(TAG, "Retrieving Users Task Complete ", task.getException());
-                        if (task.isSuccessful()) {
-                            for (int i = 0; i < employees.size(); i++) employees.remove(i);
-                            Log.d(TAG, "Num of Docs: " +
-                                    task.getResult().getDocuments().size());
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                String email = (String) document.get("email");
-                                String fullName = (String) document.get("fullName");
-                                String displayName = (String) document.get("displayName");
-                                Long employeeId = (Long) document.get("employeeId");
-                                Employee employee = new Employee(employeeId.intValue(), displayName, fullName);
-                                employees.add(employee);
-                            }
-                            rvManageAssociates.setAdapter(
-                                    new ManageAssociatesRecyclerViewAdapter(employees, mFirestore));
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                            Toast.makeText(getContext(),
-                                    "Error retrieving users", Toast.LENGTH_LONG).show();
-                        }
-                        progressBarLoadAssociates.setVisibility(View.GONE);
-                    }
-                });
     }
 
     public void buildUser() {

@@ -24,6 +24,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
+
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentWelcomeBinding;
 import crysalis.example.yssa.ui.managementconsole.ManagementConsoleActivity;
@@ -99,4 +101,6 @@ public class WelcomeFragment extends Fragment {
                     }
                 });
     }
+
+
 }

@@ -5,5 +5,4 @@
     <color name="colorAccent">@android:color/holo_blue_light</color>
     <color name="offWhiteTrans">#80DDD8AD</color>
     <color name="offWhite">#DDD8AD</color>
-
 </resources>

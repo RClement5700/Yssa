@@ -23,6 +23,8 @@ import androidx.navigation.Navigation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import crysalis.example.yssa.R;
@@ -36,6 +38,7 @@ public class MessengerFragment extends Fragment implements View.OnClickListener 
     private static final String TAG = "Messenger Fragment";
     FirebaseAuth mAuth;
     NavController navController;
+    ChatroomRepository repository;
 
     public MessengerFragment() {
     }
@@ -49,6 +52,7 @@ public class MessengerFragment extends Fragment implements View.OnClickListener 
         FragmentMessengerBinding binding = FragmentMessengerBinding.bind(v);
         binding.imgBtnCompose.setOnClickListener(this);
         navController = Navigation.findNavController(getActivity(), R.id.management_host_fragment);
+        repository = new ChatroomRepository(getActivity().getApplication());
         return binding.getRoot();
     }
 
@@ -62,4 +66,5 @@ public class MessengerFragment extends Fragment implements View.OnClickListener 
                 break;
         }
     }
+
 }
