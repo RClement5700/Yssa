@@ -99,8 +99,9 @@ public class ChatroomFragment extends Fragment implements View.OnClickListener {
         FragmentChatroomBinding binding = FragmentChatroomBinding.inflate(inflater, container,
                 false);
         imgBtnAddRecipients = binding.imgBtnAddRecipients;
-        imgBtnAddRecipients.setOnClickListener(this);
         imgBtnSend = binding.imgBtnSend;
+        imgBtnAddRecipients.setOnClickListener(this);
+        imgBtnSend.setOnClickListener(this);
         rvChatroomMessages = binding.rvChatroomMessages;
         rvDisplayRecipients = binding.rvDisplayRecipients;
         etMessageBody = binding.etMessageBody;
@@ -117,9 +118,7 @@ public class ChatroomFragment extends Fragment implements View.OnClickListener {
                 builder.show();
                 break;
             case R.id.img_btn_send:
-                Context context;
-                break;
-            default:
+                sendMessage();
                 break;
         }
     }
@@ -129,28 +128,31 @@ public class ChatroomFragment extends Fragment implements View.OnClickListener {
         Timestamp time = new Timestamp(new Date());
         String sender = "users/8ZEhQnHY4WGeYuuNgY7e";
         String receiver = "users/6kR1RUzsund0WAZJSi2I";
+        String chatroomId = "chatrooms/T36788SAfCPYdCqAQFJV";
         Map<String, Object> message = new HashMap<>();
         message.put("messageBody", messageBody);
         message.put("receiver", receiver);
         message.put("sender", sender);
         message.put("sentTime", time);
-
-        //add message to Firestore
-        mFirestore.collection("users")
-                .add(message)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot added with ID: "
-                                + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error writing document: ", e);
-                    }
-                });
+        message.put("chatroomId", chatroomId);
+        if (!messageBody.isEmpty()) {
+            //add message to Firestore
+            mFirestore.collection("messages")
+                    .add(message)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            Log.d(TAG, "DocumentSnapshot added with ID: "
+                                    + documentReference.getId());
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Error writing document: ", e);
+                        }
+                    });
         }
     }
+
 }
