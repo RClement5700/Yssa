@@ -1,7 +1,6 @@
 package crysalis.example.yssa.ui.managementconsole.messenger;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -11,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 import crysalis.example.yssa.R;
 import pojos.Employee;

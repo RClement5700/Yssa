@@ -1,7 +1,5 @@
 package crysalis.example.yssa.ui.managementconsole.messenger;
 
-import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.ArrayList;
+
 import crysalis.example.yssa.R;
-import pojos.Employee;
 
 public class MessengerRecyclerViewAdapter extends
         RecyclerView.Adapter<MessengerRecyclerViewAdapter.MessengerRecyclerViewHolder> {

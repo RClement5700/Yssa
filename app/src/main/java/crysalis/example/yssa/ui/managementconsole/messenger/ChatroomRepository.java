@@ -1,40 +1,19 @@
 package crysalis.example.yssa.ui.managementconsole.messenger;
 
-
-/*
-A Repository manages queries and allows you to use multiple backends. In the most common example,
-the Repository implements the logic for deciding whether to fetch data from a network or use
-results cached in a local database.
- */
-
 import android.app.Application;
-import android.content.Context;
-import android.util.Log;
-
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
-import androidx.room.Room;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class ChatroomRepository {
 
     static ChatroomRepository INSTANCE;
-    FirebaseFirestore mFirestore;
     private ChatroomDao mChatroomDao;
     private LiveData<List<Chatroom>> mChatrooms;
     private final static String TAG = "Chatroom Repository";
-    // Note that in order to unit test the WordRepository, you have to remove the Application
-    // dependency. This adds complexity and much more code, and this sample is not about testing.
-    // See the BasicSample in the android-architecture-components repository at
-    // https://github.com/googlesamples
+    FirebaseFirestore mFirestore;
+
+
     private ChatroomRepository(Application application) {
         ChatroomDatabase db = ChatroomDatabase.getDatabase(application);
         mFirestore = FirebaseFirestore.getInstance();

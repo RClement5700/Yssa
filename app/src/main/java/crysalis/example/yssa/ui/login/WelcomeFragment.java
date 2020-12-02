@@ -4,12 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModel;
-import androidx.room.Room;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +12,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,18 +25,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
-
-import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentWelcomeBinding;
 import crysalis.example.yssa.ui.managementconsole.ManagementConsoleActivity;
-import crysalis.example.yssa.ui.managementconsole.manageassociates.ManageAssociatesRecyclerViewAdapter;
 import crysalis.example.yssa.ui.managementconsole.messenger.Chatroom;
-import crysalis.example.yssa.ui.managementconsole.messenger.ChatroomDao;
 import crysalis.example.yssa.ui.managementconsole.messenger.ChatroomDatabase;
-import crysalis.example.yssa.ui.managementconsole.messenger.ChatroomRepository;
-import crysalis.example.yssa.ui.managementconsole.messenger.ChatroomViewModel;
 import pojos.Employee;
 
 
@@ -89,14 +77,6 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
                 ManagementConsoleActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
-//        AsyncTask.execute(new Runnable() {
-//            @Override
-//            public void run() {
-//                System.err.println("ChatroomId: "
-//                        + chatroomdb.chatroomDao().getChatrooms().getValue().get(0).getRoomId());
-//            }
-//        });
-
     }
 
     public void buildCurrentEmployee() {
