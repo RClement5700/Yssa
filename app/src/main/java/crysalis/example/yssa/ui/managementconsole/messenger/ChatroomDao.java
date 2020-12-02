@@ -2,6 +2,7 @@ package crysalis.example.yssa.ui.managementconsole.messenger;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -18,6 +19,9 @@ public interface ChatroomDao {
 
     @Query("DELETE FROM chatroom_table")
     void deleteAll();
+
+    @Delete
+    void delete(Chatroom chatroom);
 
     @Query("SELECT * FROM chatroom_table ORDER BY roomId ASC")
     LiveData<List<Chatroom>> getChatroomsLiveData();

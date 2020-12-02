@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -48,6 +49,8 @@ public class MessengerFragment extends Fragment implements View.OnClickListener 
         imgBtnCompose = binding.imgBtnCompose;
         imgBtnCompose.setOnClickListener(this);
         navController = Navigation.findNavController(getActivity(), R.id.management_host_fragment);
+        ChatroomViewModel cvm = new ViewModelProvider(getActivity()).get(ChatroomViewModel.class);
+
         return binding.getRoot();
     }
 

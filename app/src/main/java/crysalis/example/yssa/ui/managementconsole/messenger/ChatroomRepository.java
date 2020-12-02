@@ -34,11 +34,17 @@ public class ChatroomRepository {
         return mChatrooms;
     }
 
-    // You must call this on a non-UI thread or your app will throw an exception. Room ensures
+    // You must call the following methods: insert(), remove(); on a non-UI thread or your app will throw an exception. Room ensures
     // that you're not doing any long running operations on the main thread, blocking the UI.
     void insert(final Chatroom chatroom) {
         ChatroomDatabase.databaseWriteExecutor.execute(() -> {
             mChatroomDao.insert(chatroom);
+        });
+    }
+
+    void remove(final Chatroom chatroom) {
+        ChatroomDatabase.databaseWriteExecutor.execute(() -> {
+            mChatroomDao.delete(chatroom);
         });
     }
 }
