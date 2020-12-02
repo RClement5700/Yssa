@@ -42,9 +42,7 @@ import java.util.Map;
 
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentChatroomBinding;
-import crysalis.example.yssa.ui.managementconsole.manageassociates.ManageAssociatesRecyclerViewAdapter;
 import pojos.Employee;
-import pojos.Message;
 
 
 public class ChatroomFragment extends Fragment implements View.OnClickListener {
@@ -56,6 +54,7 @@ public class ChatroomFragment extends Fragment implements View.OnClickListener {
     RecyclerView rvChatroomMessages, rvDisplayRecipients;
     EditText etMessageBody;
     AlertDialog.Builder builder;
+    View addRecipientsDialog;
 
 
     //Connect to database where chatroom is stored via websocket and set up websocket to push and pull
@@ -65,32 +64,6 @@ public class ChatroomFragment extends Fragment implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         mFirestore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
-        recipients = new ArrayList<>();
-        View addRecipientsDialog = LayoutInflater.from(getContext()).inflate(R.layout.dialog_ui_select_associates,
-                (ViewGroup) getView(), false);
-        final ProgressBar progressBarNewUser = addRecipientsDialog.findViewById(R.id.progress_bar_select_associates);
-        final RecyclerView rvSelectAssociates = addRecipientsDialog.findViewById(R.id.rv_select_associates);
-        final ManageAssociatesRecyclerViewAdapter adapter = new ManageAssociatesRecyclerViewAdapter(progressBarNewUser);
-        rvSelectAssociates.setAdapter(adapter);
-        rvSelectAssociates.setLayoutManager(new LinearLayoutManager(getActivity()));
-        builder = new AlertDialog.Builder(getContext())
-                .setTitle("Add Recipients")
-                .setIcon(android.R.drawable.ic_input_add)
-                .setView(addRecipientsDialog)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        progressBarNewUser.setVisibility(View.VISIBLE);
-                        recipients.addAll(adapter.getSelectedEmployees());
-                        progressBarNewUser.setVisibility(View.GONE);
-                    }
-                })
-                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
     }
 
     //API to READ/MANIPULATE inventory in a warehouse from INFOR/WMS3000 Trial/Forum etc
@@ -108,6 +81,11 @@ public class ChatroomFragment extends Fragment implements View.OnClickListener {
         rvDisplayRecipients.setLayoutManager(new LinearLayoutManager(getContext()));
         rvDisplayRecipients.setAdapter(new DisplayRecipientsRecyclerViewAdapter(getContext(),
                 recipients));
+        addRecipientsDialog = LayoutInflater.from(getContext()).inflate(R.layout.dialog_ui_select_associates,
+                (ViewGroup) getView(), false);
+        ProgressBar progressBarAddUser = addRecipientsDialog.findViewById(R.id.progress_bar_select_associates);
+        RecyclerView rvSelectAssociates = addRecipientsDialog.findViewById(R.id.rv_select_associates);
+        rvSelectAssociates.setLayoutManager(new LinearLayoutManager(getActivity()));
         return binding.getRoot();
     }
 
@@ -115,7 +93,7 @@ public class ChatroomFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch(v.getId()) {
             case R.id.img_btn_add_recipients:
-                builder.show();
+//                builder.show();
                 break;
             case R.id.img_btn_send:
                 sendMessage();

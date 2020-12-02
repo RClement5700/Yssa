@@ -14,11 +14,14 @@ public interface ChatroomDao {
     // allowing the insert of the same word multiple times by passing a
     // conflict resolution strategy
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insert(Chatroom chatroom);
+    long insert(Chatroom chatroom);
 
     @Query("DELETE FROM chatroom_table")
     void deleteAll();
 
     @Query("SELECT * FROM chatroom_table ORDER BY roomId ASC")
-    LiveData<List<Chatroom>> getChatrooms();
+    LiveData<List<Chatroom>> getChatroomsLiveData();
+
+    @Query("SELECT * FROM chatroom_table ORDER BY roomId ASC")
+    List<Chatroom> getChatroomsList();
 }

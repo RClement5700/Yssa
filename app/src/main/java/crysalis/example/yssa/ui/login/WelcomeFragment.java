@@ -1,10 +1,14 @@
 package crysalis.example.yssa.ui.login;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModel;
+import androidx.room.Room;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,24 +24,34 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentWelcomeBinding;
 import crysalis.example.yssa.ui.managementconsole.ManagementConsoleActivity;
 import crysalis.example.yssa.ui.managementconsole.manageassociates.ManageAssociatesRecyclerViewAdapter;
+import crysalis.example.yssa.ui.managementconsole.messenger.Chatroom;
+import crysalis.example.yssa.ui.managementconsole.messenger.ChatroomDao;
+import crysalis.example.yssa.ui.managementconsole.messenger.ChatroomDatabase;
+import crysalis.example.yssa.ui.managementconsole.messenger.ChatroomRepository;
+import crysalis.example.yssa.ui.managementconsole.messenger.ChatroomViewModel;
 import pojos.Employee;
 
 
-public class WelcomeFragment extends Fragment {
+public class WelcomeFragment extends Fragment implements View.OnClickListener {
 
     private final static String TAG = "Welcome Fragment";
+    ChatroomDatabase chatroomdb;
+    FirebaseAuth mAuth;
     FirebaseFirestore mFirestore;
     FirebaseUser currentUser;
+    Context context;
     Employee currentEmployee;
     TextView tvFullName;
     ProgressBar progressBar;
@@ -49,9 +63,11 @@ public class WelcomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        currentUser = auth.getCurrentUser();
+        mAuth = FirebaseAuth.getInstance();
         mFirestore = FirebaseFirestore.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        context = getContext();
+        chatroomdb = ChatroomDatabase.getDatabase(context);
         // Inflate the layout for this fragment
         FragmentWelcomeBinding binding = FragmentWelcomeBinding.inflate(inflater, container,
                 false);
@@ -61,18 +77,26 @@ public class WelcomeFragment extends Fragment {
         tvFullName = binding.tvFullName;
         progressBar = binding.progressBar;
         buildCurrentEmployee();
-        imgBtnContinue.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                //check if management or associate
-                Intent intent = new Intent(getActivity(),
-                        ManagementConsoleActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-            }
-        });
+        populateChatroomDb();
+        imgBtnContinue.setOnClickListener(this);
         return v;
+    }
+
+    @Override
+    public void onClick(View v) {
+        //check if management or associate
+        Intent intent = new Intent(getActivity(),
+                ManagementConsoleActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+//        AsyncTask.execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                System.err.println("ChatroomId: "
+//                        + chatroomdb.chatroomDao().getChatrooms().getValue().get(0).getRoomId());
+//            }
+//        });
+
     }
 
     public void buildCurrentEmployee() {
@@ -101,6 +125,26 @@ public class WelcomeFragment extends Fragment {
                     }
                 });
     }
-
-
+    private void populateChatroomDb() {
+        mFirestore.collection("chatrooms")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        AsyncTask.execute(new Runnable() {
+                            @Override
+                            public void run() {
+                                Log.d(TAG, "Retrieving Chatrooms Task Complete", task.getException());
+                                for (DocumentSnapshot document : task.getResult().getDocuments()) {
+                                    Chatroom chatroom = new Chatroom(document.getId());
+                                    chatroomdb.chatroomDao().insert(chatroom);
+                                    System.err.println(TAG + " " +
+                                            chatroomdb.chatroomDao().getChatroomsList().size()
+                                    );
+                                }
+                            }
+                        });
+                    }
+                });
+    }
 }

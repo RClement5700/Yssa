@@ -15,7 +15,7 @@ public class ChatroomViewModel extends AndroidViewModel {
 
     public ChatroomViewModel (Application application) {
         super(application);
-        mRepository = new ChatroomRepository(application);
+        mRepository = ChatroomRepository.getInstance(application);
         mChatrooms = mRepository.getChatrooms();
     }
 

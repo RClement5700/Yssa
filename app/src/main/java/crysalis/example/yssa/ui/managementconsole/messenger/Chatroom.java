@@ -11,35 +11,26 @@ public class Chatroom {
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "roomId")
-    private Integer mRoomId;
-    @NonNull
-    @ColumnInfo(name = "recipients")
-    private String mRecipients;
-    @NonNull
-    @ColumnInfo(name = "messages")
-    private String mMessages;
+    private String mRoomId;
+//    @NonNull
+//    @ColumnInfo(name = "messages")
+//    private String mMessages;
 
-    //mRecipients and mMessages will need to be converted from ArrayList to JSONformat then into a
+    //mReceivers and mMessages will need to be converted from ArrayList to JSONformat then into a
     //string when going into Room and vice versa when being queried from Room
-    public Chatroom(@NonNull Integer mRoomId, @NonNull String mRecipients,
-                    @NonNull String mMessages) {
+    public Chatroom(@NonNull String mRoomId
+                    /*, @NonNull String mMessages*/) {
         this.mRoomId = mRoomId;
-        this.mRecipients = mRecipients;
-        this.mMessages = mMessages;
+//        this.mMessages = mMessages;
     }
 
     @NonNull
-    public Integer getRoomId() {
+    public String getRoomId() {
         return mRoomId;
     }
 
-    @NonNull
-    public String getRecipients() {
-        return mRecipients;
-    }
-
-    @NonNull
-    public String getMessages() {
-        return mMessages;
-    }
+//    @NonNull
+//    public String getMessages() {
+//        return mMessages;
+//    }
 }

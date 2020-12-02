@@ -8,10 +8,12 @@ results cached in a local database.
  */
 
 import android.app.Application;
+import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
+import androidx.room.Room;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,8 +24,9 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-class ChatroomRepository {
+public class ChatroomRepository {
 
+    static ChatroomRepository INSTANCE;
     FirebaseFirestore mFirestore;
     private ChatroomDao mChatroomDao;
     private LiveData<List<Chatroom>> mChatrooms;
@@ -32,11 +35,18 @@ class ChatroomRepository {
     // dependency. This adds complexity and much more code, and this sample is not about testing.
     // See the BasicSample in the android-architecture-components repository at
     // https://github.com/googlesamples
-    ChatroomRepository(Application application) {
+    private ChatroomRepository(Application application) {
         ChatroomDatabase db = ChatroomDatabase.getDatabase(application);
         mFirestore = FirebaseFirestore.getInstance();
         mChatroomDao = db.chatroomDao();
-        mChatrooms = mChatroomDao.getChatrooms();
+        mChatrooms = mChatroomDao.getChatroomsLiveData();
+    }
+
+    public static ChatroomRepository getInstance(Application application) {
+        if (INSTANCE == null) {
+            INSTANCE = new ChatroomRepository(application);
+        }
+        return INSTANCE;
     }
 
     // Room executes all queries on a separate thread.

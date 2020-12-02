@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,13 +20,23 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.api.Distribution;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.messaging.FirebaseMessaging;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentMessengerBinding;
@@ -36,9 +47,13 @@ import crysalis.example.yssa.ui.managementconsole.ManagementConsoleActivity;
 
 public class MessengerFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "Messenger Fragment";
+    FirebaseFirestore mFirestore;
     FirebaseAuth mAuth;
     NavController navController;
     ChatroomRepository repository;
+    ArrayList<String> chatroomIds;
+    ImageButton imgBtnCompose;
+    RecyclerView rvChatrooms;
 
     public MessengerFragment() {
     }
@@ -48,11 +63,18 @@ public class MessengerFragment extends Fragment implements View.OnClickListener 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-        View v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_messenger, container , false);
+        chatroomIds = new ArrayList<>();
+        mFirestore = FirebaseFirestore.getInstance();
+        View v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_messenger, container,
+                false);
         FragmentMessengerBinding binding = FragmentMessengerBinding.bind(v);
-        binding.imgBtnCompose.setOnClickListener(this);
+        rvChatrooms = binding.rvChatrooms;
+        rvChatrooms.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvChatrooms.setAdapter(new MessengerRecyclerViewAdapter(new ArrayList<>()));
+        imgBtnCompose = binding.imgBtnCompose;
+        imgBtnCompose.setOnClickListener(this);
         navController = Navigation.findNavController(getActivity(), R.id.management_host_fragment);
-        repository = new ChatroomRepository(getActivity().getApplication());
+//        repository = new ChatroomRepository(getActivity().getApplication());
         return binding.getRoot();
     }
 
@@ -66,5 +88,4 @@ public class MessengerFragment extends Fragment implements View.OnClickListener 
                 break;
         }
     }
-
 }

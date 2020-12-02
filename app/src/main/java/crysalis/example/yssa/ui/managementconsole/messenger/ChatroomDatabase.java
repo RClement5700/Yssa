@@ -38,7 +38,7 @@ public abstract class ChatroomDatabase extends RoomDatabase {
     static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    static ChatroomDatabase getDatabase(final Context context) {
+    public static ChatroomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (ChatroomDatabase.class) {
                 if (INSTANCE == null) {
