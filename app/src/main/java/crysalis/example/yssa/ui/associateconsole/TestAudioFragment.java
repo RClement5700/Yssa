@@ -27,13 +27,13 @@ public class TestAudioFragment extends Fragment implements View.OnClickListener 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_test_audio, container, false);
-        FragmentTestAudioBinding binding = FragmentTestAudioBinding.bind(v);
+        FragmentTestAudioBinding binding = FragmentTestAudioBinding.inflate(inflater);
+        View v = binding.getRoot();
         CircleLineVisualizer visualizer = binding.testAudioVizualizer;
         ProgressBar progressBar = binding.progressBar;
         ImageButton imgBtnContinue = binding.imgBtnContinue;
         imgBtnContinue.setOnClickListener(this);
-        return binding.getRoot();
+        return v;
     }
 
     @Override

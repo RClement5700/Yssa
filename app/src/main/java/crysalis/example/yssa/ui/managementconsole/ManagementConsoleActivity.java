@@ -33,7 +33,7 @@ import crysalis.example.yssa.ui.login.LoginActivity;
 import crysalis.example.yssa.ui.associateconsole.AssociateConsoleActivity;
 import pojos.Employee;
 
-public class ManagementConsoleActivity extends AppCompatActivity {
+public class ManagementConsoleActivity extends AppCompatActivity implements View.OnClickListener {
 
     static final String TAG = "Management Console";
     private AppBarConfiguration mAppBarConfiguration;
@@ -55,13 +55,7 @@ public class ManagementConsoleActivity extends AppCompatActivity {
         toolbar.setTitle(R.string.title_activity_management_console);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        fab.setOnClickListener(this);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navHeaderUsername
@@ -83,6 +77,12 @@ public class ManagementConsoleActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.management_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+    }
+
+    @Override
+    public void onClick(View view) {
+        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
     }
 
     public void buildCurrentEmployee() {

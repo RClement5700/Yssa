@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.ActivityLoginBinding;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText etUsername;
     EditText etPassword;
@@ -38,16 +38,16 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = view.findViewById(R.id.password);
         loading = view.findViewById(R.id.loading);
         ImageButton imgBtnLogin = view.findViewById(R.id.img_btn_login);
-        imgBtnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loading.setVisibility(View.VISIBLE);
-                String email = etUsername.getText().toString();
-                String password = etPassword.getText().toString();
-                login(email, password);
-            }
-        });
+        imgBtnLogin.setOnClickListener(this);
         setContentView(view);
+    }
+
+    @Override
+    public void onClick(View v) {
+        loading.setVisibility(View.VISIBLE);
+        String email = etUsername.getText().toString();
+        String password = etPassword.getText().toString();
+        login(email, password);
     }
 
     @Override

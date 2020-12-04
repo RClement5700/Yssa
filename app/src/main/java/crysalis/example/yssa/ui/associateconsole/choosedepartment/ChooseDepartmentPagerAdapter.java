@@ -9,19 +9,16 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import crysalis.example.yssa.R;
-import crysalis.example.yssa.ui.associateconsole.chooserole.RoleItemViewFragment;
 
 public class ChooseDepartmentPagerAdapter extends FragmentPagerAdapter {
 
     private static String[] TAB_TITLES;
-    private final Context mContext;
     FragmentManager fm;
 
-    public ChooseDepartmentPagerAdapter(@NonNull FragmentManager fm, int behavior, Context mContext) {
+    public ChooseDepartmentPagerAdapter(@NonNull FragmentManager fm, int behavior, Context context) {
         super(fm, behavior);
-        this.mContext = mContext;
         this.fm = fm;
-        TAB_TITLES = mContext.getResources().getStringArray(R.array.department_titles);
+        TAB_TITLES = context.getResources().getStringArray(R.array.department_titles);
     }
 
     @Override

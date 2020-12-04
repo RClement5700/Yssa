@@ -10,15 +10,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import crysalis.example.yssa.R;
-import crysalis.example.yssa.ui.associateconsole.choosedepartment.ChooseDepartmentFragment;
-import crysalis.example.yssa.ui.associateconsole.chooserole.ChooseRoleFragment;
 
 public class AssociatesConsolePagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.test_audio, R.string.test_microphone,
     R.string.inspectequipment};
-    private final Context mContext;
+    private Context mContext;
     FragmentManager fm;
 
     public AssociatesConsolePagerAdapter(@NonNull FragmentManager fm, int behavior, Context mContext) {
@@ -28,6 +26,7 @@ public class AssociatesConsolePagerAdapter extends FragmentPagerAdapter {
     }
 
     @Override
+    @NonNull
     public Fragment getItem(int position) {
         if (position == 2) {
             String[] checkListData =

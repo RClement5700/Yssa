@@ -19,18 +19,12 @@ import adapters.InspectionSheetRecyclerViewAdapter;
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentInspectionBinding;
 
-public class InspectEquipmentFragment extends Fragment {
-
-    /*
-    TODO:
-        -add "Complete" Button
-        -"Check All" checkbox should make the recyclerView scroll to the "Complete" button
-        -clicking "Complete" btn will direct the user to either the forklift or pallet jack homescreen
-        -if all boxes aren't checked, send email to supervisor
-     */
+public class InspectEquipmentFragment extends Fragment implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
     String[] checkListData;
     RecyclerView rvInspectionList;
+    InspectionSheetRecyclerViewAdapter adapter;
+
     public InspectEquipmentFragment(String[] checkListData) {
         this.checkListData = checkListData;
     }
@@ -39,36 +33,27 @@ public class InspectEquipmentFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        final FragmentManager fm = getActivity().getSupportFragmentManager();
-        FragmentInspectionBinding binding =
-                FragmentInspectionBinding.inflate(LayoutInflater.from(getContext()));
+        FragmentInspectionBinding binding = FragmentInspectionBinding.inflate(inflater);
         View v = binding.getRoot();
         Button completeBtn = binding.completeBtn;
         rvInspectionList = binding.rvInspectionList;
-        final InspectionSheetRecyclerViewAdapter adapter =
-                new InspectionSheetRecyclerViewAdapter(checkListData, getContext());
+        adapter = new InspectionSheetRecyclerViewAdapter(checkListData, getContext());
         rvInspectionList.setLayoutManager(new LinearLayoutManager(getContext()));
         rvInspectionList.setAdapter(adapter);
         CheckBox checkAll = binding.checkboxCheckAll;
-        checkAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                adapter.setAllCheckBoxes(b);
-            }
-        });
-        completeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //direct to designated homescreen
-                fm.beginTransaction()
-                        //need to pass data into OrderPickingFragment
-//                        .replace(R.id.fragments_container, new AssignmentsListViewFragment())
-                        .addToBackStack(null)
-                        .commit();
-            }
-        });
-
+        checkAll.setOnCheckedChangeListener(this);
+        completeBtn.setOnClickListener(this);
         return v;
     }
+
+    @Override
+    public void onClick(View v) {
+        getParentFragmentManager().beginTransaction()
+                .addToBackStack(null)
+                .commit();
+    }
+    @Override
+        public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+            adapter.setAllCheckBoxes(b);
+        }
 }

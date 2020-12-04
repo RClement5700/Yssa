@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.ItemViewDepartmentBinding;
-import crysalis.example.yssa.databinding.ItemViewRoleBinding;
 
 public class DepartmentItemViewFragment extends Fragment {
     private static final int[] TAB_IMAGES = {R.drawable.grocery, R.drawable.produce,

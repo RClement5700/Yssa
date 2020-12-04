@@ -125,6 +125,7 @@ public class ManageAssociatesFragment extends Fragment implements View.OnClickLi
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
+
             }
         });
         builder.show();

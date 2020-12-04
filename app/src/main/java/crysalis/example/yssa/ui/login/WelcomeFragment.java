@@ -56,9 +56,7 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
         currentUser = mAuth.getCurrentUser();
         context = getContext();
         chatroomdb = ChatroomDatabase.getDatabase(context);
-        // Inflate the layout for this fragment
-        FragmentWelcomeBinding binding = FragmentWelcomeBinding.inflate(inflater, container,
-                false);
+        FragmentWelcomeBinding binding = FragmentWelcomeBinding.inflate(inflater);
         View v = binding.getRoot();
         ImageView ivProfilePicture = binding.ivProfilePicture;
         ImageButton imgBtnContinue = binding.imgBtnContinue;
@@ -79,6 +77,9 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
         startActivity(intent);
     }
 
+
+
+    //store credentials in SharedPreferences rather than reusing this method in multiple Fragments
     public void buildCurrentEmployee() {
         mFirestore.collection("users")
                 .get()
