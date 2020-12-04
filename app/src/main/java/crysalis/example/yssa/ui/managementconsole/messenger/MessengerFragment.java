@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentMessengerBinding;
@@ -44,13 +46,22 @@ public class MessengerFragment extends Fragment implements View.OnClickListener 
                 false);
         FragmentMessengerBinding binding = FragmentMessengerBinding.bind(v);
         rvChatrooms = binding.rvChatrooms;
+        MessengerRecyclerViewAdapter messengerAdapter =
+                new MessengerRecyclerViewAdapter(new ArrayList<String>());
         rvChatrooms.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvChatrooms.setAdapter(new MessengerRecyclerViewAdapter(new ArrayList<>()));
+        rvChatrooms.setAdapter(messengerAdapter);
         imgBtnCompose = binding.imgBtnCompose;
         imgBtnCompose.setOnClickListener(this);
-        navController = Navigation.findNavController(getActivity(), R.id.management_host_fragment);
-        ChatroomViewModel cvm = new ViewModelProvider(getActivity()).get(ChatroomViewModel.class);
+        navController = Navigation.findNavController(Objects.requireNonNull(getActivity()),
+                R.id.management_host_fragment);
 
+
+        //TODO: correct display error
+        ChatroomViewModel cvm = new ViewModelProvider(this).get(ChatroomViewModel.class);
+        cvm.getChatrooms().observe(getViewLifecycleOwner(), messengerAdapter::setData);
+        ArrayList<Chatroom> ids = new ArrayList<>();
+        ids.add(new Chatroom("abcge"));
+        messengerAdapter.setData(ids);
         return binding.getRoot();
     }
 
@@ -64,4 +75,6 @@ public class MessengerFragment extends Fragment implements View.OnClickListener 
                 break;
         }
     }
+
+
 }

@@ -8,6 +8,8 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -23,7 +25,7 @@ import crysalis.example.yssa.ui.login.LoginActivity;
 import crysalis.example.yssa.ui.managementconsole.ManagementConsoleActivity;
 
 public class AssociateConsoleActivity extends AppCompatActivity {
-
+    Toolbar toolbar;
     private AppBarConfiguration mAppBarConfiguration;
     FirebaseAuth mAuth;
     @Override
@@ -32,7 +34,6 @@ public class AssociateConsoleActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         ActivityAssociateConsoleBinding binding = ActivityAssociateConsoleBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
-        Toolbar toolbar = view.findViewById(R.id.associate_toolbar);
         FloatingActionButton fab = view.findViewById(R.id.fab_associate);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +42,7 @@ public class AssociateConsoleActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        toolbar = view.findViewById(R.id.toolbar);
         TabLayout tabLayout = view.findViewById(R.id.associate_tab_layout);
         ViewPager viewPager = view.findViewById(R.id.associate_view_pager);
         viewPager.setAdapter(new AssociatesConsolePagerAdapter(getSupportFragmentManager(),
@@ -49,6 +51,7 @@ public class AssociateConsoleActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         setContentView(view);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -19,7 +19,7 @@ public class ChatroomViewModel extends AndroidViewModel {
         mChatrooms = mRepository.getChatrooms();
     }
 
-    LiveData<List<Chatroom>> getChatroom() { return mChatrooms; }
+    LiveData<List<Chatroom>> getChatrooms() { return mChatrooms; }
 
     public void insert(Chatroom chatroom) { mRepository.insert(chatroom); }
 

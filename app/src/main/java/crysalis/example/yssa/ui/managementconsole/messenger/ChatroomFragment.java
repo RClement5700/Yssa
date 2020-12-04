@@ -66,14 +66,14 @@ public class ChatroomFragment extends Fragment implements View.OnClickListener {
         rvChatroomMessages = binding.rvChatroomMessages;
         rvDisplayRecipients = binding.rvDisplayRecipients;
         etMessageBody = binding.etMessageBody;
-        rvDisplayRecipients.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvDisplayRecipients.setAdapter(new DisplayRecipientsRecyclerViewAdapter(getContext(),
-                recipients));
-        addRecipientsDialog = LayoutInflater.from(getContext()).inflate(R.layout.dialog_ui_select_associates,
-                (ViewGroup) getView(), false);
-        ProgressBar progressBarAddUser = addRecipientsDialog.findViewById(R.id.progress_bar_select_associates);
-        RecyclerView rvSelectAssociates = addRecipientsDialog.findViewById(R.id.rv_select_associates);
-        rvSelectAssociates.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        rvDisplayRecipients.setLayoutManager(new LinearLayoutManager(getContext()));
+//        rvDisplayRecipients.setAdapter(new DisplayRecipientsRecyclerViewAdapter(getContext(),
+//                recipients));
+//        addRecipientsDialog = LayoutInflater.from(getContext()).inflate(R.layout.dialog_ui_select_associates,
+//                (ViewGroup) getView(), false);
+//        ProgressBar progressBarAddUser = addRecipientsDialog.findViewById(R.id.progress_bar_select_associates);
+//        RecyclerView rvSelectAssociates = addRecipientsDialog.findViewById(R.id.rv_select_associates);
+//        rvSelectAssociates.setLayoutManager(new LinearLayoutManager(getActivity()));
         return binding.getRoot();
     }
 

@@ -11,15 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import crysalis.example.yssa.R;
 
 public class MessengerRecyclerViewAdapter extends
         RecyclerView.Adapter<MessengerRecyclerViewAdapter.MessengerRecyclerViewHolder> {
 
-    ArrayList<String> chatroomIds;
+    List<String> chatroomIds;
 
-    public MessengerRecyclerViewAdapter(ArrayList<String> chatroomIds) {
+    public MessengerRecyclerViewAdapter(List<String> chatroomIds) {
         this.chatroomIds = chatroomIds;
     }
 
@@ -38,6 +39,16 @@ public class MessengerRecyclerViewAdapter extends
     @Override
     public int getItemCount() {
         return chatroomIds.size();
+    }
+
+
+    public void setData(List<Chatroom> newData) {
+        List<String> Ids = new ArrayList<String>();
+        for (Chatroom chatroom: newData) {
+            Ids.add(chatroom.getRoomId());
+        }
+        this.chatroomIds = Ids;
+        notifyDataSetChanged();
     }
 
 

@@ -23,9 +23,11 @@ public interface ChatroomDao {
     @Delete
     void delete(Chatroom chatroom);
 
+    //returns observable set
     @Query("SELECT * FROM chatroom_table ORDER BY roomId ASC")
     LiveData<List<Chatroom>> getChatroomsLiveData();
 
+    //for ordinary list operations
     @Query("SELECT * FROM chatroom_table ORDER BY roomId ASC")
     List<Chatroom> getChatroomsList();
 }
