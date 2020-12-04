@@ -16,7 +16,7 @@ import crysalis.example.yssa.ui.associateconsole.chooserole.ChooseRoleFragment;
 public class AssociatesConsolePagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.chooserole, R.string.choosedepartment,
+    private static final int[] TAB_TITLES = new int[]{R.string.test_audio, R.string.test_microphone,
     R.string.inspectequipment};
     private final Context mContext;
     FragmentManager fm;
@@ -37,7 +37,7 @@ public class AssociatesConsolePagerAdapter extends FragmentPagerAdapter {
         else if (position == 1) {
             return new ChooseDepartmentFragment();
         }
-        return new ChooseRoleFragment(mContext);
+        return new TestAudioFragment();
     }
 
     @Nullable

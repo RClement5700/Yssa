@@ -24,24 +24,19 @@ import crysalis.example.yssa.databinding.ActivityAssociateConsoleBinding;
 import crysalis.example.yssa.ui.login.LoginActivity;
 import crysalis.example.yssa.ui.managementconsole.ManagementConsoleActivity;
 
-public class AssociateConsoleActivity extends AppCompatActivity {
+public class AssociateConsoleActivity extends AppCompatActivity implements View.OnClickListener {
     Toolbar toolbar;
-    private AppBarConfiguration mAppBarConfiguration;
     FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
-        ActivityAssociateConsoleBinding binding = ActivityAssociateConsoleBinding.inflate(getLayoutInflater());
+        ActivityAssociateConsoleBinding binding =
+                ActivityAssociateConsoleBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         FloatingActionButton fab = view.findViewById(R.id.fab_associate);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        fab.setOnClickListener(this);
         toolbar = view.findViewById(R.id.toolbar);
         TabLayout tabLayout = view.findViewById(R.id.associate_tab_layout);
         ViewPager viewPager = view.findViewById(R.id.associate_view_pager);
@@ -52,6 +47,11 @@ public class AssociateConsoleActivity extends AppCompatActivity {
         setContentView(view);
     }
 
+    @Override
+    public void onClick(View view) {
+        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

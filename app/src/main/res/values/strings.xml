@@ -17,9 +17,7 @@
     <!--Welcome Fragment-->
     <string name="welcome_employee">Welcome Back </string>
 
-
     <!--Management Console Activity-->
-
     <!--Management Console Nav Menu-->
     <string name="mc_schedule">Schedule</string>
     <string name="mc_assignments">Assignments</string>
@@ -46,6 +44,14 @@
     <string name="max_message_length">300 characters</string>
     <string name="compose_new_message">Compose New Message</string>
 
+    <!-- Inspect Equipment Fragment -->
+    <string name="inspectequipment">Inspect Equipment</string>
+    <string name="partplaceholder">part....</string>
+    <string name="check_all">Check All</string>
+    <string name="complete">Complete</string>
+
+    <string name="test_audio">Test Audio</string>
+    <string name="test_microphone">Test Microphone</string>
 
 
 
@@ -55,13 +61,7 @@
     <string name="associate">Associate</string>
     <string name="forklift">Forklift</string>
     <string name="electricpalletjack">Electric Pallet Jack</string>
-    <string name="chooserole">Role</string>
-    <string name="choosedepartment">Department</string>
-    <string name="inspectequipment">Inspect Equipment</string>
     <string name="departmentplaceholder">department....</string>
-    <string name="partplaceholder">part....</string>
-    <string name="check_all">Check All</string>
-    <string name="complete">Complete</string>
     <string name="management">Management</string>
     <string name="order_number">order number</string>
     <string name="id_number">employee id number</string>
