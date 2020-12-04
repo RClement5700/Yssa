@@ -35,7 +35,7 @@ public class AssociatesConsolePagerAdapter extends FragmentPagerAdapter {
             return new InspectEquipmentFragment(checkListData);
         }
         else if (position == 1) {
-            return new ChooseDepartmentFragment();
+            return new TestMicrophoneFragment();
         }
         return new TestAudioFragment();
     }

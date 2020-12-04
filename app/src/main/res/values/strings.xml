@@ -44,14 +44,23 @@
     <string name="max_message_length">300 characters</string>
     <string name="compose_new_message">Compose New Message</string>
 
+    <!-- Associate Console -->
+    <string name="title_activity_associate_console">Associate Console</string>
+
     <!-- Inspect Equipment Fragment -->
     <string name="inspectequipment">Inspect Equipment</string>
     <string name="partplaceholder">part....</string>
     <string name="check_all">Check All</string>
     <string name="complete">Complete</string>
 
+    <!-- Test Audio -->
     <string name="test_audio">Test Audio</string>
+    <string name="test_audio_greeting">Let\'s Test \nYour Audio!</string>
+
+    <!-- Test Microphone -->
     <string name="test_microphone">Test Microphone</string>
+    <string name="test_mic_greeting">Let\'s Test Your Microphone!</string>
+
 
 
 
@@ -104,7 +113,6 @@
     <string name="user_id">User Id:</string>
 
 
-    <string name="title_activity_associate_console">Associate Console</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_messenger">MessengerActivity</string>
