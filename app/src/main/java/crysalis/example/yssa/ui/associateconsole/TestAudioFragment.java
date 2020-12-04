@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 
 import com.gauravk.audiovisualizer.visualizer.CircleLineVisualizer;
 import androidx.annotation.NonNull;
@@ -29,6 +30,7 @@ public class TestAudioFragment extends Fragment implements View.OnClickListener 
         View v = inflater.inflate(R.layout.fragment_test_audio, container, false);
         FragmentTestAudioBinding binding = FragmentTestAudioBinding.bind(v);
         CircleLineVisualizer visualizer = binding.testAudioVizualizer;
+        ProgressBar progressBar = binding.progressBar;
         ImageButton imgBtnContinue = binding.imgBtnContinue;
         imgBtnContinue.setOnClickListener(this);
         return binding.getRoot();

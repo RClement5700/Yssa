@@ -59,7 +59,7 @@
 
     <!-- Test Microphone -->
     <string name="test_microphone">Test Microphone</string>
-    <string name="test_mic_greeting">Let\'s Test Your Microphone!</string>
+    <string name="test_mic_greeting">Let\'s Test Your\nMicrophone!</string>
 
 
 

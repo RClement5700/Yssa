@@ -18,8 +18,6 @@ import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentAssignmentListViewBinding;
 import pojos.Assignment;
 import pojos.Department;
-import pojos.OrderPicker;
-import services.YssaConnectionService;
 
 public class AssignmentsListViewFragment extends Fragment {
 

@@ -137,13 +137,11 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
-            android:padding="16dp"
-            android:src="@drawable/rocket"
             android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:tint="@android:color/holo_blue_light"
             android:background="@drawable/circle"
-            />
+            android:padding="16dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/rocket" />
 
         <LinearLayout
             android:id="@+id/update_img_path"

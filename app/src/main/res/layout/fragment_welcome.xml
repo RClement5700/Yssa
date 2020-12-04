@@ -71,12 +71,11 @@
                 android:layout_height="150dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="104dp"
-                android:padding="16dp"
-                android:src="@drawable/rocket"
                 android:adjustViewBounds="true"
+                android:background="@drawable/circle"
+                android:padding="16dp"
                 android:scaleType="fitCenter"
-                android:tint="@android:color/holo_blue_light"
-                android:background="@android:drawable/dialog_holo_light_frame"
+                android:src="@drawable/rocket"
                 />
 
             <ProgressBar
