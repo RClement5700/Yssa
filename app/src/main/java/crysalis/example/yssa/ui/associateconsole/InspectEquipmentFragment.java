@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import adapters.InspectionSheetRecyclerViewAdapter;
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentInspectionBinding;
+import crysalis.example.yssa.ui.main.ReceiveInstructionFragment;
 
 public class InspectEquipmentFragment extends Fragment implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
@@ -48,9 +49,8 @@ public class InspectEquipmentFragment extends Fragment implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        getParentFragmentManager().beginTransaction()
-                .addToBackStack(null)
-                .commit();
+        //TODO:
+        //startActivity(OrderPickingActivity)
     }
     @Override
         public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
