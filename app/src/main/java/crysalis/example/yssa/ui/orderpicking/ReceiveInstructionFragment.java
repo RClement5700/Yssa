@@ -1,4 +1,4 @@
-package crysalis.example.yssa.ui.main;
+package crysalis.example.yssa.ui.orderpicking;
 
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
@@ -29,7 +29,7 @@ public class ReceiveInstructionFragment extends Fragment implements View.OnClick
                              @Nullable Bundle savedInstanceState) {
         FragmentReceiveInstructionBinding binding = FragmentReceiveInstructionBinding.inflate(inflater);
         View v = binding.getRoot();
-        imgBtnListening = binding.imgBtnReceiveInstr;
+        imgBtnListening = binding.imgBtnListening;
         imgBtnListening.setOnClickListener(this);
         scaleDown = ObjectAnimator.ofPropertyValuesHolder(
                 imgBtnListening,
@@ -38,7 +38,6 @@ public class ReceiveInstructionFragment extends Fragment implements View.OnClick
         scaleDown.setDuration(310);
         scaleDown.setRepeatCount(ObjectAnimator.INFINITE);
         scaleDown.setRepeatMode(ObjectAnimator.REVERSE);
-
         return v;
     }
 

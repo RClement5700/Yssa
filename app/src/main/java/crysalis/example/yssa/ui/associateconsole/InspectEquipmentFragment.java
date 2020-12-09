@@ -1,5 +1,6 @@
 package crysalis.example.yssa.ui.associateconsole;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,14 +12,12 @@ import android.widget.CompoundButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import adapters.InspectionSheetRecyclerViewAdapter;
-import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentInspectionBinding;
-import crysalis.example.yssa.ui.main.ReceiveInstructionFragment;
+import crysalis.example.yssa.ui.orderpicking.OrderPickingActivity;
 
 public class InspectEquipmentFragment extends Fragment implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
@@ -50,7 +49,8 @@ public class InspectEquipmentFragment extends Fragment implements View.OnClickLi
     @Override
     public void onClick(View v) {
         //TODO:
-        //startActivity(OrderPickingActivity)
+        Intent intent = new Intent(getActivity(), OrderPickingActivity.class);
+        startActivity(intent);
     }
     @Override
         public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
