@@ -27,7 +27,8 @@ public class MessengerRecyclerViewAdapter extends
     @NonNull
     @Override
     public MessengerRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view_chatrooms, parent);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view_chatrooms, parent,
+                false);
         return new MessengerRecyclerViewHolder(v);
     }
 
