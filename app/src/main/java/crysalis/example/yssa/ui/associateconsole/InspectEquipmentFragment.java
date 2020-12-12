@@ -19,7 +19,8 @@ import adapters.InspectionSheetRecyclerViewAdapter;
 import crysalis.example.yssa.databinding.FragmentInspectionBinding;
 import crysalis.example.yssa.ui.orderpicking.OrderPickingActivity;
 
-public class InspectEquipmentFragment extends Fragment implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+public class InspectEquipmentFragment extends Fragment implements
+        View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
     String[] checkListData;
     RecyclerView rvInspectionList;

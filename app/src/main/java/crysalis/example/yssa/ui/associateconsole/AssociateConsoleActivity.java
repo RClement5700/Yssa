@@ -41,6 +41,7 @@ public class AssociateConsoleActivity extends AppCompatActivity implements View.
         tabLayout.setupWithViewPager(viewPager);
         setSupportActionBar(toolbar);
         setContentView(view);
+
     }
 
     @Override

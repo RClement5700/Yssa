@@ -16,9 +16,7 @@ import crysalis.example.yssa.databinding.FragmentReceiveInstructionBinding;
 
 public class ReceiveInstructionFragment extends Fragment implements View.OnClickListener {
 
-    //TODO:
-    //will be the opening fragment of the OrderPickingActivity
-    ObjectAnimator scaleDown;
+    ObjectAnimator pulseAnimation;
     ImageButton imgBtnListening;
     public ReceiveInstructionFragment() {
     }
@@ -31,18 +29,23 @@ public class ReceiveInstructionFragment extends Fragment implements View.OnClick
         View v = binding.getRoot();
         imgBtnListening = binding.imgBtnListening;
         imgBtnListening.setOnClickListener(this);
-        scaleDown = ObjectAnimator.ofPropertyValuesHolder(
+        pulseAnimation = ObjectAnimator.ofPropertyValuesHolder(
                 imgBtnListening,
                 PropertyValuesHolder.ofFloat("scaleX", 1.2f),
                 PropertyValuesHolder.ofFloat("scaleY", 1.2f));
-        scaleDown.setDuration(310);
-        scaleDown.setRepeatCount(ObjectAnimator.INFINITE);
-        scaleDown.setRepeatMode(ObjectAnimator.REVERSE);
+        pulseAnimation.setDuration(310);
+        pulseAnimation.setRepeatCount(ObjectAnimator.INFINITE);
+        pulseAnimation.setRepeatMode(ObjectAnimator.REVERSE);
         return v;
     }
 
     @Override
     public void onClick(View v) {
-        scaleDown.start();
+        if (pulseAnimation.isStarted()) {
+            pulseAnimation.cancel();
+        }
+        else {
+            pulseAnimation.start();
+        }
     }
 }

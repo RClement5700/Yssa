@@ -9,6 +9,9 @@ import crysalis.example.yssa.R;
 
 public class OrderPickingActivity extends AppCompatActivity {
 
+
+    //products array in firestore is a Map<K,V> where K = productId && V = quantity to be picked
+
     FragmentManager fm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
