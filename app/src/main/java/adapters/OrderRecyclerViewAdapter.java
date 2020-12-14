@@ -29,10 +29,10 @@ public class OrderRecyclerViewAdapter extends
 
     @Override
     public void onBindViewHolder(@NonNull OrderRecyclerViewHolder holder, int position) {
-        String orderId = String.valueOf(orders.get(position).getOrderNumber());
-        String userId = String.valueOf(orders.get(position).getUserId());
-        holder.tvOrderId.append(orderId);
-        holder.tvOrderId.append(userId);
+//        String orderId = String.valueOf(orders.get(position).getOrderNumber());
+//        String userId = String.valueOf(orders.get(position).getUserId());
+//        holder.tvOrderId.append(orderId);
+//        holder.tvOrderId.append(userId);
     }
 
     @Override

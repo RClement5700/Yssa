@@ -1,68 +1,21 @@
 package pojos;
 
+import java.io.Serializable;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Map;
 
-public class Order {
+public class Order implements Serializable {
 
-    ArrayList<Product> products;
-    int orderNumber;
-    int customerNumber;
-    int userId;
-    boolean status;
+    Map<Integer, Integer> products; // K = productId, V = quantity to be picked
+    int customerId;
+    int goalTime; //time in minutes
+    int section; //ex. 90 = Meat, 40 = produce
 
-    public Order(ArrayList<Product> products) {
+    public Order(Map<Integer, Integer> products, int customerId, int goalTime, int section) {
         this.products = products;
-    }
-
-    public Order(int orderNumber, boolean status) {
-        this.orderNumber = orderNumber;
-        this.status = status;
-    }
-
-    public Order(int orderNumber, int userId, boolean status) {
-        this.orderNumber = orderNumber;
-        this.userId = userId;
-        this.status = status;
-    }
-
-    public Order(ArrayList<Product> products, int orderNumber, boolean status) {
-        this.products = products;
-        this.orderNumber = orderNumber;
-        this.status = status;
-    }
-
-    public Order(ArrayList<Product> products, int orderNumber,
-                 int customerNumber) {
-        this.products = products;this.orderNumber = orderNumber;
-        this.customerNumber = customerNumber;
-    }
-
-    public ArrayList<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(ArrayList<Product> products) {
-        this.products = products;
-    }
-
-    public int getOrderNumber() {
-        return orderNumber;
-    }
-
-    public void setOrderNumber(int orderNumber) {
-        this.orderNumber = orderNumber;
-    }
-
-    public int getCustomerNumber() {
-        return customerNumber;
-    }
-
-    public void setCustomerNumber(int customerNumber) {
-        this.customerNumber = customerNumber;
-    }
-
-    public int getUserId() {
-        return userId;
+        this.customerId = customerId;
+        this.goalTime = goalTime;
+        this.section = section;
     }
 }
