@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout 
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -42,6 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content">
             <TextView
+                android:id="@+id/one"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
@@ -52,6 +53,7 @@
                 android:text="@string/one"
                 android:textSize="48sp"/>
             <TextView
+                android:id="@+id/two"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
@@ -62,6 +64,7 @@
                 android:text="@string/two"
                 android:textSize="48sp"/>
             <TextView
+                android:id="@+id/three"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
@@ -72,11 +75,18 @@
                 android:text="@string/three"
                 android:textSize="48sp"/>
         </TableRow>
-    
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            />
         <TableRow
             android:layout_height="wrap_content"
             android:layout_width="wrap_content">
             <TextView
+                android:id="@+id/four"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
@@ -87,6 +97,7 @@
                 android:text="@string/four"
                 android:textSize="48sp"/>
             <TextView
+                android:id="@+id/five"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
@@ -97,6 +108,7 @@
                 android:text="@string/five"
                 android:textSize="48sp"/>
             <TextView
+                android:id="@+id/six"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
@@ -112,6 +124,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content">
             <TextView
+                android:id="@+id/seven"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
@@ -122,6 +135,7 @@
                 android:text="@string/seven"
                 android:textSize="48sp"/>
             <TextView
+                android:id="@+id/eight"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
@@ -132,6 +146,7 @@
                 android:text="@string/eight"
                 android:textSize="48sp"/>
             <TextView
+                android:id="@+id/nine"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
@@ -148,6 +163,7 @@
             android:layout_width="wrap_content">
 
             <TextView
+                android:id="@+id/zero"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
