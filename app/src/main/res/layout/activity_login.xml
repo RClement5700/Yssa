@@ -6,7 +6,8 @@
     android:layout_height="match_parent" 
     android:orientation="vertical"
     tools:context=".ui.main.MainActivity">
-    
+
+
     <ImageView
         android:layout_width="75dp"
         android:layout_height="75dp"
@@ -34,7 +35,17 @@
         android:layout_weight="1"
         android:layout_margin="8dp"/>
     </LinearLayout>
-    
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            />
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -76,12 +87,6 @@
                 android:textSize="48sp"/>
         </TableRow>
 
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            />
         <TableRow
             android:layout_height="wrap_content"
             android:layout_width="wrap_content">
@@ -175,6 +180,7 @@
                 android:textSize="48sp"/>
         </TableRow>
     </TableLayout>
+    </FrameLayout>
 
     <ImageButton
         android:id="@+id/img_btn_continue"
