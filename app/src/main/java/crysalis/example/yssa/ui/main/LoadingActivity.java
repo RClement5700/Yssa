@@ -1,4 +1,7 @@
-package crysalis.example.yssa.ui.login;
+package crysalis.example.yssa.ui.main;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,9 +16,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,14 +25,16 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import crysalis.example.yssa.R;
+import crysalis.example.yssa.databinding.ActivityLoadingBinding;
+import crysalis.example.yssa.databinding.ActivityLoginBinding;
 import crysalis.example.yssa.databinding.FragmentWelcomeBinding;
 import crysalis.example.yssa.ui.managementconsole.ManagementConsoleActivity;
 import crysalis.example.yssa.ui.managementconsole.messenger.Chatroom;
 import crysalis.example.yssa.ui.managementconsole.messenger.ChatroomDatabase;
 import pojos.Employee;
 
-
-public class WelcomeFragment extends Fragment implements View.OnClickListener {
+public class LoadingActivity extends AppCompatActivity implements View.OnClickListener {
 
     private final static String TAG = "Welcome Fragment";
     ChatroomDatabase chatroomdb;
@@ -44,34 +46,29 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
     TextView tvFullName;
     ProgressBar progressBar;
 
-    public WelcomeFragment() {
-        // Required empty public constructor
-    }
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
         mFirestore = FirebaseFirestore.getInstance();
         currentUser = mAuth.getCurrentUser();
-        context = getContext();
         chatroomdb = ChatroomDatabase.getDatabase(context);
-        FragmentWelcomeBinding binding = FragmentWelcomeBinding.inflate(inflater);
-        View v = binding.getRoot();
+        ActivityLoadingBinding binding = ActivityLoadingBinding.inflate(getLayoutInflater());
         ImageView ivProfilePicture = binding.ivProfilePicture;
         ImageButton imgBtnContinue = binding.imgBtnContinue;
         tvFullName = binding.tvFullName;
         progressBar = binding.progressBar;
+        context = this;
+        imgBtnContinue.setOnClickListener(this);
         buildCurrentEmployee();
         populateChatroomDb();
-        imgBtnContinue.setOnClickListener(this);
-        return v;
+        setContentView(binding.getRoot());
     }
 
     @Override
     public void onClick(View v) {
         //check if management or associate
-        Intent intent = new Intent(getActivity(),
+        Intent intent = new Intent(LoadingActivity.this,
                 ManagementConsoleActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

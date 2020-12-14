@@ -1,5 +1,6 @@
 package crysalis.example.yssa.ui.login;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,6 +24,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.List;
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.ActivityLoginBinding;
+import crysalis.example.yssa.ui.main.LoadingActivity;
 import crysalis.example.yssa.ui.main.MainActivity;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -143,7 +145,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         SharedPreferences.Editor editor = preferences.edit();
                         editor.putString("employeeId", employeeId);
                         editor.apply();
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        Intent intent = new Intent(LoginActivity.this,
+                                LoadingActivity.class);
                         startActivity(intent);
                     }
                     else {
