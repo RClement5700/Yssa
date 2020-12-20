@@ -60,26 +60,4 @@ public class OrderPickingActivity extends AppCompatActivity implements View.OnCl
                 //open messages
         }
     }
-
-
-    public void retrieveNextOrder() {
-        mFirestore.collection("orders")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        Log.d(TAG, "Retrieve Next Order Task Complete ", task.getException());
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot orderDocument = task.getResult().getDocuments().get(0);
-                            Map<Integer, Integer> products = (Map<Integer, Integer>) orderDocument.get("products");
-                            Integer goalTime = (Integer) orderDocument.get("goalTime");
-                            Integer customerId = (Integer) orderDocument.get("customerId");
-                            Integer section = (Integer) orderDocument.get("section");
-                            Order order = new Order(products, customerId, goalTime, section);
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
-    }
 }
