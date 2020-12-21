@@ -51,17 +51,15 @@ public class LoadingActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
         mFirestore = FirebaseFirestore.getInstance();
-        currentUser = mAuth.getCurrentUser();
-        chatroomdb = ChatroomDatabase.getDatabase(context);
+//        chatroomdb = ChatroomDatabase.getDatabase(context);
         ActivityLoadingBinding binding = ActivityLoadingBinding.inflate(getLayoutInflater());
         ImageView ivProfilePicture = binding.ivProfilePicture;
         ImageButton imgBtnContinue = binding.imgBtnContinue;
         tvFullName = binding.tvFullName;
         progressBar = binding.progressBar;
-        context = this;
         imgBtnContinue.setOnClickListener(this);
-        buildCurrentEmployee();
-        populateChatroomDb();
+//        buildCurrentEmployee();
+//        populateChatroomDb();
         setContentView(binding.getRoot());
     }
 
@@ -72,57 +70,5 @@ public class LoadingActivity extends AppCompatActivity implements View.OnClickLi
                 ManagementConsoleActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
-    }
-
-
-
-    //store credentials in SharedPreferences rather than reusing this method in multiple Fragments
-    public void buildCurrentEmployee() {
-        mFirestore.collection("users")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        Log.d(TAG, "Retrieving Users Task Complete ", task.getException());
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                String email = (String) document.get("email");
-                                if (email.equals(currentUser.getEmail().toString())) {
-                                    String fullName = (String) document.get("fullName");
-                                    String displayName = (String) document.get("displayName");
-                                    Long employeeId = (Long) document.get("employeeId");
-                                    currentEmployee = new Employee(employeeId.intValue(), displayName, fullName);
-                                }
-                            }
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                        tvFullName.setText(currentEmployee.getFullName());
-                        //set profile picture here as well
-                        progressBar.setVisibility(View.GONE);
-                    }
-                });
-    }
-    private void populateChatroomDb() {
-        mFirestore.collection("chatrooms")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        AsyncTask.execute(new Runnable() {
-                            @Override
-                            public void run() {
-                                Log.d(TAG, "Retrieving Chatrooms Task Complete", task.getException());
-                                for (DocumentSnapshot document : task.getResult().getDocuments()) {
-                                    Chatroom chatroom = new Chatroom(document.getId());
-                                    chatroomdb.chatroomDao().insert(chatroom);
-                                    System.err.println(TAG + " " +
-                                            chatroomdb.chatroomDao().getChatroomsList().size()
-                                    );
-                                }
-                            }
-                        });
-                    }
-                });
     }
 }

@@ -62,6 +62,7 @@ public class ReceiveInstructionFragment extends Fragment implements View.OnClick
         pulseAnimation.setDuration(310);
         pulseAnimation.setRepeatCount(ObjectAnimator.INFINITE);
         pulseAnimation.setRepeatMode(ObjectAnimator.REVERSE);
+        nextJob();
         return v;
     }
 
@@ -83,19 +84,17 @@ public class ReceiveInstructionFragment extends Fragment implements View.OnClick
     public void nextJob() {
         RequestQueue queue = Volley.newRequestQueue(getContext());
         String url ="https://10.0.2.2/localhost:8888/yssa/orders";
-
-// Request a string response from the provided URL.
+        // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
-                        textView.setText("Response is: "+ response.substring(0,500));
+                        System.err.println("Response is: "+ response.substring(0,500));
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                textView.setText("That didn't work!");
             }
         });
 
