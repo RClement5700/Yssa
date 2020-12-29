@@ -4,8 +4,7 @@
     <!--Main Activity-->
     <string name="levo">levo</string>
     <string name="sonus">S O N U S</string>
-    <string name="hello">Hello,</string>
-    <string name="infer_sign_in">Let\'s get you signed in!</string>
+    <string name="infer_sign_in">Hello, \nLet\'s get you signed in!</string>
 
     <!--Login Activity-->
     <string name="title_activity_login">LoginActivity</string>

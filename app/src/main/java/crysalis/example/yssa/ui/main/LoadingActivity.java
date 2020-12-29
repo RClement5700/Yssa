@@ -34,7 +34,7 @@ import crysalis.example.yssa.ui.managementconsole.messenger.Chatroom;
 import crysalis.example.yssa.ui.managementconsole.messenger.ChatroomDatabase;
 import pojos.Employee;
 
-public class LoadingActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoadingActivity extends AppCompatActivity {
 
     private final static String TAG = "Welcome Fragment";
     ChatroomDatabase chatroomdb;
@@ -49,26 +49,17 @@ public class LoadingActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mAuth = FirebaseAuth.getInstance();
-        mFirestore = FirebaseFirestore.getInstance();
-//        chatroomdb = ChatroomDatabase.getDatabase(context);
-        ActivityLoadingBinding binding = ActivityLoadingBinding.inflate(getLayoutInflater());
-        ImageView ivProfilePicture = binding.ivProfilePicture;
-        ImageButton imgBtnContinue = binding.imgBtnContinue;
-        tvFullName = binding.tvFullName;
-        progressBar = binding.progressBar;
-        imgBtnContinue.setOnClickListener(this);
-//        buildCurrentEmployee();
-//        populateChatroomDb();
-        setContentView(binding.getRoot());
-    }
-
-    @Override
-    public void onClick(View v) {
-        //check if management or associate
-        Intent intent = new Intent(LoadingActivity.this,
-                ManagementConsoleActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
+//        mAuth = FirebaseAuth.getInstance();
+//        mFirestore = FirebaseFirestore.getInstance();
+////        chatroomdb = ChatroomDatabase.getDatabase(context);
+//        ActivityLoadingBinding binding = ActivityLoadingBinding.inflate(getLayoutInflater());
+//        ImageView ivProfilePicture = binding.ivProfilePicture;
+//        ImageButton imgBtnContinue = binding.imgBtnContinue;
+//        tvFullName = binding.tvFullName;
+//        progressBar = binding.progressBar;
+//        imgBtnContinue.setOnClickListener(this);
+////        buildCurrentEmployee();
+////        populateChatroomDb();
+//        setContentView(binding.getRoot());
     }
 }

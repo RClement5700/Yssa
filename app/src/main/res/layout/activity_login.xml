@@ -62,7 +62,7 @@
                 android:gravity="center"
                 android:background="@android:drawable/dialog_holo_light_frame"
                 android:text="@string/one"
-                android:textSize="48sp"/>
+                android:textSize="36sp"/>
             <TextView
                 android:id="@+id/two"
                 android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
                 android:padding="24dp"
                 android:background="@android:drawable/dialog_holo_light_frame"
                 android:text="@string/two"
-                android:textSize="48sp"/>
+                android:textSize="36sp"/>
             <TextView
                 android:id="@+id/three"
                 android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
                 android:gravity="center"
                 android:background="@android:drawable/dialog_holo_light_frame"
                 android:text="@string/three"
-                android:textSize="48sp"/>
+                android:textSize="36sp"/>
         </TableRow>
 
         <TableRow
@@ -100,7 +100,7 @@
                 android:padding="24dp"
                 android:background="@android:drawable/dialog_holo_light_frame"
                 android:text="@string/four"
-                android:textSize="48sp"/>
+                android:textSize="36sp"/>
             <TextView
                 android:id="@+id/five"
                 android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
                 android:padding="24dp"
                 android:background="@android:drawable/dialog_holo_light_frame"
                 android:text="@string/five"
-                android:textSize="48sp"/>
+                android:textSize="36sp"/>
             <TextView
                 android:id="@+id/six"
                 android:layout_height="wrap_content"
@@ -122,7 +122,7 @@
                 android:padding="24dp"
                 android:background="@android:drawable/dialog_holo_light_frame"
                 android:text="@string/six"
-                android:textSize="48sp"/>
+                android:textSize="36sp"/>
         </TableRow>
     
         <TableRow
@@ -138,7 +138,7 @@
                 android:padding="24dp"
                 android:background="@android:drawable/dialog_holo_light_frame"
                 android:text="@string/seven"
-                android:textSize="48sp"/>
+                android:textSize="36sp"/>
             <TextView
                 android:id="@+id/eight"
                 android:layout_height="wrap_content"
@@ -149,7 +149,7 @@
                 android:padding="24dp"
                 android:background="@android:drawable/dialog_holo_light_frame"
                 android:text="@string/eight"
-                android:textSize="48sp"/>
+                android:textSize="36sp"/>
             <TextView
                 android:id="@+id/nine"
                 android:layout_height="wrap_content"
@@ -160,7 +160,7 @@
                 android:padding="24dp"
                 android:background="@android:drawable/dialog_holo_light_frame"
                 android:text="@string/nine"
-                android:textSize="48sp"/>
+                android:textSize="36sp"/>
         </TableRow>
 
         <TableRow
@@ -177,17 +177,16 @@
                 android:padding="24dp"
                 android:background="@android:drawable/dialog_holo_light_frame"
                 android:text="@string/zero"
-                android:textSize="48sp"/>
+                android:textSize="36sp"/>
         </TableRow>
     </TableLayout>
     </FrameLayout>
-
     <ImageButton
         android:id="@+id/img_btn_continue"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="2"
         android:layout_margin="8dp"
-        android:padding="24dp"
         android:rotation="180"
         android:src="?attr/actionModeCloseDrawable"
         android:backgroundTint="@android:color/holo_blue_light"/>
