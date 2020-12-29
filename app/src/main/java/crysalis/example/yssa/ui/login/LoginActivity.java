@@ -1,6 +1,5 @@
 package crysalis.example.yssa.ui.login;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -24,8 +22,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.List;
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.ActivityLoginBinding;
+import crysalis.example.yssa.ui.associateconsole.AssociateConsoleActivity;
 import crysalis.example.yssa.ui.main.LoadingActivity;
-import crysalis.example.yssa.ui.main.MainActivity;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -85,6 +83,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onStart() {
         super.onStart();
+        //if logged in, continue login
     }
 
     @Override
@@ -136,28 +135,29 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 List<DocumentSnapshot> userDocuments = task.getResult().getDocuments();
+                boolean isAuthenticated = false;
                 for (int i = 0; i < userDocuments.size(); i++) {
                     String currentId = userDocuments.get(i).getId();
                     if (currentId.matches(etEmployeeId.getText().toString())) {
                         employeeId = currentId;
+                        isAuthenticated = true;
                         System.err.println(TAG + employeeId);
                         SharedPreferences preferences = getPreferences(0);
                         SharedPreferences.Editor editor = preferences.edit();
                         editor.putString("employeeId", employeeId);
                         editor.apply();
                         Intent intent = new Intent(LoginActivity.this,
-                                LoadingActivity.class);
-                        progressBar.setVisibility(View.GONE);
+                                AssociateConsoleActivity.class);
                         startActivity(intent);
                         break;
                     }
-                    else {
-                        etEmployeeId.setText("");
-                        Toast.makeText(context, "Authentication failed...", Toast.LENGTH_SHORT)
-                                .show();
-                    }
-                    progressBar.setVisibility(View.GONE);
                 }
+                if (!isAuthenticated) {
+                    etEmployeeId.setText("");
+                    Toast.makeText(context, "Authentication failed...", Toast.LENGTH_SHORT)
+                            .show();
+                }
+                progressBar.setVisibility(View.GONE);
             }
         });
     }

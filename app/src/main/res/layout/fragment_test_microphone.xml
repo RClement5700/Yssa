@@ -38,6 +38,7 @@
             />
 
         <ImageButton
+            android:id="@+id/img_btn_microphone"
             android:layout_width="0dp"
             android:layout_height="75dp"
             android:layout_gravity="center"
