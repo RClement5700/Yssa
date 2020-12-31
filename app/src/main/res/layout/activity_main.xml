@@ -9,15 +9,14 @@
 
     <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp">
+        android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/levo"
             android:textSize="64sp"
             android:textColor="@android:color/holo_blue_light"
-            android:fontFamily="@font/anton"/>
+            android:fontFamily="@font/anton" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -26,9 +25,9 @@
             android:text="@string/sonus"
             android:textColor="@android:color/black"
             android:textSize="36sp"
-            android:layout_gravity="center|bottom"
-            />
+            android:layout_gravity="center|bottom" />
     </FrameLayout>
+
 
     <ImageView
         android:layout_width="200dp"
