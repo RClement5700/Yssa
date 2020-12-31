@@ -54,7 +54,7 @@
 
     <!-- Test Audio -->
     <string name="test_audio">Test Audio</string>
-    <string name="test_audio_greeting">Let\'s Test \nYour Audio!</string>
+    <string name="test_audio_greeting">Let\'s Test Your Audio!</string>
 
     <!-- Test Microphone -->
     <string name="test_microphone">Test Microphone</string>

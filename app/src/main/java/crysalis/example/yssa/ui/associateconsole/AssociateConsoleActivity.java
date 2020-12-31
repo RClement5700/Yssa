@@ -50,26 +50,26 @@ public class AssociateConsoleActivity extends AppCompatActivity implements View.
                 .setAction("Action", null).show();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.associate_console_menu, menu);
-        menu.getItem(2).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                mAuth.signOut();
-                startActivity(new Intent(AssociateConsoleActivity.this, LoginActivity.class));
-                return true;
-            }
-        });
-        menu.getItem(1).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                //check if user is management user
-                startActivity(new Intent(AssociateConsoleActivity.this, ManagementConsoleActivity.class));
-                return true;
-            }
-        });
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.associate_console_menu, menu);
+//        menu.getItem(2).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//                mAuth.signOut();
+//                startActivity(new Intent(AssociateConsoleActivity.this, LoginActivity.class));
+//                return true;
+//            }
+//        });
+//        menu.getItem(1).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+//            @Override
+//            public boolean onMenuItemClick(MenuItem item) {
+//                //check if user is management user
+//                startActivity(new Intent(AssociateConsoleActivity.this, ManagementConsoleActivity.class));
+//                return true;
+//            }
+//        });
+//        return true;
+//    }
 }

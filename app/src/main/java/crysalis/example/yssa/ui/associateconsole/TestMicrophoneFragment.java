@@ -31,7 +31,6 @@ public class TestMicrophoneFragment extends Fragment implements View.OnClickList
 
     ImageButton imgBtnMicrophone;
     ImageButton imgBtnPlay;
-    ImageButton imgBtnContinue;
     MediaRecorder recorder;
     MediaPlayer player;
     boolean isRecording;
@@ -46,18 +45,15 @@ public class TestMicrophoneFragment extends Fragment implements View.OnClickList
                              @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_test_microphone, container, false);
         FragmentTestMicrophoneBinding binding = FragmentTestMicrophoneBinding.bind(v);
-        CircleLineVisualizer visualizer = binding.testMicVizualizer;
-        ProgressBar progressBar = binding.progressBar;
+        CircleLineVisualizer visualizer = binding.testMicrophoneVizualizer;
         count = 0;
         recorder = new MediaRecorder();
         player = new MediaPlayer();
         isRecording = false;
         isPlaying = false;
-        imgBtnContinue = binding.imgBtnContinue;
         imgBtnMicrophone = binding.imgBtnMicrophone;
         imgBtnPlay = binding.imgBtnPlay;
         imgBtnMicrophone.setOnClickListener(this);
-        imgBtnContinue.setOnClickListener(this);
         imgBtnPlay.setOnClickListener(this);
         return binding.getRoot();
     }
@@ -107,8 +103,6 @@ public class TestMicrophoneFragment extends Fragment implements View.OnClickList
                 catch (IOException e) {
                     e.printStackTrace();
                 }
-                break;
-            case R.id.img_btn_continue:
                 break;
         }
     }

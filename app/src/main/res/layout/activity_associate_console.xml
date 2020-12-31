@@ -7,21 +7,7 @@
     android:orientation="vertical"
     tools:context=".ui.associateconsole.AssociateConsoleActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/black_blue_gradient"
-            app:title="@string/title_activity_associate_console"
-            app:titleTextColor="@android:color/white"
-            app:popupTheme="@style/AppTheme.PopupOverlay"/>
-
-    </com.google.android.material.appbar.AppBarLayout>
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">

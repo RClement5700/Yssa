@@ -29,9 +29,7 @@ public class AssociatesConsolePagerAdapter extends FragmentPagerAdapter {
     @NonNull
     public Fragment getItem(int position) {
         if (position == 2) {
-            String[] checkListData =
-                    mContext.getResources().getStringArray(R.array.forklift_inspection_data_list);
-            return new InspectEquipmentFragment(checkListData);
+            return new InspectEquipmentFragment();
         }
         else if (position == 1) {
             return new TestMicrophoneFragment();

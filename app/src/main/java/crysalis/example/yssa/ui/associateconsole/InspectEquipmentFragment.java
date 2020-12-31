@@ -17,24 +17,24 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import adapters.InspectionSheetRecyclerViewAdapter;
+import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentInspectionBinding;
 import crysalis.example.yssa.ui.orderpicking.OrderPickingActivity;
 
 public class InspectEquipmentFragment extends Fragment implements
         View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
-    String[] checkListData;
     RecyclerView rvInspectionList;
     InspectionSheetRecyclerViewAdapter adapter;
 
-    public InspectEquipmentFragment(String[] checkListData) {
-        this.checkListData = checkListData;
+    public InspectEquipmentFragment() {
     }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        String[] checkListData =
+                getActivity().getResources().getStringArray(R.array.forklift_inspection_data_list);
         FragmentInspectionBinding binding = FragmentInspectionBinding.inflate(inflater);
         View v = binding.getRoot();
         Button completeBtn = binding.completeBtn;

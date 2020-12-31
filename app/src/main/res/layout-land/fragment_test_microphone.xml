@@ -20,59 +20,56 @@
         custom:avSpeed="normal"
         custom:layout_constraintStart_toStartOf="parent"
         custom:layout_constraintTop_toTopOf="parent"
-        custom:layout_constraintEnd_toEndOf="parent"
         custom:layout_constraintBottom_toTopOf="@id/playBtnLayout"
+        custom:layout_constraintEnd_toEndOf="parent"
         />
 
-    <LinearLayout
-        android:id="@+id/playBtnLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="8dp"
-        app:layout_constraintTop_toBottomOf="@id/test_microphone_vizualizer"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tvTestMic"
-        >
-        <ImageButton
-            android:id="@+id/img_btn_play"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:backgroundTint="@color/colorPrimary"
-            android:background="@android:drawable/dialog_holo_light_frame"
-            android:src="@android:drawable/ic_media_play"/>
-        <ImageButton
-            android:id="@+id/img_btn_microphone"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="8dp"
-            android:background="@android:drawable/dialog_holo_light_frame"
-            android:src="@android:drawable/ic_btn_speak_now" />
-
-        <CheckBox
-            android:id="@+id/checkbox"
+        <TextView
+            android:id="@+id/tvTestMic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="4dp"
-            android:layout_gravity="bottom"/>
-    </LinearLayout>
+            android:layout_margin="8dp"
+            android:text="@string/test_mic_greeting"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
 
-    <TextView
-        android:id="@+id/tvTestMic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:text="@string/test_mic_greeting"
-        android:textColor="@color/colorPrimary"
-        android:textStyle="bold"
-        android:textSize="24sp"
-        app:layout_constraintTop_toBottomOf="@id/playBtnLayout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        <LinearLayout
+            android:id="@+id/playBtnLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <ImageButton
+                android:id="@+id/img_btn_play"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:background="@android:drawable/dialog_holo_light_frame"
+                android:src="@android:drawable/ic_media_play"/>
+            <ImageButton
+                android:id="@+id/img_btn_microphone"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+                android:background="@android:drawable/dialog_holo_light_frame"
+                android:src="@android:drawable/ic_btn_speak_now" />
+
+            <CheckBox
+                android:id="@+id/checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="4dp"
+                android:layout_gravity="bottom"/>
+        </LinearLayout>
 
     <LinearLayout
         android:id="@+id/logosLayout"
@@ -80,7 +77,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/playBtnLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         >

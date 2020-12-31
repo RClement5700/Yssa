@@ -30,9 +30,6 @@ public class TestAudioFragment extends Fragment implements View.OnClickListener 
         FragmentTestAudioBinding binding = FragmentTestAudioBinding.inflate(inflater);
         View v = binding.getRoot();
         CircleLineVisualizer visualizer = binding.testAudioVizualizer;
-        ProgressBar progressBar = binding.progressBar;
-        ImageButton imgBtnContinue = binding.imgBtnContinue;
-        imgBtnContinue.setOnClickListener(this);
         return v;
     }
 
