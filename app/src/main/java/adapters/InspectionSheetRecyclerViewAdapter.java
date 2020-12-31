@@ -44,6 +44,16 @@ public class InspectionSheetRecyclerViewAdapter extends
         return true;
     }
     public void setAllCheckBoxes(boolean b) {
+        if (b) {
+            for (CheckBox checkbox: checkBoxes) {
+                checkbox.setChecked(true);
+            }
+        }
+        else {
+            for (CheckBox checkbox: checkBoxes) {
+                checkbox.setChecked(false);
+            }
+        }
         notifyDataSetChanged();
     }
 
