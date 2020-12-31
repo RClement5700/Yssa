@@ -63,6 +63,16 @@
 
     <string name="listening">Listening…</string>
 
+    <!-- Order Picking Activity -->
+    <string name="user_report">User Report</string>
+    <string name="current_order">Current Order</string>
+    <string name="get_next_order">Get Next Order</string>
+    <string name="slot">Slot: </string>
+    <string name="pick">Pick: </string>
+    <string name="product_id">Prouct Id</string>
+
+
+
 
     <string name="register">Register</string>
     <string name="associate">Associate</string>
@@ -121,6 +131,8 @@
     <string name="seven">7</string>
     <string name="eight">8</string>
     <string name="nine">9</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

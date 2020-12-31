@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -49,9 +50,14 @@ public class InspectEquipmentFragment extends Fragment implements
 
     @Override
     public void onClick(View v) {
-        //TODO:
-        Intent intent = new Intent(getActivity(), OrderPickingActivity.class);
-        startActivity(intent);
+        if (adapter.allBoxesChecked()) {
+            Intent intent = new Intent(getActivity(), OrderPickingActivity.class);
+            startActivity(intent);
+        }
+        else {
+            Toast.makeText(getContext(), "Please notify supervisor if equipment is unsafe",
+                    Toast.LENGTH_LONG).show();
+        }
     }
     @Override
         public void onCheckedChanged(CompoundButton compoundButton, boolean b) {

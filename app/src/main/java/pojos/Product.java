@@ -17,6 +17,10 @@ public class Product {
         this.weight = weight;
         this.description = description;
     }
+    public Product(int productId, String description) {
+        this.productId = productId;
+        this.description = description;
+    }
 
     public int getProductId() {
         return productId;

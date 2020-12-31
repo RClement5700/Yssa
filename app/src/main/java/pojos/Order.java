@@ -7,15 +7,18 @@ import java.util.Map;
 
 public class Order implements Serializable {
 
-    Map<Integer, Integer> products; // K = productId, V = quantity to be picked
+    Map<Product, Integer> products; // K = productId, V = quantity to be picked
     int customerId;
     int goalTime; //time in minutes
     int section; //ex. 90 = Meat, 40 = produce
 
-    public Order(Map<Integer, Integer> products, int customerId, int goalTime, int section) {
+//    public Order(Map<Integer, Integer> products, int customerId, int goalTime, int section) {
+//        this.products = products;
+//        this.customerId = customerId;
+//        this.goalTime = goalTime;
+//        this.section = section;
+//    }
+    public Order(Map<Product, Integer> products) {
         this.products = products;
-        this.customerId = customerId;
-        this.goalTime = goalTime;
-        this.section = section;
     }
 }

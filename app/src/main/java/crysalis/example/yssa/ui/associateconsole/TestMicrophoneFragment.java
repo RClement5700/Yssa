@@ -2,23 +2,21 @@ package crysalis.example.yssa.ui.associateconsole;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.media.AudioRecord;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import com.gauravk.audiovisualizer.visualizer.CircleLineVisualizer;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+
+import com.gauravk.audiovisualizer.visualizer.CircleLineVisualizer;
 
 import java.io.IOException;
 
@@ -81,7 +79,7 @@ public class TestMicrophoneFragment extends Fragment implements View.OnClickList
                             recorder.setAudioSource(MediaRecorder.AudioSource.VOICE_COMMUNICATION);
                             recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
                             recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-                            recorder.setOutputFile("newMediaFile");
+                            recorder.setOutputFile("/");
                             try {
                                 recorder.prepare();
                                 recorder.start();

@@ -7,12 +7,12 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 
-import com.gauravk.audiovisualizer.visualizer.CircleLineVisualizer;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import crysalis.example.yssa.R;
+import com.gauravk.audiovisualizer.visualizer.CircleLineVisualizer;
+
 import crysalis.example.yssa.databinding.FragmentTestAudioBinding;
 
 

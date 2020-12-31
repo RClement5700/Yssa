@@ -48,10 +48,15 @@ public class InspectionSheetRecyclerViewAdapter extends
         return listOfParts.length;
     }
 
+    public boolean allBoxesChecked() {
+        for (CheckBox checkBox: checkBoxes) {
+            if (!checkBox.isChecked()) return false;
+        }
+        return true;
+    }
     public void setAllCheckBoxes(boolean checkAll) {
         this.checkAll = checkAll;
         notifyDataSetChanged();
-//        this.checkAll = null;
     }
 
     static class InspectionSheetRecyclerViewHolder extends RecyclerView.ViewHolder {
