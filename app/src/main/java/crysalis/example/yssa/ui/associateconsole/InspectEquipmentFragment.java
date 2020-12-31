@@ -26,9 +26,13 @@ public class InspectEquipmentFragment extends Fragment implements
 
     RecyclerView rvInspectionList;
     InspectionSheetRecyclerViewAdapter adapter;
+    Button completeBtn;
+    CheckBox checkAll;
 
     public InspectEquipmentFragment() {
     }
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -37,12 +41,12 @@ public class InspectEquipmentFragment extends Fragment implements
                 getActivity().getResources().getStringArray(R.array.forklift_inspection_data_list);
         FragmentInspectionBinding binding = FragmentInspectionBinding.inflate(inflater);
         View v = binding.getRoot();
-        Button completeBtn = binding.completeBtn;
+        completeBtn = binding.completeBtn;
         rvInspectionList = binding.rvInspectionList;
-        adapter = new InspectionSheetRecyclerViewAdapter(checkListData, getContext());
+        adapter = new InspectionSheetRecyclerViewAdapter(checkListData);
         rvInspectionList.setLayoutManager(new LinearLayoutManager(getContext()));
         rvInspectionList.setAdapter(adapter);
-        CheckBox checkAll = binding.checkboxCheckAll;
+        checkAll = binding.checkboxCheckAll;
         checkAll.setOnCheckedChangeListener(this);
         completeBtn.setOnClickListener(this);
         return v;
@@ -50,14 +54,15 @@ public class InspectEquipmentFragment extends Fragment implements
 
     @Override
     public void onClick(View v) {
-        if (adapter.allBoxesChecked()) {
-            Intent intent = new Intent(getActivity(), OrderPickingActivity.class);
-            startActivity(intent);
-        }
-        else {
+        if (!adapter.allBoxesChecked()) {
             Toast.makeText(getContext(), "Please notify supervisor if equipment is unsafe",
                     Toast.LENGTH_LONG).show();
         }
+        else {
+            Intent intent = new Intent(getActivity(), OrderPickingActivity.class);
+            startActivity(intent);
+        }
+
     }
     @Override
         public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
