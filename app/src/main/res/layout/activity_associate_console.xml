@@ -8,31 +8,17 @@
     tools:context=".ui.associateconsole.AssociateConsoleActivity">
 
 
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/associate_view_pager"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/associate_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/associate_tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/associate_tab_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
-                android:theme="@style/AppTheme.AppBarOverlay"/>
+            android:background="@color/colorPrimaryDark"
+            android:theme="@style/AppTheme.AppBarOverlay"/>
 
-        </androidx.viewpager.widget.ViewPager>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_associate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
-            android:src="@android:drawable/ic_dialog_email"
-            android:backgroundTint="@android:color/black"
-            />
-    </FrameLayout>
+    </androidx.viewpager.widget.ViewPager>
 </LinearLayout>
