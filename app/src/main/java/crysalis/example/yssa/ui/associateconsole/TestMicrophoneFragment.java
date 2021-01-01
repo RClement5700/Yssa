@@ -1,9 +1,12 @@
 package crysalis.example.yssa.ui.associateconsole;
 
 import android.Manifest;
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +21,9 @@ import androidx.fragment.app.Fragment;
 
 import com.gauravk.audiovisualizer.visualizer.CircleLineVisualizer;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import crysalis.example.yssa.R;
@@ -35,7 +41,6 @@ public class TestMicrophoneFragment extends Fragment implements View.OnClickList
     MediaPlayer player;
     boolean isRecording;
     boolean isPlaying;
-    int count;
     public TestMicrophoneFragment() {
     }
 
@@ -46,8 +51,6 @@ public class TestMicrophoneFragment extends Fragment implements View.OnClickList
         View v = inflater.inflate(R.layout.fragment_test_microphone, container, false);
         FragmentTestMicrophoneBinding binding = FragmentTestMicrophoneBinding.bind(v);
         CircleLineVisualizer visualizer = binding.testMicrophoneVizualizer;
-        count = 0;
-        recorder = new MediaRecorder();
         player = new MediaPlayer();
         isRecording = false;
         isPlaying = false;
@@ -62,47 +65,42 @@ public class TestMicrophoneFragment extends Fragment implements View.OnClickList
     public void onClick(View v) {
         switch(v.getId()) {
             case R.id.img_btn_microphone:
-                if (!isRecording && !isPlaying) {
-                    if (ActivityCompat.checkSelfPermission(getActivity(),
-                            Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(getActivity(),
-                                new String[]{Manifest.permission.RECORD_AUDIO}, getTargetRequestCode());
-
-                        if (ActivityCompat.checkSelfPermission(getActivity(),
-                                Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
-                            player.stop();
-                            isPlaying = false;
-                            recorder.setAudioSource(MediaRecorder.AudioSource.VOICE_COMMUNICATION);
-                            recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-                            recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-                            recorder.setOutputFile("/");
+                ObjectAnimator scaleDown = ObjectAnimator.ofPropertyValuesHolder(
+                        imgBtnMicrophone,
+                        PropertyValuesHolder.ofFloat("scaleX", 1.2f),
+                        PropertyValuesHolder.ofFloat("scaleY", 1.2f));
+                scaleDown.setDuration(310);
+                scaleDown.setRepeatCount(ObjectAnimator.INFINITE);
+                scaleDown.setRepeatMode(ObjectAnimator.REVERSE);
+                if (!isRecording) {
+                    File file = new File(getActivity().getPackageName());
+                    recorder = new MediaRecorder();
+                    recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+                    recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+//                    recorder.setOutputFile();
+                    recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+                    AsyncTask.execute(new Runnable() {
+                        @Override
+                        public void run() {
                             try {
                                 recorder.prepare();
                                 recorder.start();
-                                isRecording = true;
+                                scaleDown.start();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
                         }
-                    }
+                    });
                 }
                 else {
-                    recorder.stop();
-                    isRecording = false;
-                }
+                        scaleDown.cancel();
+                        recorder.stop();
+                        recorder.release();
+                    }
                 break;
 
             case R.id.img_btn_play:
-                isPlaying = true;
-                isRecording = false;
-                try {
-                    player.setDataSource("newMediaFile");
-                    player.prepare();
-                    player.start();
-                }
-                catch (IOException e) {
-                    e.printStackTrace();
-                }
+
                 break;
         }
     }
