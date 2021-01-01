@@ -13,6 +13,7 @@ import crysalis.example.yssa.R;
 public class InspectionSheetRecyclerViewAdapter extends
         RecyclerView.Adapter<InspectionSheetRecyclerViewAdapter.InspectionSheetRecyclerViewHolder> {
     String[] listOfParts;
+    boolean allSelected = false;
     static ArrayList<CheckBox> checkBoxes = new ArrayList<>();
 
 
@@ -30,6 +31,8 @@ public class InspectionSheetRecyclerViewAdapter extends
     @Override
     public void onBindViewHolder(@NonNull InspectionSheetRecyclerViewHolder holder, int position) {
         holder.partDescription.setText(listOfParts[position]);
+        if (!allSelected) holder.checkBox.setChecked(false);
+        else holder.checkBox.setChecked(true);
     }
 
     @Override
@@ -38,36 +41,20 @@ public class InspectionSheetRecyclerViewAdapter extends
     }
 
     public boolean allBoxesChecked() {
-        for (CheckBox checkBox: checkBoxes) {
-            if (!checkBox.isChecked()) return false;
-        }
-        return true;
+        return allSelected;
     }
     public void setAllCheckBoxes(boolean b) {
-        if (b) {
-            for (CheckBox checkbox: checkBoxes) {
-                checkbox.setChecked(true);
-            }
-        }
-        else {
-            for (CheckBox checkbox: checkBoxes) {
-                checkbox.setChecked(false);
-            }
-        }
+        allSelected = b;
         notifyDataSetChanged();
     }
 
     static class InspectionSheetRecyclerViewHolder extends RecyclerView.ViewHolder {
-
         TextView partDescription;
         CheckBox checkBox;
-
         public InspectionSheetRecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
             partDescription = itemView.findViewById(R.id.tv_part_description);
             checkBox = itemView.findViewById(R.id.checkbox_part);
-            checkBoxes.add(checkBox);
-
         }
     }
 }

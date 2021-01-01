@@ -54,13 +54,13 @@ public class InspectEquipmentFragment extends Fragment implements
 
     @Override
     public void onClick(View v) {
-        if (!adapter.allBoxesChecked()) {
-            Toast.makeText(getContext(), "Please notify supervisor if equipment is unsafe",
-                    Toast.LENGTH_LONG).show();
-        }
-        else {
+        if (adapter.allBoxesChecked()) {
             Intent intent = new Intent(getActivity(), OrderPickingActivity.class);
             startActivity(intent);
+        }
+        else {
+            Toast.makeText(getContext(), "Please notify supervisor if equipment is unsafe",
+                    Toast.LENGTH_LONG).show();
         }
 
     }
