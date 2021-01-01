@@ -51,6 +51,15 @@
             android:background="@android:drawable/dialog_holo_light_frame"
             android:src="@android:drawable/ic_btn_speak_now" />
 
+        <ImageButton
+            android:id="@+id/img_btn_stop"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:src="@android:color/holo_red_light"
+            />
+
         <CheckBox
             android:id="@+id/checkbox"
             android:layout_width="wrap_content"
