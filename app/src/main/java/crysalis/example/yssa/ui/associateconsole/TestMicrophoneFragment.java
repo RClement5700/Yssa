@@ -9,6 +9,7 @@ import android.content.res.AssetManager;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
+import android.media.VolumeProvider;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -114,6 +115,8 @@ public class TestMicrophoneFragment extends Fragment implements View.OnClickList
                                 player = new MediaPlayer();
                                 player.setScreenOnWhilePlaying(true);
                                 player.setDataSource(file);
+                                player.setVolume(5.0f, 5.0f);
+                                player.setAuxEffectSendLevel(5.0f);
                                 player.setAudioAttributes(new AudioAttributes.Builder()
                                         .setAllowedCapturePolicy(AudioAttributes.ALLOW_CAPTURE_BY_ALL)
                                         .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
@@ -122,9 +125,21 @@ public class TestMicrophoneFragment extends Fragment implements View.OnClickList
                                         .setHapticChannelsMuted(true)
                                         .setLegacyStreamType(0)
                                 .build());
-//                                player.prepare();
-                                player.start();
-                                isPlaying = true;
+                                player.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                                    @Override
+                                    public void onPrepared(MediaPlayer mp) {
+                                        mp.start();
+                                        isPlaying = true;
+                                    }
+                                });
+                                player.setOnErrorListener(new MediaPlayer.OnErrorListener() {
+                                    @Override
+                                    public boolean onError(MediaPlayer mp, int what, int extra) {
+                                        mp.reset();
+                                        System.err.println("Media Player failed to play");
+                                        return isPlaying;
+                                    }
+                                });
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
