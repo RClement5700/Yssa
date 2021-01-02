@@ -29,6 +29,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,7 +77,7 @@ public class TestMicrophoneFragment extends Fragment implements View.OnClickList
     public void onClick(View v) {
         switch(v.getId()) {
             case R.id.img_btn_microphone:
-                if (!isRecording && checkPermissions()) {
+                if (!isRecording && !isPlaying && checkMicPermissions()) {
                     recorder = new MediaRecorder();
                     recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
                     recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
@@ -99,21 +100,38 @@ public class TestMicrophoneFragment extends Fragment implements View.OnClickList
 
             case R.id.img_btn_play:
                 //TODO:
-                //https://stackoverflow.com/questions/3761305/android-mediaplayer-throwing-prepare-failed-status-0x1-on-2-1-works-on-2-2
-                AsyncTask.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            player = new MediaPlayer();
-                            player.setDataSource(file);
-                            player.prepare();
-                            player.start();
-                            isPlaying = true;
-                        } catch(IOException e) {
-                            e.printStackTrace();
+//                https://stackoverflow.com/questions/3761305/android-mediaplayer-throwing-prepare-failed-status-0x1-on-2-1-works-on-2-2
+                if (!isPlaying && !isRecording && checkMicPermissions()) {
+                    AsyncTask.execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                File soundFile = new File(file);
+                                soundFile.setReadable(true, false);
+                                FileOutputStream fos = getContext()
+                                        .openFileOutput(fileName, Context.MODE_PRIVATE);
+                                System.err.println("Sound File Path: " + fileName);
+                                InputStream inputStream = getContext().getAssets().open(fileName);
+                                byte[] bytes = new byte[8192];
+                                int length;
+                                while((length = inputStream.read(bytes)) > 0) {
+                                    fos.write(bytes, 0 , length);
+                                }
+                                player = new MediaPlayer();
+                                player.setScreenOnWhilePlaying(true);
+                                player.setDataSource(fileName);
+                                player.prepare();
+                                player.start();
+                                isPlaying = true;
+                                inputStream.close();
+                                fos.flush();
+                                fos.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                         }
-                    }
-                });
+                    });
+                }
                 break;
 
             case R.id.img_btn_stop:
@@ -131,7 +149,7 @@ public class TestMicrophoneFragment extends Fragment implements View.OnClickList
         }
     }
 
-    private boolean checkPermissions(){
+    private boolean checkMicPermissions(){
         int permissionWRITE_EXTERNAL_STORAGE = ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
         int permissionRECORD = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.RECORD_AUDIO);
         List<String> listPermissionsNeeded = new ArrayList<>();
