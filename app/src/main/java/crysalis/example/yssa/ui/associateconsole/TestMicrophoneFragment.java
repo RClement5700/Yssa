@@ -5,8 +5,11 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
+import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -19,6 +22,7 @@ import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -106,26 +110,21 @@ public class TestMicrophoneFragment extends Fragment implements View.OnClickList
                         @Override
                         public void run() {
                             try {
-                                File soundFile = new File(file);
-                                soundFile.setReadable(true, false);
-                                FileOutputStream fos = getContext()
-                                        .openFileOutput(fileName, Context.MODE_PRIVATE);
-                                System.err.println("Sound File Path: " + fileName);
-                                InputStream inputStream = getContext().getAssets().open(fileName);
-                                byte[] bytes = new byte[8192];
-                                int length;
-                                while((length = inputStream.read(bytes)) > 0) {
-                                    fos.write(bytes, 0 , length);
-                                }
+//                                player = MediaPlayer.create(getActivity(), Uri.fromFile(new File(file)));
                                 player = new MediaPlayer();
                                 player.setScreenOnWhilePlaying(true);
-                                player.setDataSource(fileName);
-                                player.prepare();
+                                player.setDataSource(file);
+                                player.setAudioAttributes(new AudioAttributes.Builder()
+                                        .setAllowedCapturePolicy(AudioAttributes.ALLOW_CAPTURE_BY_ALL)
+                                        .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+                                        .setFlags(AudioAttributes.FLAG_AUDIBILITY_ENFORCED)
+                                        .setUsage(AudioAttributes.USAGE_MEDIA)
+                                        .setHapticChannelsMuted(true)
+                                        .setLegacyStreamType(0)
+                                .build());
+//                                player.prepare();
                                 player.start();
                                 isPlaying = true;
-                                inputStream.close();
-                                fos.flush();
-                                fos.close();
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
