@@ -125,40 +125,45 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+
+    //uncomment mFirestore section when ready to show
     public void login() {
         progressBar.setVisibility(View.VISIBLE);
         progressBar.bringToFront();
         employeeId = etEmployeeId.getText().toString();
-        mFirestore.collection("users")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                List<DocumentSnapshot> userDocuments = task.getResult().getDocuments();
-                boolean isAuthenticated = false;
-                for (int i = 0; i < userDocuments.size(); i++) {
-                    String currentId = userDocuments.get(i).getId();
-                    if (currentId.matches(etEmployeeId.getText().toString())) {
-                        employeeId = currentId;
-                        isAuthenticated = true;
-                        System.err.println(TAG + employeeId);
-                        SharedPreferences preferences = getPreferences(0);
-                        SharedPreferences.Editor editor = preferences.edit();
-                        editor.putString("employeeId", employeeId);
-                        editor.apply();
-                        Intent intent = new Intent(LoginActivity.this,
-                                AssociateConsoleActivity.class);
-                        startActivity(intent);
-                        break;
-                    }
-                }
-                if (!isAuthenticated) {
-                    etEmployeeId.setText("");
-                    Toast.makeText(context, "Authentication failed...", Toast.LENGTH_SHORT)
-                            .show();
-                }
-                progressBar.setVisibility(View.GONE);
-            }
-        });
+        Intent intent = new Intent(LoginActivity.this,
+                AssociateConsoleActivity.class);
+        startActivity(intent);
+//        mFirestore.collection("users")
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                List<DocumentSnapshot> userDocuments = task.getResult().getDocuments();
+//                boolean isAuthenticated = false;
+//                for (int i = 0; i < userDocuments.size(); i++) {
+//                    String currentId = userDocuments.get(i).getId();
+//                    if (currentId.matches(etEmployeeId.getText().toString())) {
+//                        employeeId = currentId;
+//                        isAuthenticated = true;
+//                        System.err.println(TAG + employeeId);
+//                        SharedPreferences preferences = getPreferences(0);
+//                        SharedPreferences.Editor editor = preferences.edit();
+//                        editor.putString("employeeId", employeeId);
+//                        editor.apply();
+////                        Intent intent = new Intent(LoginActivity.this,
+////                                AssociateConsoleActivity.class);
+////                        startActivity(intent);
+//                        break;
+//                    }
+//                }
+//                if (!isAuthenticated) {
+//                    etEmployeeId.setText("");
+//                    Toast.makeText(context, "Authentication failed...", Toast.LENGTH_SHORT)
+//                            .show();
+//                }
+//                progressBar.setVisibility(View.GONE);
+//            }
+//        });
     }
 }
