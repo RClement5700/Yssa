@@ -2,11 +2,13 @@ package crysalis.example.yssa.ui.associateconsole;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +22,10 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.gauravk.audiovisualizer.visualizer.CircleLineVisualizer;
+import com.google.android.exoplayer2.C;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -93,47 +97,55 @@ public class TestMicrophoneFragment extends Fragment implements View.OnClickList
         switch(v.getId()) {
             case R.id.img_btn_microphone:
                 if (checkMicPermissions()) {
-                pathSave = getContext().getExternalFilesDir(null).getAbsolutePath() + File.pathSeparator +
-                        UUID.randomUUID().toString() + fileName;
-                recorder = new MediaRecorder();
-                recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-                recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-                recorder.setOutputFile(pathSave);
-                recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-                AsyncTask.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            recorder.prepare();
-                            recorder.start();
-                            isRecording = true;
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                    pathSave = getContext().getExternalFilesDir(null).getAbsolutePath() +
+                            UUID.randomUUID().toString() + fileName;
+                    recorder = new MediaRecorder();
+                    recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+                    recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+                    recorder.setOutputFile(pathSave);
+                    recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+                    try {
+                        recorder.prepare();
+                        recorder.start();
+                        isRecording = true;
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                });
                 } else {
                 requestPermissions();
-            }
+                }
                 break;
 
             case R.id.img_btn_play:
                 //TODO:
 //                https://stackoverflow.com/questions/3761305/android-mediaplayer-throwing-prepare-failed-status-0x1-on-2-1-works-on-2-2
                 if (checkMicPermissions()) {
-                    AsyncTask.execute(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                player = new MediaPlayer();
-                                player.setDataSource(getActivity(), Uri.fromFile(new File(pathSave)));
-                                player.prepare();
-                                player.start();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+                    player = new MediaPlayer();
+                        try {
+                            File file = new File(pathSave);
+                            file.setReadable(true, false);
+                            FileInputStream fis = new FileInputStream(file);
+                            player.setDataSource(fis.getFD());
+                            player.setAudioAttributes(new AudioAttributes.Builder()
+                                    .setAllowedCapturePolicy(AudioAttributes.ALLOW_CAPTURE_BY_ALL)
+                                    .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+                                    .setFlags(AudioAttributes.FLAG_AUDIBILITY_ENFORCED)
+                                    .setUsage(AudioAttributes.USAGE_MEDIA)
+                                    .build()
+                            );
+                            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                                @Override
+                                public void onCompletion(MediaPlayer mp) {
+                                    mp.reset();
+                                    mp.release();
+                                }
+                            });
+                            System.err.println("Sound File Path: " +pathSave);
+                            player.prepare();
+                            player.start();
+                        } catch(IOException e) {
+                            e.printStackTrace();
                         }
-                    });
                 }
                 break;
 

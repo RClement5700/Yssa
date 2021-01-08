@@ -61,6 +61,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging'
 
     implementation 'com.gauravk.audiovisualizer:audiovisualizer:0.9.2'
+    implementation 'com.google.android.exoplayer:exoplayer:2.12.2'
+
+
     implementation 'androidx.annotation:annotation:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

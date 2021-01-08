@@ -43,6 +43,15 @@
             android:background="@android:drawable/dialog_holo_light_frame"
             android:src="@android:drawable/ic_media_play"/>
 
+        <ImageButton
+            android:id="@+id/img_btn_stop"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:background="@android:color/holo_red_light"
+            />
+
         <CheckBox
             android:id="@+id/checkbox"
             android:layout_width="wrap_content"
@@ -60,12 +69,10 @@
         android:text="@string/test_audio_greeting"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
-        android:textSize="20sp"
-        app:layout_constrainedWidth="true"
+        android:textSize="24sp"
         app:layout_constraintTop_toBottomOf="@id/playBtnLayout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/playBtnLayout"
         />
 
     <LinearLayout
