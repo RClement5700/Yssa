@@ -5,10 +5,7 @@ import android.content.pm.PackageManager;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +19,6 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.gauravk.audiovisualizer.visualizer.CircleLineVisualizer;
-import com.google.android.exoplayer2.C;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -34,6 +30,9 @@ import java.util.UUID;
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentTestMicrophoneBinding;
 
+
+//https://www.youtube.com/watch?v=HFUR9uSZFQY
+//https://developer.android.com/reference/android/speech/SpeechRecognizer
 public class TestMicrophoneFragment extends Fragment implements View.OnClickListener {
 
     ImageButton imgBtnMicrophone;

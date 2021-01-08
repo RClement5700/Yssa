@@ -53,12 +53,11 @@
     <ImageButton
         android:id="@+id/img_btn_continue"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_margin="8dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:rotation="180"
-        android:src="?attr/actionModeCloseDrawable"
+        android:layout_margin="8dp"
+        android:layout_weight="1"
         android:backgroundTint="@android:color/holo_blue_light"
-        />
+        android:rotation="180"
+        android:src="@drawable/abc_vector_test" />
 </LinearLayout>

@@ -29,7 +29,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import crysalis.example.yssa.R;
-import crysalis.example.yssa.ui.login.LoginActivity;
+import crysalis.example.yssa.ui.main.LoginFragment;
 import crysalis.example.yssa.ui.associateconsole.AssociateConsoleActivity;
 import pojos.Employee;
 
@@ -117,7 +117,7 @@ public class ManagementConsoleActivity extends AppCompatActivity implements View
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 mAuth.signOut();
-                startActivity(new Intent(ManagementConsoleActivity.this, LoginActivity.class));
+                startActivity(new Intent(ManagementConsoleActivity.this, LoginFragment.class));
                 return true;
             }
         });

@@ -1,35 +1,31 @@
-package crysalis.example.yssa.ui.login;
+package crysalis.example.yssa.ui.main;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
-import java.util.List;
-import crysalis.example.yssa.R;
-import crysalis.example.yssa.databinding.ActivityLoginBinding;
-import crysalis.example.yssa.ui.associateconsole.AssociateConsoleActivity;
-import crysalis.example.yssa.ui.main.LoadingActivity;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import crysalis.example.yssa.R;
+import crysalis.example.yssa.databinding.FragmentLoginBinding;
+import crysalis.example.yssa.ui.associateconsole.AssociateConsoleActivity;
+
+public class LoginFragment extends Fragment implements View.OnClickListener {
 
     FirebaseAuth mAuth;
     FirebaseFirestore mFirestore;
-    Context context;
     EditText etEmployeeId;
     ProgressBar progressBar;
     ImageButton imgBtnContinue;
@@ -46,13 +42,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     static String employeeId;
     final static String TAG = "Login Activity: ";
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ActivityLoginBinding binding = ActivityLoginBinding.inflate(getLayoutInflater());
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        FragmentLoginBinding binding = FragmentLoginBinding.inflate(getLayoutInflater());
+        View v = binding.getRoot();
         mAuth = FirebaseAuth.getInstance();
         mFirestore = FirebaseFirestore.getInstance();
-        context = this;
         etEmployeeId = binding.etEnterEmployeeId;
         progressBar = binding.progressBar;
         imgBtnContinue = binding.imgBtnContinue;
@@ -77,20 +73,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         eight.setOnClickListener(this);
         nine.setOnClickListener(this);
         zero.setOnClickListener(this);
-        setContentView(binding.getRoot());
+        return v;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        //if logged in, continue login
-    }
 
     @Override
     public void onClick(View v) {
         switch(v.getId()) {
             case R.id.img_btn_continue:
                 login();
+                progressBar.setVisibility(View.GONE);
                 break;
             case R.id.one:
                 etEmployeeId.append("1");
@@ -131,8 +123,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         progressBar.setVisibility(View.VISIBLE);
         progressBar.bringToFront();
         employeeId = etEmployeeId.getText().toString();
-        Intent intent = new Intent(LoginActivity.this,
-                AssociateConsoleActivity.class);
+        Intent intent = new Intent(getActivity(), AssociateConsoleActivity.class);
         startActivity(intent);
 //        mFirestore.collection("users")
 //                .get()
