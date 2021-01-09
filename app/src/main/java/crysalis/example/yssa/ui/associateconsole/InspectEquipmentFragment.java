@@ -22,7 +22,7 @@ import crysalis.example.yssa.databinding.FragmentInspectionBinding;
 import crysalis.example.yssa.ui.orderpicking.OrderPickingActivity;
 
 public class InspectEquipmentFragment extends Fragment implements
-        View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+        View.OnClickListener {
 
     RecyclerView rvInspectionList;
     InspectionSheetRecyclerViewAdapter adapter;
@@ -37,17 +37,13 @@ public class InspectEquipmentFragment extends Fragment implements
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        String[] checkListData =
-                getActivity().getResources().getStringArray(R.array.forklift_inspection_data_list);
         FragmentInspectionBinding binding = FragmentInspectionBinding.inflate(inflater);
         View v = binding.getRoot();
         completeBtn = binding.completeBtn;
         rvInspectionList = binding.rvInspectionList;
-        adapter = new InspectionSheetRecyclerViewAdapter(checkListData);
+        adapter = new InspectionSheetRecyclerViewAdapter(getContext());
         rvInspectionList.setLayoutManager(new LinearLayoutManager(getContext()));
         rvInspectionList.setAdapter(adapter);
-        checkAll = binding.checkboxCheckAll;
-        checkAll.setOnCheckedChangeListener(this);
         completeBtn.setOnClickListener(this);
         return v;
     }
@@ -64,8 +60,4 @@ public class InspectEquipmentFragment extends Fragment implements
         }
 
     }
-    @Override
-        public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-            adapter.setAllCheckBoxes(b);
-        }
 }

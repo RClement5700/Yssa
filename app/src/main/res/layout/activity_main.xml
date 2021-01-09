@@ -59,5 +59,6 @@
         android:layout_weight="1"
         android:backgroundTint="@android:color/holo_blue_light"
         android:rotation="180"
-        android:src="@drawable/abc_vector_test" />
+        android:src="?attr/actionModeCloseDrawable"
+        />
 </LinearLayout>

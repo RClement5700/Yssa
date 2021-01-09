@@ -27,27 +27,11 @@
             android:fontFamily="@font/anton"
             android:layout_margin="8dp" />
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:background="@color/colorPrimary"
             android:layout_margin="8dp">
-            <TextView
-                android:id="@+id/tv_check_all"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/check_all"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp"
-                android:layout_margin="8dp"
-                />
-            <CheckBox
-                android:id="@+id/checkbox_check_all"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:buttonTint="@android:color/white"
-                />
 
             <Button
                 android:id="@+id/complete_btn"

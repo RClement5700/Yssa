@@ -8,10 +8,9 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
-import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.ActivityAssociateConsoleBinding;
 
-public class AssociateConsoleActivity extends AppCompatActivity implements View.OnClickListener {
+public class AssociateConsoleActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,39 +18,13 @@ public class AssociateConsoleActivity extends AppCompatActivity implements View.
         ActivityAssociateConsoleBinding binding =
                 ActivityAssociateConsoleBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
-        TabLayout tabLayout = view.findViewById(R.id.associate_tab_layout);
-        ViewPager viewPager = view.findViewById(R.id.associate_view_pager);
+        TabLayout tabLayout = binding.associateTabLayout;
+        ViewPager viewPager = binding.associateViewPager;
         viewPager.setAdapter(new AssociatesConsolePagerAdapter(getSupportFragmentManager(),
-                0, this));
+                0));
         tabLayout.setupWithViewPager(viewPager);
+        tabLayout.getTabAt(0).setIcon(android.R.drawable.ic_btn_speak_now);
+        tabLayout.getTabAt(1).setIcon(android.R.drawable.ic_menu_edit);
         setContentView(view);
-
     }
-
-    @Override
-    public void onClick(View view) {
-    }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.associate_console_menu, menu);
-//        menu.getItem(2).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-//            @Override
-//            public boolean onMenuItemClick(MenuItem item) {
-//                mAuth.signOut();
-//                startActivity(new Intent(AssociateConsoleActivity.this, LoginActivity.class));
-//                return true;
-//            }
-//        });
-//        menu.getItem(1).setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-//            @Override
-//            public boolean onMenuItemClick(MenuItem item) {
-//                //check if user is management user
-//                startActivity(new Intent(AssociateConsoleActivity.this, ManagementConsoleActivity.class));
-//                return true;
-//            }
-//        });
-//        return true;
-//    }
 }

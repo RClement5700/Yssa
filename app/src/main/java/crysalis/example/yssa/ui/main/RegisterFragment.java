@@ -51,6 +51,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     }
 
     private void register() {
+        progressBar.setVisibility(View.VISIBLE);
         String firstName = etFirstName.getText().toString().trim();
         String lastName = etLastName.getText().toString().trim();
         String firstInitial = (" " + firstName.charAt(0)).toUpperCase().trim();
