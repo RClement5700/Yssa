@@ -24,8 +24,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.main.LoginRegisterActivity"
-            android:label="@string/title_activity_login_register"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".ui.orderpicking.OrderPickingActivity" />
 
         <service

@@ -7,11 +7,16 @@
     <string name="infer_sign_in">Hello, \nLet\'s Get \nYou Logged In</string>
     <string name="login_camel_case">Login</string>
 
+
     <!--Login Activity-->
     <string name="title_activity_login">LoginActivity</string>
     <string name="username">Username:</string>
     <string name="password">Password:</string>
     <string name="login">login</string>
+    <string name="generate_id">Generate Employee ID</string>
+    <string name="welcome_to_levo_sonus">Welcome To LevoSonus</string>
+    <string name="enter_first_name">Enter First Name:</string>
+    <string name="enter_last_name">Enter Last Name:</string>
     <string name="login_caps">L O G I N</string>
 
     <!--Welcome Fragment-->
@@ -130,11 +135,6 @@
     <string name="seven">7</string>
     <string name="eight">8</string>
     <string name="nine">9</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_login_register">LoginRegisterActivity</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
 
 
 </resources>
