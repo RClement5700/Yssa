@@ -11,16 +11,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import crysalis.example.yssa.R;
+import crysalis.example.yssa.ui.associateconsole.InspectEquipmentFragment;
 
 public class InspectionSheetRecyclerViewAdapter extends
         RecyclerView.Adapter<InspectionSheetRecyclerViewAdapter.InspectionSheetRecyclerViewHolder> {
     static String[] listOfParts;
-    static ArrayList<Boolean> cc = new ArrayList<>();
+    ArrayList<InspectEquipmentFragment.Obj> objList;
 
-    public InspectionSheetRecyclerViewAdapter(Context context) {
+    public InspectionSheetRecyclerViewAdapter(Context context, ArrayList<InspectEquipmentFragment.Obj> objList) {
         listOfParts =
                 context.getResources().getStringArray(R.array.forklift_inspection_data_list);
-        for (String s: listOfParts) cc.add(false);
+        this.objList = objList;
     }
 
     @NonNull
@@ -34,13 +35,14 @@ public class InspectionSheetRecyclerViewAdapter extends
 
     @Override
     public void onBindViewHolder(@NonNull InspectionSheetRecyclerViewHolder holder, int position) {
+        final InspectEquipmentFragment.Obj obj = objList.get(position);
         holder.partDescription.setText(listOfParts[position]);
-        holder.checkBox.setChecked(cc.get(position));
+        holder.checkBox.setOnCheckedChangeListener(null);
+        holder.checkBox.setChecked(obj.isSelected());
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                cc.remove(position);
-                cc.add(isChecked);
+                obj.setSelected(isChecked);
             }
         });
     }
@@ -50,20 +52,22 @@ public class InspectionSheetRecyclerViewAdapter extends
         return listOfParts.length;
     }
 
-//    public boolean allBoxesChecked() {
-//        for (CheckBox checkbox: checkBoxes) {
-//            if (!checkbox.isChecked()) return false;
-//        }
-//        return true;
-//    }
+    public boolean allBoxesChecked() {
+        for (InspectEquipmentFragment.Obj obj : objList) {
+            if (!obj.isSelected()) return false;
+        }
+        return true;
+    }
 
-    class InspectionSheetRecyclerViewHolder extends RecyclerView.ViewHolder {
+    static class InspectionSheetRecyclerViewHolder extends RecyclerView.ViewHolder {
         TextView partDescription;
         CheckBox checkBox;
+        boolean isChecked;
         public InspectionSheetRecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
             partDescription = itemView.findViewById(R.id.tv_part_description);
             checkBox = itemView.findViewById(R.id.checkbox_part);
+            isChecked = false;
         }
     }
 }
