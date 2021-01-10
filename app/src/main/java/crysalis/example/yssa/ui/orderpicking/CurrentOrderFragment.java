@@ -1,37 +1,18 @@
 package crysalis.example.yssa.ui.orderpicking;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-import adapters.OrderItemsRecyclerViewAdapter;
-import adapters.SpacesItemDecoration;
-import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentCurrentOrderBinding;
-import pojos.Order;
 import pojos.Product;
 
 public class CurrentOrderFragment extends Fragment {
-    RecyclerView rvCurrentOrder;
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -43,10 +24,6 @@ public class CurrentOrderFragment extends Fragment {
         // savedInstanceState will have whatever you left in the outState bundle above
         FragmentCurrentOrderBinding binding = FragmentCurrentOrderBinding.inflate(inflater);
         View v = binding.getRoot();
-        rvCurrentOrder = binding.rvCurrentOrder;
-        rvCurrentOrder.addItemDecoration(new SpacesItemDecoration(4));
-        rvCurrentOrder.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvCurrentOrder.setAdapter(new OrderItemsRecyclerViewAdapter(retrieveNextOrder()));
         return v;
     }
 

@@ -14,7 +14,6 @@ public class OrderPickingActivity extends AppCompatActivity implements View.OnCl
 
     FragmentManager fm;
     FloatingActionButton fabOpenListeningFragment;
-    FloatingActionButton fabOpenMessengerFragment;
 
 
     final String TAG = "Order Picking Activity";
@@ -24,9 +23,7 @@ public class OrderPickingActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_order_picking);
         fm = getSupportFragmentManager();
         fabOpenListeningFragment = findViewById(R.id.fab_open_listener_fragment);
-        fabOpenMessengerFragment = findViewById(R.id.fab_open_messages);
         fabOpenListeningFragment.setOnClickListener(this);
-        fabOpenMessengerFragment.setOnClickListener(this);
         fm.beginTransaction()
                 .add(R.id.orderPickingContainer, new CurrentOrderFragment())
                 .commit();
@@ -39,8 +36,6 @@ public class OrderPickingActivity extends AppCompatActivity implements View.OnCl
 //                fm.beginTransaction()
 //                        .add(R.id.order_picking_container, new ReceiveInstructionFragment())
 //                        .commit();
-            case R.id.fab_open_messages:
-                //open messages
         }
     }
 

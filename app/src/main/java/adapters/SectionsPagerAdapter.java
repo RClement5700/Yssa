@@ -19,7 +19,7 @@ import crysalis.example.yssa.R;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.user_report, R.string.current_order};
+    private static final int[] TAB_TITLES = new int[]{};
     private final Context mContext;
     FragmentManager fm;
 
