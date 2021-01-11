@@ -20,11 +20,6 @@ import java.util.Map;
 import java.util.Random;
 
 import crysalis.example.yssa.databinding.FragmentRegisterBinding;
-
-
-
-
-
 //        TODO:
 //        new user will be prompted to create voice profile
 //        VoiceEngine will prompt new user for the same word repeatedly; after 5 results are recorded
@@ -38,7 +33,6 @@ import crysalis.example.yssa.databinding.FragmentRegisterBinding;
 //        after all words have been recorded, VoiceEngine will send VoiceProfile to Firestore
 public class RegisterFragment extends Fragment implements View.OnClickListener {
     FirebaseFirestore mFirestore;
-    EditText etEmployeeId;
     EditText etFirstName;
     EditText etLastName;
     ProgressBar progressBar;
