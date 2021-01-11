@@ -25,7 +25,9 @@
         <activity
             android:name=".ui.main.LoginRegisterActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".ui.orderpicking.OrderPickingActivity" />
+        <activity
+            android:name=".ui.orderpicking.OrderPickingActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
             android:name=".ui.main.MainActivity"

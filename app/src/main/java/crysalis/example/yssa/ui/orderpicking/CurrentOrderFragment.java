@@ -27,7 +27,6 @@ public class CurrentOrderFragment extends Fragment {
         return v;
     }
 
-
     public ArrayList<OrderItem> retrieveNextOrder() {
         ArrayList<OrderItem> orderItems = new ArrayList<>();
         orderItems.add(new OrderItem(new Product(998, "Beef Patties"), 7));

@@ -7,6 +7,25 @@
     android:orientation="vertical"
     tools:context=".ui.main.LoginFragment">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="@string/login_camel_case"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_margin="8dp"
+        android:orientation="vertical"
+        android:background="@android:color/black"
+        />
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,7 +35,7 @@
         android:layout_height="wrap_content"
         android:text="@string/enter_employee_id"
         android:layout_margin="8dp"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/colorPrimary"/>
 

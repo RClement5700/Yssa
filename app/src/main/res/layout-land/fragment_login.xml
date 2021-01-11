@@ -19,6 +19,24 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/login_camel_case"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_margin="8dp"
+            android:orientation="vertical"
+            android:background="@android:color/black"
+            />
+
+        <TextView
             android:id="@+id/tv_enter_employee_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

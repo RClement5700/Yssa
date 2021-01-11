@@ -14,6 +14,7 @@
     <string name="password">Password:</string>
     <string name="login">login</string>
     <string name="register">register</string>
+    <string name="promp_register">Register New User</string>
     <string name="generate_id">Generate Employee ID</string>
     <string name="welcome_to_levo_sonus">Welcome To LevoSonus</string>
     <string name="enter_first_name">Enter First Name:</string>
