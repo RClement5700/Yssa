@@ -3,12 +3,16 @@ package crysalis.example.yssa.ui.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognitionListener;
+import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
 
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.ActivityMainBinding;
@@ -18,7 +22,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private SpeechRecognizer speechRecognizer;
     private Intent speechRecognizerIntent;
     ImageButton imgBtnContinue;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +73,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onResults(Bundle results) {
-
+        ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+        for (String s: matches) {
+            if(s.equals("ready") || s.equals("Ready")) {
+                Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+                imgBtnContinue.callOnClick();
+            }
+        }
     }
 
     @Override

@@ -2,6 +2,8 @@ package crysalis.example.yssa.ui.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognitionListener;
+import android.speech.SpeechRecognizer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,11 +20,13 @@ import androidx.fragment.app.Fragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentLoginBinding;
 import crysalis.example.yssa.ui.associateconsole.AssociateConsoleActivity;
 
-public class LoginFragment extends Fragment implements View.OnClickListener {
+public class LoginFragment extends Fragment implements View.OnClickListener, RecognitionListener {
 
     FirebaseAuth mAuth;
     FirebaseFirestore mFirestore;
@@ -39,6 +44,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     TextView nine;
     TextView zero;
     static String employeeId;
+    private SpeechRecognizer speechRecognizer;
+    private Intent speechRecognizerIntent;
     final static String TAG = "Login Activity: ";
 
     @Nullable
@@ -48,6 +55,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         View v = binding.getRoot();
         mAuth = FirebaseAuth.getInstance();
         mFirestore = FirebaseFirestore.getInstance();
+        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(getActivity());
+        speechRecognizerIntent = new Intent();
         etEmployeeId = binding.etEnterEmployeeId;
         progressBar = binding.progressBar;
         imgBtnContinue = binding.imgBtnContinue;
@@ -72,6 +81,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         eight.setOnClickListener(this);
         nine.setOnClickListener(this);
         zero.setOnClickListener(this);
+        speechRecognizer.setRecognitionListener(this);
+        speechRecognizer.startListening(speechRecognizerIntent);
         return v;
     }
 
@@ -114,6 +125,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 etEmployeeId.append("0");
                 break;
         }
+
     }
 
 
@@ -155,5 +167,87 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 //                progressBar.setVisibility(View.GONE);
 //            }
 //        });
+    }
+
+    @Override
+    public void onReadyForSpeech(Bundle params) {
+
+    }
+
+    @Override
+    public void onBeginningOfSpeech() {
+
+    }
+
+    @Override
+    public void onRmsChanged(float rmsdB) {
+
+    }
+
+    @Override
+    public void onBufferReceived(byte[] buffer) {
+
+    }
+
+    @Override
+    public void onEndOfSpeech() {
+
+    }
+
+    @Override
+    public void onError(int error) {
+
+    }
+
+    @Override
+    public void onResults(Bundle results) {
+        ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+        for (String s: matches) {
+            if (s.equals("ready")) {
+                imgBtnContinue.callOnClick();
+            }
+            if(s.equals("9")) {
+                nine.callOnClick();
+            }
+            if(s.equals("8")) {
+                eight.callOnClick();
+            }
+            if(s.equals("7")) {
+                seven.callOnClick();
+            }
+            if(s.equals("6")) {
+                six.callOnClick();
+            }
+            if(s.equals("5")) {
+                five.callOnClick();
+            }
+            if(s.equals("4")) {
+                four.callOnClick();
+            }
+            if(s.equals("3")) {
+                three.callOnClick();
+            }
+            if(s.equals("2")) {
+                two.callOnClick();
+            }
+            if(s.equals("1")) {
+                one.callOnClick();
+            }
+            if(s.equals("0")) {
+                zero.callOnClick();
+            }
+            Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
+            speechRecognizer.startListening(speechRecognizerIntent);
+        }
+    }
+
+    @Override
+    public void onPartialResults(Bundle partialResults) {
+
+    }
+
+    @Override
+    public void onEvent(int eventType, Bundle params) {
+
     }
 }
