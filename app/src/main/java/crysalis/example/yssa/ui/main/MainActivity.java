@@ -95,34 +95,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onReadyForSpeech(Bundle params) {
-        System.err.println("On Ready");
     }
 
     @Override
     public void onBeginningOfSpeech() {
-        System.err.println("On Beginning");
-
     }
 
     @Override
     public void onRmsChanged(float rmsdB) {
-        System.err.println("On RMS change");
-
     }
 
     @Override
     public void onBufferReceived(byte[] buffer) {
-        System.err.println("On Buffer Received");
     }
 
     @Override
     public void onEndOfSpeech() {
-        System.err.println("On End of Speech");
     }
 
     @Override
     public void onError(int error) {
-        System.err.println("On Error: " + error);
         speechRecognizer.startListening(recognizerIntent);
     }
 
@@ -147,6 +139,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onEvent(int eventType, Bundle params) {
-        System.err.println("On Event: " + eventType);
     }
 }

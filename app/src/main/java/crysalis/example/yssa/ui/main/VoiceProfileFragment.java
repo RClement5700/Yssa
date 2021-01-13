@@ -40,6 +40,13 @@ public class VoiceProfileFragment extends Fragment implements View.OnClickListen
     ImageButton imgBtnMic;
     SpeechRecognizer speechRecognizer;
     Intent speechRecognitionIntent;
+    boolean creatingVoiceProfile = false;
+    int[] staticTemplate = {
+            R.string.one, R.string.two, R.string.three,
+            R.string.four, R.string.five, R.string.six,
+            R.string.seven, R.string.eight, R.string.nine,
+            R.string.zero
+    };
     public VoiceProfileFragment() {
     }
 
@@ -64,22 +71,51 @@ public class VoiceProfileFragment extends Fragment implements View.OnClickListen
         return v;
     }
 
-    public void createVoiceProfile() {
-        Toast.makeText(getActivity(), "Preparing Voice Template", Toast.LENGTH_SHORT).show();
-        tvRepeatTheFollowing.setVisibility(View.VISIBLE);
-        String[] integers = {
-                getString(R.string.one), getString(R.string.two), getString(R.string.three),
-                getString(R.string.four), getString(R.string.five), getString(R.string.six),
-                getString(R.string.seven), getString(R.string.eight), getString(R.string.nine),
-                getString(R.string.zero)
-        };
-        tvCreateVoiceProfile.setTimeout(10, TimeUnit.SECONDS);
-        tvCreateVoiceProfile.setTexts(integers);
+    @Override
+    public void onStart() {
+        super.onStart();
+        speechRecognizer.startListening(speechRecognitionIntent);
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        speechRecognizer.startListening(speechRecognitionIntent);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        speechRecognizer.stopListening();
+        speechRecognizer.destroy();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        speechRecognizer.stopListening();
+        speechRecognizer.destroy();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        speechRecognizer.stopListening();
+        speechRecognizer.destroy();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        speechRecognizer.stopListening();
+        speechRecognizer.destroy();
+    }
+
+
+    @Override
     public void onClick(View v) {
-        createVoiceProfile();
+        creatingVoiceProfile = true;
+        Toast.makeText(getActivity(), "Preparing Voice Template", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -117,6 +153,23 @@ public class VoiceProfileFragment extends Fragment implements View.OnClickListen
             speechRecognizer.stopListening();
             speechRecognizer.destroy();
             speechRecognizer.startListening(speechRecognitionIntent);
+        }
+        while (creatingVoiceProfile) {
+            tvRepeatTheFollowing.setVisibility(View.VISIBLE);
+            ArrayList<String> voiceTemplate = new ArrayList<>();
+
+            for (int current : staticTemplate) {
+                int count = 5;
+                while (count > 0) {
+                    voiceTemplate.add(getString(current));
+                    count--;
+                }
+            }
+            String[] voiceTemplateArray = new String[voiceTemplate.size()];
+            voiceTemplateArray = voiceTemplate.toArray(voiceTemplateArray);
+            tvCreateVoiceProfile.setTimeout(3, TimeUnit.SECONDS);
+            tvCreateVoiceProfile.setTexts(voiceTemplateArray);
+            creatingVoiceProfile = false;
         }
     }
 
