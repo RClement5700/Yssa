@@ -23,6 +23,17 @@ import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentVoiceProfileBinding;
 
 public class VoiceProfileFragment extends Fragment implements View.OnClickListener {
+//        TODO:
+//        new user will be prompted to create voice profile
+//        VoiceEngine will prompt new user for the same word repeatedly; after 5 results are recorded
+//        those 5 results will make up the attributes of the document being created in firestore
+//        ex: Document: eight
+//                  attribute: "eight"
+//                  attribute: "hey"
+//                  attribute: "ace"
+//                  attribute: "ape"
+//                  attribute: "ache"
+//        after all words have been recorded, VoiceEngine will send VoiceProfile to Firestore
     FadingTextView tvCreateVoiceProfile;
     ImageButton imgBtnMic;
     public VoiceProfileFragment() {
