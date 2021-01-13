@@ -3,6 +3,7 @@ package crysalis.example.yssa.ui.main;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
@@ -13,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ShareCompat;
 
 import com.tomer.fadingtextview.FadingTextView;
 
@@ -24,7 +26,7 @@ import crysalis.example.yssa.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, RecognitionListener {
 
     private SpeechRecognizer speechRecognizer;
-    private Intent speechRecognizerIntent;
+    private Intent recognizerIntent;
     ImageButton imgBtnContinue;
     AudioManager audioManager;
     @Override
@@ -32,8 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
-        String[] welcome = {getString(R.string.welcome_to_levo_sonus),
-                getString(R.string.infer_sign_in)};
+        String[] welcome = {getString(R.string.welcome_to_levo_sonus), getString(R.string.infer_sign_in)};
         FadingTextView tvWelcome = binding.tvWelcome;
         tvWelcome.setTexts(welcome);
         tvWelcome.restart();
@@ -43,9 +44,48 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imgBtnContinue.setOnClickListener(this);
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
         speechRecognizer.setRecognitionListener(this);
-        speechRecognizerIntent = new Intent();
-        speechRecognizer.startListening(speechRecognizerIntent);
+        recognizerIntent = new Intent();
+        speechRecognizer.startListening(recognizerIntent);
         setContentView(view);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        speechRecognizer.startListening(recognizerIntent);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        speechRecognizer.startListening(recognizerIntent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        speechRecognizer.startListening(recognizerIntent);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        speechRecognizer.stopListening();
+        speechRecognizer.destroy();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        speechRecognizer.stopListening();
+        speechRecognizer.destroy();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        speechRecognizer.stopListening();
+        speechRecognizer.destroy();
     }
 
     @Override
@@ -83,25 +123,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onError(int error) {
         System.err.println("On Error: " + error);
-        if (error == 7) speechRecognizer.startListening(speechRecognizerIntent);
-
+        speechRecognizer.startListening(recognizerIntent);
     }
 
     @Override
-    public void onResults(Bundle results) {
-        System.err.println("On Results");
+    public void  onPartialResults(Bundle partialResults) {
+        onResults(partialResults);
+    }
+    @Override
+    public void  onResults(Bundle results) {
         ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-        for (String s: matches) {
-            if(s.equals("ready") || s.equals("Ready")) {
-                Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+        if (matches.get(0).isEmpty()) {
+            speechRecognizer.stopListening();
+            speechRecognizer.destroy();
+            speechRecognizer.startListening(recognizerIntent);
+        }
+        else {
+            if (matches.get(0).equals("ready")) {
                 imgBtnContinue.callOnClick();
             }
         }
-    }
-
-    @Override
-    public void onPartialResults(Bundle partialResults) {
-        System.err.println("On Partial Results");
     }
 
     @Override
