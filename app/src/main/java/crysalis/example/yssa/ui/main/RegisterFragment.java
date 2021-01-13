@@ -29,6 +29,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     EditText etLastName;
     ProgressBar progressBar;
     ImageView imgBtnContinue;
+    String UID;
 
     @Override
     public View onCreateView(
@@ -50,7 +51,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
 //        register();
         progressBar.setVisibility(View.GONE);
         getActivity().getSupportFragmentManager().beginTransaction()
-                .add(R.id.container_voice_profile, new VoiceProfileFragment())
+                .add(R.id.container_voice_profile, new VoiceProfileFragment(UID))
                 .addToBackStack(null)
                 .remove(this)
                 .remove(getActivity().getSupportFragmentManager().getFragments().get(0))
@@ -66,7 +67,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         String fullName = firstInitial + firstName.substring(1, firstName.length())
                 + " " + lastInitial + lastName.substring(1, lastName.length());
         int uid = (int) Math.ceil(new Random().nextInt(10000));
-        String UID = String.valueOf(uid);
+        UID = String.valueOf(uid);
         String displayName = fullName.toLowerCase().replace(" ", ".") + "." +
                 UID;
         System.err.println("Full Name: " + fullName);
