@@ -21,7 +21,9 @@
     <string name="enter_last_name">Enter Last Name:</string>
     <string name="login_caps">L O G I N</string>
     <string name="prompt_create_voice_profile">Let\'s Create a Voice Profile</string>
-    <string name="prompt_press_button">Press The Button When You\'re Ready to Begin</string>
+    <string name="prompt_press_button">Press the Button When You\'re Ready to Begin</string>
+    <string name="repeat_the_following">Repeat the Following Word, Words or Phrase: </string>
+
 
 
 
