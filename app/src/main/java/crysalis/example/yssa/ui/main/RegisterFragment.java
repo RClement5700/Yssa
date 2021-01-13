@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentRegisterBinding;
 //        TODO:
 //        new user will be prompted to create voice profile
@@ -32,6 +33,7 @@ import crysalis.example.yssa.databinding.FragmentRegisterBinding;
 //                  attribute: "ache"
 //        after all words have been recorded, VoiceEngine will send VoiceProfile to Firestore
 public class RegisterFragment extends Fragment implements View.OnClickListener {
+
     FirebaseFirestore mFirestore;
     EditText etFirstName;
     EditText etLastName;
@@ -48,14 +50,21 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         etLastName = binding.etEnterLastName;
         progressBar = binding.progressBar;
         imgBtnContinue = binding.ivContinue;
+        imgBtnContinue.setOnClickListener(this);
         return v;
     }
 
 
     @Override
     public void onClick(View v) {
-        register();
+//        register();
         progressBar.setVisibility(View.GONE);
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .add(R.id.container_voice_profile, new VoiceProfileFragment())
+                .addToBackStack(null)
+                .remove(this)
+                .remove(getActivity().getSupportFragmentManager().getFragments().get(0))
+                .commit();
     }
 
     private void register() {
@@ -75,19 +84,17 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         Map<String, String> user = new HashMap<>();
         user.put("displayName", displayName);
         user.put("fullName", fullName);
-        if (!fullName.isEmpty() && !displayName.isEmpty() && !UID.isEmpty()) {
-            mFirestore.collection("users").document(UID)
-                    .set(user)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                        }
-                    });
-        }
+        mFirestore.collection("users").document(UID)
+                .set(user)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                    }
+                });
     }
 }

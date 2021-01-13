@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.tomer.fadingtextview.FadingTextView;
+
 import java.util.ArrayList;
 
 import crysalis.example.yssa.R;
@@ -30,6 +32,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
+        String[] welcome = {getString(R.string.welcome_to_levo_sonus),
+                getString(R.string.infer_sign_in)};
+        FadingTextView tvWelcome = binding.tvWelcome;
+        tvWelcome.setTexts(welcome);
+        tvWelcome.restart();
         audioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
         audioManager.adjustVolume(AudioManager.ADJUST_MUTE, AudioManager.FLAG_PLAY_SOUND);
         imgBtnContinue = binding.imgBtnContinue;
@@ -76,9 +83,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onError(int error) {
         System.err.println("On Error: " + error);
-        if (error == 7) {
-            speechRecognizer.startListening(speechRecognizerIntent);
-        }
+        if (error == 7) speechRecognizer.startListening(speechRecognizerIntent);
+
     }
 
     @Override

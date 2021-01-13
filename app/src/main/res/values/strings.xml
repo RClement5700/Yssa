@@ -4,7 +4,7 @@
     <!--Main Activity-->
     <string name="levo">levo</string>
     <string name="sonus">S O N U S</string>
-    <string name="infer_sign_in">Hello, \nLet\'s Get \nYou Logged In</string>
+    <string name="infer_sign_in">Let\'s Get You Logged In</string>
     <string name="login_camel_case">Login</string>
 
 
@@ -20,6 +20,11 @@
     <string name="enter_first_name">Enter First Name:</string>
     <string name="enter_last_name">Enter Last Name:</string>
     <string name="login_caps">L O G I N</string>
+    <string name="prompt_create_voice_profile">Let\'s Create a Voice Profile</string>
+    <string name="prompt_press_button">Press The Button When You\'re Ready to Begin</string>
+
+
+
 
     <!-- Associate Console -->
     <string name="title_activity_associate_console">Associate Console</string>
