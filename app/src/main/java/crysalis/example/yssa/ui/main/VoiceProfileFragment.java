@@ -1,6 +1,8 @@
 package crysalis.example.yssa.ui.main;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.speech.RecognitionListener;
@@ -30,6 +32,7 @@ import java.util.concurrent.TimeUnit;
 
 import crysalis.example.yssa.R;
 import crysalis.example.yssa.databinding.FragmentVoiceProfileBinding;
+import pojos.VoiceProfile;
 
 public class VoiceProfileFragment extends Fragment implements View.OnClickListener, RecognitionListener, TextToSpeech.OnInitListener {
 //        TODO:
@@ -49,8 +52,8 @@ public class VoiceProfileFragment extends Fragment implements View.OnClickListen
     SpeechRecognizer speechRecognizer;
     Intent speechRecognitionIntent;
     FirebaseFirestore mFirestore;
-    private String UID;
-    boolean creatingVoiceProfile = false;
+    String UID;
+    TextToSpeech tts;
     int[] staticTemplate = {
             R.string.one, R.string.two, R.string.three,
             R.string.four, R.string.five, R.string.six,
@@ -67,6 +70,9 @@ public class VoiceProfileFragment extends Fragment implements View.OnClickListen
                              @Nullable Bundle savedInstanceState) {
         FragmentVoiceProfileBinding binding = FragmentVoiceProfileBinding.inflate(inflater);
         View v = binding.getRoot();
+        SharedPreferences preferences = getActivity().getPreferences(0);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("userId", UID);
         mFirestore = FirebaseFirestore.getInstance();
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(getActivity());
         speechRecognizer.setRecognitionListener(this);
@@ -81,27 +87,6 @@ public class VoiceProfileFragment extends Fragment implements View.OnClickListen
         tvCreateVoiceProfile.setTexts(prompts);
         tvCreateVoiceProfile.restart();
         return v;
-    }
-
-    public void createVoiceProfile(ArrayList<String> prompts) {
-        TextToSpeech tts = new TextToSpeech(getActivity(), this);
-        tts.setLanguage(Locale.US);
-        tts.speak("1", TextToSpeech.QUEUE_ADD, new Bundle(), TextToSpeech.ACTION_TTS_QUEUE_PROCESSING_COMPLETED);
-        for (String s: prompts) {
-            Map<String, String> template = new HashMap<>(); //<prompt, input>
-        }
-        mFirestore.collection("voiceProfiles").document(UID).set(template)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-
-            }
-        });
-    }
-
-    @Override
-    public void onInit(int status) {
-
     }
 
     @Override
@@ -147,8 +132,16 @@ public class VoiceProfileFragment extends Fragment implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        creatingVoiceProfile = true;
         Toast.makeText(getActivity(), "Preparing Voice Template", Toast.LENGTH_SHORT).show();
+        tts = new TextToSpeech(getActivity(), this);
+        tts.setLanguage(Locale.US);
+    }
+
+    @Override
+    public void onInit(int status) {
+        if (status == TextToSpeech.SUCCESS) {
+            tts.speak("Levo Sonus", TextToSpeech.QUEUE_ADD, null, null);
+        }
     }
 
     @Override
@@ -186,22 +179,6 @@ public class VoiceProfileFragment extends Fragment implements View.OnClickListen
             speechRecognizer.stopListening();
             speechRecognizer.destroy();
             speechRecognizer.startListening(speechRecognitionIntent);
-        }
-        while (creatingVoiceProfile) {
-            tvRepeatTheFollowing.setVisibility(View.VISIBLE);
-            ArrayList<String> voiceTemplate = new ArrayList<>();
-            for (int current : staticTemplate) {
-                int count = 5;
-                while (count > 0) {
-                    voiceTemplate.add(getString(current));
-                    count--;
-                }
-            }
-            String[] voiceTemplateArray = new String[voiceTemplate.size()];
-            voiceTemplateArray = voiceTemplate.toArray(voiceTemplateArray);
-            tvCreateVoiceProfile.setTimeout(3, TimeUnit.SECONDS);
-            tvCreateVoiceProfile.setTexts(voiceTemplateArray);
-            creatingVoiceProfile = false;
         }
     }
 
